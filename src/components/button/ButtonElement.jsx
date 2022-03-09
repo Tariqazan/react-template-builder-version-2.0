@@ -4,9 +4,8 @@ import { Col, FormControl, Row, InputGroup, Button, Form } from 'react-bootstrap
 import Drop from '../Drop';
 
 import OutsideClick from '../OutsideClick';
-import ButtonElementStyle from './ButtonElementStyle';
 
-
+import { useDetectClickOutside } from 'react-detect-click-outside';
 function ButtonElement() {
     const boxRef = useRef(null)
     const boxOutsideClick = OutsideClick(boxRef)
@@ -43,8 +42,9 @@ function ButtonElement() {
 
     const [borderstyle, setBorderStyle] = useState("solid")
 
+    const ref = useDetectClickOutside({ onTriggered: handleClose });
     return (
-        <>
+        <div ref={ref}>
             {remove ?
                 <div style={{
                     'backgroundColor': background,
@@ -85,7 +85,6 @@ function ButtonElement() {
                         </div>
                     </>}</span></a>
                 </div> : <Drop></Drop>}
-            <ButtonElementStyle show={show}></ButtonElementStyle>
             {show ?
                 <div className='sidenav'>
                     <div>
@@ -186,7 +185,7 @@ function ButtonElement() {
                         </Row>
                     </div>
                 </div> : <></>}
-        </>
+        </div>
     )
 }
 

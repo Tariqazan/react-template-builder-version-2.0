@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { Button } from 'react-bootstrap';
 import Drop from '../Drop';
+import { useDetectClickOutside } from 'react-detect-click-outside';
 
 function HTMLElement() {
     const [show, setShow] = useState(false)
@@ -11,8 +12,9 @@ function HTMLElement() {
     const handleOpen = () => setShow(true)
     const handleClose = () => setShow(false)
 
+    const ref = useDetectClickOutside({ onTriggered: handleClose });
     return (
-        <>
+        <div ref={ref}>
             {remove ? <div dangerouslySetInnerHTML={{ __html: html_value }} onClick={handleOpen} onBlur={handleClose}></div> : <Drop></Drop>}
             {show ?
                 <div className='sidenav'>
@@ -29,7 +31,7 @@ function HTMLElement() {
                         }}>{html_value}</textarea>
                     </div>
                 </div> : <></>}
-        </>
+        </div>
     )
 }
 

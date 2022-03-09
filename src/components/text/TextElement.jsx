@@ -4,6 +4,7 @@ import ContentEditable from "react-contenteditable";
 
 import { Row, Col, Button } from 'react-bootstrap';
 import Drop from '../Drop';
+import { useDetectClickOutside } from 'react-detect-click-outside';
 
 import OutsideClick from '../OutsideClick';
 
@@ -20,8 +21,9 @@ function TextElement() {
 
     const [value, setValue] = useState('add content')
 
+    const ref = useDetectClickOutside({ onTriggered: handleClose });
     return (
-        <>
+        <div ref={ref}>
             {show ?
                 <div className='sidenav'>
                     <div>
@@ -107,7 +109,7 @@ function TextElement() {
                     </>
                 )
             }
-        </>
+        </div>
     )
 }
 

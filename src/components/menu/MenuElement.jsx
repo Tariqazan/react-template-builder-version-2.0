@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react'
 import { Button, InputGroup, FormControl } from 'react-bootstrap';
 import Drop from '../Drop';
+import { useDetectClickOutside } from 'react-detect-click-outside';
 
 function MenuElement() {
     const [show, setShow] = useState(false);
@@ -13,8 +14,9 @@ function MenuElement() {
     const [remove, setRemove] = useState(true)
     const handleOpen = () => setShow(true);
     const handleClose = () => setShow(false);
+    const ref = useDetectClickOutside({ onTriggered: handleClose });
     return (
-        <>
+        <div ref={ref}>
             {show ?
                 <div className='sidenav'>
                     <div>
@@ -56,7 +58,7 @@ function MenuElement() {
                 </div> : <></>}
 
             {remove ? <>{menu ? <ul onClick={handleOpen}>{menuitem}</ul> : <div onClick={handleOpen}>Add New Item</div>}</> : <Drop></Drop>}
-        </>
+        </div>
     )
 }
 

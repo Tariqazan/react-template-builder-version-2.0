@@ -3,6 +3,7 @@ import { Col, FormControl, Row, InputGroup, Button, Form } from 'react-bootstrap
 
 import Drop from '../Drop';
 
+import { useDetectClickOutside } from 'react-detect-click-outside';
 function DividerElement() {
     const [show, setShow] = useState(false)
 
@@ -16,8 +17,9 @@ function DividerElement() {
     const [justifyContent, setjustifyContent] = useState("")
     const [borderStyle, setBorderStyle] = useState("solid")
 
+    const ref = useDetectClickOutside({ onTriggered: handleClose });
     return (
-        <>
+        <div ref={ref}>
             {remove ?
                 <div className='border py-3' style={{ 'display': 'flex', 'justifyContent': justifyContent }} onClick={handleOpen}>
                     <div style={{ 'width': width, 'borderTopStyle': borderStyle, 'borderTopColor': color, 'borderWidth': height }}></div>
@@ -66,7 +68,7 @@ function DividerElement() {
                         </Row>
                     </div>
                 </div> : <></>}
-        </>
+        </div>
     )
 }
 

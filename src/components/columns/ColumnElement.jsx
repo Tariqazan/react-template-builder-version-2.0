@@ -4,6 +4,7 @@ import { Row, Col, Button, Table, Tabs, Tab, FormControl, FormSelect } from 'rea
 
 import Drop from '../Drop';
 
+import { useDetectClickOutside } from 'react-detect-click-outside';
 function ColumnElement() {
     const [show, setShow] = useState(true)
     const [columnStyle, setColumnStyle] = useState("column12")
@@ -158,8 +159,9 @@ function ColumnElement() {
     }
 
     const [backgroundImage, setBackgroundImage] = useState(null)
+    const ref = useDetectClickOutside({ onTriggered: handleClose });
     return (
-        <>
+        <div ref={ref}>
             {show ?
                 <div className='sidenav'>
                     <div>
@@ -2047,7 +2049,7 @@ function ColumnElement() {
                         }}><Drop></Drop></Col>
                     </Row> : <></>}
             </div>
-        </>
+        </div>
     )
 }
 

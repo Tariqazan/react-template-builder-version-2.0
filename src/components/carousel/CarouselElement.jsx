@@ -2,6 +2,7 @@ import React, { useState, useRef } from 'react';
 import { Offcanvas, Carousel, FormControl, Button, Form, Row, Col } from 'react-bootstrap';
 import Drop from '../Drop';
 
+import { useDetectClickOutside } from 'react-detect-click-outside';
 function CarouselElement() {
   const [show, setShow] = useState(false)
 
@@ -24,8 +25,9 @@ function CarouselElement() {
   const handleOpen = () => setShow(true)
   const handleClose = () => setShow(false)
 
+  const ref = useDetectClickOutside({ onTriggered: handleClose });
   return (
-    <div style={{ 'padding': padding, 'paddingTop': paddingTop, 'paddingBottom': paddingBottom, 'paddingLeft': paddingLeft, 'paddingRight': paddingRight }}>
+    <div ref={ref} style={{ 'padding': padding, 'paddingTop': paddingTop, 'paddingBottom': paddingBottom, 'paddingLeft': paddingLeft, 'paddingRight': paddingRight }}>
       {remove ? <Carousel variant="dark" onClick={handleOpen}>
         <Carousel.Item>
           <a href={img_url1}>

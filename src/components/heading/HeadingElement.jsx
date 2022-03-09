@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { Row, Col, Button, InputGroup, FormControl } from 'react-bootstrap';
 import Drop from '../Drop';
+import { useDetectClickOutside } from 'react-detect-click-outside';
 
 function HeadingElement() {
     const [remove, setRemove] = useState(true)
@@ -13,8 +14,9 @@ function HeadingElement() {
 
     const handleOpen = () => setShow(true)
     const handleClose = () => setShow(false)
+    const ref = useDetectClickOutside({ onTriggered: handleClose });
     return (
-        <>
+        <div ref={ref}>
             {remove ?
                 <div style={{ 'display': 'flex', 'justifyContent': justifyContent, 'color': color }} onClick={handleOpen}>
                     <p contentEditable="true" style={{ 'width': '100%', 'fontSize': fontsize, }}>heading</p>
@@ -68,7 +70,7 @@ function HeadingElement() {
                         </Row>
                     </div>
                 </div> : <></>}
-        </>
+        </div>
     )
 }
 

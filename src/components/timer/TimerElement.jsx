@@ -3,6 +3,7 @@ import { Button, Col, FormControl, Row } from 'react-bootstrap';
 import Drop from '../Drop';
 import CountdownTimer from './CountDownTimer';
 
+import { useDetectClickOutside } from 'react-detect-click-outside';
 function TimerElement() {
     const [show, setShow] = useState(false)
 
@@ -20,9 +21,10 @@ function TimerElement() {
     const [endtime, setEndTime] = useState(null)
 
     const [diffDate, setdiffDate] = useState(null)
+    const ref = useDetectClickOutside({ onTriggered: handleClose });
 
     return (
-        <>
+        <div ref={ref}>
             {remove ? <div style={{ 'backgroundColor': background, 'color': color }} onClick={handleOpen}><CountdownTimer targetDate={diffDate}></CountdownTimer></div> : <Drop></Drop>}
             {show ?
                 <div className='sidenav'>
@@ -54,7 +56,7 @@ function TimerElement() {
                             </Col>
                         </Row>
                     </div>
-                </div> : <></>}</>
+                </div> : <></>}</div>
     )
 }
 

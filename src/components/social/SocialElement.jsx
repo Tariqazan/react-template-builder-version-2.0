@@ -14,6 +14,7 @@ import {
 
 import { Stack, Form, Button, InputGroup, FormControl } from "react-bootstrap";
 import Drop from "../Drop";
+import { useDetectClickOutside } from 'react-detect-click-outside';
 
 function SocialElement() {
     const id = Date.now()
@@ -45,8 +46,10 @@ function SocialElement() {
 
     const handleOpen = () => setShow(true);
     const handleClose = () => setShow(false);
+
+    const ref = useDetectClickOutside({ onTriggered: handleClose });
     return (
-        <>
+        <div ref={ref}>
             {show ?
                 <div className='sidenav'>
                     <div>
@@ -1531,7 +1534,7 @@ function SocialElement() {
                     <Drop></Drop>
                 )
             }
-        </>
+        </div>
     )
 }
 

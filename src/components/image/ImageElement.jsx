@@ -5,6 +5,7 @@ import { Row, Col, Image, Offcanvas, FormControl, Button } from 'react-bootstrap
 import ImageEditor from '@toast-ui/react-image-editor';
 import 'tui-image-editor/dist/tui-image-editor.css';
 import Drop from "../Drop";
+import { useDetectClickOutside } from 'react-detect-click-outside';
 
 
 function ImageElement() {
@@ -33,9 +34,9 @@ function ImageElement() {
         setPicture(objectURL)
     }
 
+    const ref = useDetectClickOutside({ onTriggered: handleClose });
     return (
-        <>
-
+        <div ref={ref}>
             {show ?
                 <div className='sidenav'>
                     <div>
@@ -91,7 +92,7 @@ function ImageElement() {
                         <Drop></Drop>
                     </>
                 )}
-        </>
+        </div>
     )
 }
 

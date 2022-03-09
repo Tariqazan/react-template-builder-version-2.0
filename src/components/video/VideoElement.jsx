@@ -1,6 +1,7 @@
-import React, { useState,useRef } from "react";
+import React, { useState, useRef } from "react";
 import { Offcanvas, Button } from 'react-bootstrap';
 import Drop from '../Drop';
+import { useDetectClickOutside } from 'react-detect-click-outside';
 
 function VideoElement() {
     const [remove, setRemove] = useState(true)
@@ -22,9 +23,10 @@ function VideoElement() {
         'height': 'auto'
     }
 
+    const ref = useDetectClickOutside({ onTriggered: handleClose });
 
     return (
-        <>
+        <div ref={ref}>
             {show ?
                 <div className='sidenav'>
                     <div>
@@ -53,7 +55,7 @@ function VideoElement() {
                     </>
                 )
             }
-        </>
+        </div>
     )
 }
 

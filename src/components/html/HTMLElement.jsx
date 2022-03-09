@@ -6,14 +6,14 @@ function HTMLElement() {
     const [show, setShow] = useState(false)
 
     const [remove, setRemove] = useState(true)
-    const [html, setHtml] = useState("<strong>Hello World</strong>")
+    const [htmlvalue, setHtmlValue] = useState("<strong>Hello World</strong>")
 
     const handleOpen = () => setShow(true)
     const handleClose = () => setShow(false)
 
     return (
         <>
-            {remove ? <div dangerouslySetInnerHTML={{ __html: html }} onClick={handleOpen} onBlur={handleClose}></div> : <Drop></Drop>}
+            {remove ? <div dangerouslySetInnerHTML={{ __html: htmlvalue }} onClick={handleOpen} onBlur={handleClose}></div> : <Drop></Drop>}
             {show ?
                 <div className='sidenav'>
                     <div>
@@ -25,8 +25,8 @@ function HTMLElement() {
                             setShow(false)
                         }}></Button>
                         <textarea className='form-control' cols="30" rows="10" onChange={(e) => {
-                            setHtml(e.target.value)
-                        }}>{html}</textarea>
+                            setHtmlValue(e.target.value)
+                        }}>{htmlvalue}</textarea>
                     </div>
                 </div> : <></>}
         </>

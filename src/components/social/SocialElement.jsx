@@ -80,12 +80,14 @@ function SocialElement() {
 
                         {icontype === 'circle' ? <>
                             <Stack direction='horizontal' gap={2}>
-                                <FaFacebook onClick={(e) => {
+                                <FaFacebook id="facebook-sidebar" onClick={(e) => {
+                                    document.getElementById("facebook-sidebar").style.display = "none"
                                     setInputIcon(true)
                                     setIcon(icon.concat(<a href="#" id="facebook-link"><FaFacebook id="facebook" /></a>))
                                     setIconSetting(icon_setting.concat(
                                         <>
                                             <Button variant="close" id="facebook-removebtn" onClick={(e) => {
+                                                document.getElementById("facebook-sidebar").style.display = "block"
                                                 document.getElementById("facebook-removebtn").style.display = "none"
                                                 document.getElementById("facebook-link").remove()
                                                 document.getElementById("facebook-div").remove()
@@ -117,13 +119,15 @@ function SocialElement() {
                                         </>
                                     ))
                                 }} />
-                                <FaTwitter onClick={(e) => {
+                                <FaTwitter id="twitter-sidebar" onClick={(e) => {
+                                    document.getElementById("twitter-sidebar").style.display = "none"
                                     setInputIcon(true)
                                     setIcon(icon.concat(<a href="#" id="twitter-link"><FaTwitter id="twitter" /></a>))
                                     setIconSetting(icon_setting.concat(
                                         <>
                                             <Button variant="close" id="twitter-removebtn" onClick={(e) => {
-                                                document.getElementById("twitter-removebtn").remove()
+                                                document.getElementById("twitter-sidebar").style.display = "block"
+                                                document.getElementById("twitter-removebtn").style.display = "none"
                                                 document.getElementById("twitter-link").remove()
                                                 document.getElementById("twitter-div").remove()
                                             }}></Button>
@@ -154,623 +158,714 @@ function SocialElement() {
                                         </>
                                     ))
                                 }} />
-                                <FaLinkedinIn onClick={(e) => {
+                                <FaLinkedinIn id="linkedin-sidebar" onClick={(e) => {
+                                    document.getElementById("linkedin-sidebar").style.display = "none"
                                     setInputIcon(true)
                                     setIcon(icon.concat(<a href="#" id="linkedin-link"><FaLinkedin id="linkedin" /></a>))
                                     setIconSetting(icon_setting.concat(
-                                        <div id="linkedin-div">
-                                            <Stack direction='horizontal' gap={2}>
-                                                <FaLinkedinIn />
-                                                <span className="fw-bold">LinkedIn</span>
-                                                <Button variant="close" onClick={(e) => {
-                                                    document.getElementById("linkedin-link").remove()
-                                                    document.getElementById("linkedin-div").remove()
-                                                }}></Button>
-                                            </Stack>
-                                            <InputGroup className="mb-3">
-                                                <InputGroup.Text>Color</InputGroup.Text>
-                                                <FormControl
-                                                    type='color'
-                                                    onChange={(e) => {
-                                                        document.getElementById("linkedin").style.color = e.target.value
-                                                    }}
-                                                />
-                                            </InputGroup>
-                                            <InputGroup className="mb-3">
-                                                <InputGroup.Text>URL</InputGroup.Text>
-                                                <FormControl
-                                                    type='text'
-                                                    onChange={(e) => {
-                                                        document.getElementById("linkedin-link").href = e.target.value
-                                                    }}
-                                                />
-                                            </InputGroup>
+                                        <div id="linkedin-removebtn">
+                                            <Button variant="close" onClick={(e) => {
+                                                document.getElementById("linkedin-sidebar").style.display = "block"
+                                                document.getElementById("linkedin-removebtn").style.display = "none"
+                                                document.getElementById("linkedin-link").remove()
+                                                document.getElementById("linkedin-div").remove()
+                                            }}></Button>
+                                            <div id="linkedin-div">
+                                                <Stack direction='horizontal' gap={2}>
+                                                    <FaLinkedinIn />
+                                                    <span className="fw-bold">LinkedIn</span>
+                                                </Stack>
+                                                <InputGroup className="mb-3">
+                                                    <InputGroup.Text>Color</InputGroup.Text>
+                                                    <FormControl
+                                                        type='color'
+                                                        onChange={(e) => {
+                                                            document.getElementById("linkedin").style.color = e.target.value
+                                                        }}
+                                                    />
+                                                </InputGroup>
+                                                <InputGroup className="mb-3">
+                                                    <InputGroup.Text>URL</InputGroup.Text>
+                                                    <FormControl
+                                                        type='text'
+                                                        onChange={(e) => {
+                                                            document.getElementById("linkedin-link").href = e.target.value
+                                                        }}
+                                                    />
+                                                </InputGroup>
+                                            </div>
                                         </div>
                                     ))
                                 }} />
-                                <FaInstagram onClick={(e) => {
+                                <FaInstagram id="instagram-sidebar" onClick={(e) => {
+                                    document.getElementById("instagram-sidebar").style.display = "none"
                                     setInputIcon(true)
                                     setIcon(icon.concat(<a href="#" id="instagram-link"><FaInstagram id="instagram" /></a>))
                                     setIconSetting(icon_setting.concat(
-                                        <div id="instagram-div">
-                                            <Stack direction='horizontal' gap={2}>
-                                                <FaInstagram />
-                                                <span className="fw-bold">Instagram</span>
-                                                <Button variant="close" onClick={(e) => {
-                                                    document.getElementById("instagram-link").remove()
-                                                    document.getElementById("instagram-div").remove()
-                                                }}></Button>
-                                            </Stack>
-                                            <InputGroup className="mb-3">
-                                                <InputGroup.Text>Color</InputGroup.Text>
-                                                <FormControl
-                                                    type='color'
-                                                    onChange={(e) => {
-                                                        document.getElementById("instagram").style.color = e.target.value
-                                                    }}
-                                                />
-                                            </InputGroup>
-                                            <InputGroup className="mb-3">
-                                                <InputGroup.Text>URL</InputGroup.Text>
-                                                <FormControl
-                                                    type='text'
-                                                    onChange={(e) => {
-                                                        document.getElementById("instagram-link").href = e.target.value
-                                                    }}
-                                                />
-                                            </InputGroup>
-                                        </div>
+                                        <>
+                                            <Button id="instagram-removebtn" variant="close" onClick={(e) => {
+                                                document.getElementById("instagram-sidebar").style.display = "block"
+                                                document.getElementById("instagram-removebtn").style.display = "none"
+                                                document.getElementById("instagram-link").remove()
+                                                document.getElementById("instagram-div").remove()
+                                            }}></Button>
+                                            <div id="instagram-div">
+                                                <Stack direction='horizontal' gap={2}>
+                                                    <FaInstagram />
+                                                    <span className="fw-bold">Instagram</span>
+                                                </Stack>
+                                                <InputGroup className="mb-3">
+                                                    <InputGroup.Text>Color</InputGroup.Text>
+                                                    <FormControl
+                                                        type='color'
+                                                        onChange={(e) => {
+                                                            document.getElementById("instagram").style.color = e.target.value
+                                                        }}
+                                                    />
+                                                </InputGroup>
+                                                <InputGroup className="mb-3">
+                                                    <InputGroup.Text>URL</InputGroup.Text>
+                                                    <FormControl
+                                                        type='text'
+                                                        onChange={(e) => {
+                                                            document.getElementById("instagram-link").href = e.target.value
+                                                        }}
+                                                    />
+                                                </InputGroup>
+                                            </div>
+                                        </>
                                     ))
                                 }} />
-                                <FaPinterest onClick={(e) => {
+                                <FaPinterest id="pinterest-sidebar" onClick={(e) => {
+                                    document.getElementById("pinterest-sidebar").style.display = "none"
                                     setInputIcon(true)
                                     setIcon(icon.concat(<a href="#" id="pinterest-link"><FaPinterest id="pinterest" /></a>))
                                     setIconSetting(icon_setting.concat(
-                                        <div id="pinterest-div">
-                                            <Stack direction='horizontal' gap={2}>
-                                                <FaPinterest />
-                                                <span className="fw-bold">Pinterest</span>
-                                                <Button variant="close" onClick={(e) => {
-                                                    document.getElementById("pinterest-link").remove()
-                                                    document.getElementById("pinterest-div").remove()
-                                                }}></Button>
-                                            </Stack>
-                                            <InputGroup className="mb-3">
-                                                <InputGroup.Text>Color</InputGroup.Text>
-                                                <FormControl
-                                                    type='color'
-                                                    onChange={(e) => {
-                                                        document.getElementById("pinterest").style.color = e.target.value
-                                                    }}
-                                                />
-                                            </InputGroup>
-                                            <InputGroup className="mb-3">
-                                                <InputGroup.Text>URL</InputGroup.Text>
-                                                <FormControl
-                                                    type='text'
-                                                    onChange={(e) => {
-                                                        document.getElementById("pinterest-link").href = e.target.value
-                                                    }}
-                                                />
-                                            </InputGroup>
-                                        </div>
+                                        <>
+                                            <Button id="pinterest-removebtn" variant="close" onClick={(e) => {
+                                                document.getElementById("pinterest-sidebar").style.display = "block"
+                                                document.getElementById("pinterest-removebtn").style.display = "none"
+                                                document.getElementById("pinterest-link").remove()
+                                                document.getElementById("pinterest-div").remove()
+                                            }}></Button>
+                                            <div id="pinterest-div">
+                                                <Stack direction='horizontal' gap={2}>
+                                                    <FaPinterest />
+                                                    <span className="fw-bold">Pinterest</span>
+                                                </Stack>
+                                                <InputGroup className="mb-3">
+                                                    <InputGroup.Text>Color</InputGroup.Text>
+                                                    <FormControl
+                                                        type='color'
+                                                        onChange={(e) => {
+                                                            document.getElementById("pinterest").style.color = e.target.value
+                                                        }}
+                                                    />
+                                                </InputGroup>
+                                                <InputGroup className="mb-3">
+                                                    <InputGroup.Text>URL</InputGroup.Text>
+                                                    <FormControl
+                                                        type='text'
+                                                        onChange={(e) => {
+                                                            document.getElementById("pinterest-link").href = e.target.value
+                                                        }}
+                                                    />
+                                                </InputGroup>
+                                            </div>
+                                        </>
                                     ))
                                 }} />
-                                <FaVimeo onClick={(e) => {
+                                <FaVimeo id="vimeo-sidebar" onClick={(e) => {
+                                    document.getElementById("vimeo-sidebar").style.display = "none"
                                     setInputIcon(true)
                                     setIcon(icon.concat(<a href="#" id="vimeo-link"><FaVimeo id="vimeo" /></a>))
                                     setIconSetting(icon_setting.concat(
-                                        <div id="vimeo-div">
-                                            <Stack direction='horizontal' gap={2}>
-                                                <FaVimeo />
-                                                <span className="fw-bold">Vimeo</span>
-                                                <Button variant="close" onClick={(e) => {
-                                                    document.getElementById("vimeo-link").remove()
-                                                    document.getElementById("vimeo-div").remove()
-                                                }}></Button>
-                                            </Stack>
-                                            <InputGroup className="mb-3">
-                                                <InputGroup.Text>Color</InputGroup.Text>
-                                                <FormControl
-                                                    type='color'
-                                                    onChange={(e) => {
-                                                        document.getElementById("vimeo").style.color = e.target.value
-                                                    }}
-                                                />
-                                            </InputGroup>
-                                            <InputGroup className="mb-3">
-                                                <InputGroup.Text>URL</InputGroup.Text>
-                                                <FormControl
-                                                    type='text'
-                                                    onChange={(e) => {
-                                                        document.getElementById("vimeo-link").href = e.target.value
-                                                    }}
-                                                />
-                                            </InputGroup>
-                                        </div>
+                                        <>
+                                            <Button id="vimeo-removebtn" variant="close" onClick={(e) => {
+                                                document.getElementById("vimeo-sidebar").style.display = "block"
+                                                document.getElementById("vimeo-removebtn").style.display = "none"
+                                                document.getElementById("vimeo-link").remove()
+                                                document.getElementById("vimeo-div").remove()
+                                            }}></Button>
+                                            <div id="vimeo-div">
+                                                <Stack direction='horizontal' gap={2}>
+                                                    <FaVimeo />
+                                                    <span className="fw-bold">Vimeo</span>
+                                                </Stack>
+                                                <InputGroup className="mb-3">
+                                                    <InputGroup.Text>Color</InputGroup.Text>
+                                                    <FormControl
+                                                        type='color'
+                                                        onChange={(e) => {
+                                                            document.getElementById("vimeo").style.color = e.target.value
+                                                        }}
+                                                    />
+                                                </InputGroup>
+                                                <InputGroup className="mb-3">
+                                                    <InputGroup.Text>URL</InputGroup.Text>
+                                                    <FormControl
+                                                        type='text'
+                                                        onChange={(e) => {
+                                                            document.getElementById("vimeo-link").href = e.target.value
+                                                        }}
+                                                    />
+                                                </InputGroup>
+                                            </div>
+                                        </>
                                     ))
                                 }} />
-                                <FaYoutube onClick={(e) => {
+                                <FaYoutube id="youtube-sidebar" onClick={(e) => {
+                                    document.getElementById("youtube-sidebar").style.display = "none"
                                     setInputIcon(true)
                                     setIcon(icon.concat(<a href="#" id="youtube-link"><FaYoutube id="youtube" /></a>))
                                     setIconSetting(icon_setting.concat(
-                                        <div id="youtube-div">
-                                            <Stack direction='horizontal' gap={2}>
-                                                <FaYoutube />
-                                                <span className="fw-bold">Youtube</span>
-                                                <Button variant="close" onClick={(e) => {
-                                                    document.getElementById("youtube-div").remove()
-                                                    document.getElementById("youtube-link").remove()
-                                                }}></Button>
-                                            </Stack>
-                                            <InputGroup className="mb-3">
-                                                <InputGroup.Text>Color</InputGroup.Text>
-                                                <FormControl
-                                                    type='color'
-                                                    onChange={(e) => {
-                                                        document.getElementById("youtube").style.color = e.target.value
-                                                    }}
-                                                />
-                                            </InputGroup>
-                                            <InputGroup className="mb-3">
-                                                <InputGroup.Text>URL</InputGroup.Text>
-                                                <FormControl
-                                                    type='text'
-                                                    onChange={(e) => {
-                                                        document.getElementById("youtube-link").href = e.target.value
-                                                    }}
-                                                />
-                                            </InputGroup>
-                                        </div>
+                                        <>
+                                            <Button id="youtube-removebtn" variant="close" onClick={(e) => {
+                                                document.getElementById("youtube-sidebar").style.display = "block"
+                                                document.getElementById("youtube-removebtn").style.display = "none"
+                                                document.getElementById("youtube-link").remove()
+                                                document.getElementById("youtube-div").remove()
+                                            }}></Button>
+                                            <div id="youtube-div">
+                                                <Stack direction='horizontal' gap={2}>
+                                                    <FaYoutube />
+                                                    <span className="fw-bold">Youtube</span>
+                                                </Stack>
+                                                <InputGroup className="mb-3">
+                                                    <InputGroup.Text>Color</InputGroup.Text>
+                                                    <FormControl
+                                                        type='color'
+                                                        onChange={(e) => {
+                                                            document.getElementById("youtube").style.color = e.target.value
+                                                        }}
+                                                    />
+                                                </InputGroup>
+                                                <InputGroup className="mb-3">
+                                                    <InputGroup.Text>URL</InputGroup.Text>
+                                                    <FormControl
+                                                        type='text'
+                                                        onChange={(e) => {
+                                                            document.getElementById("youtube-link").href = e.target.value
+                                                        }}
+                                                    />
+                                                </InputGroup>
+                                            </div>
+                                        </>
                                     ))
                                 }} />
-                                <FaSnapchat onClick={(e) => {
+                                <FaSnapchat id="snapchat-sidebar" onClick={(e) => {
+                                    document.getElementById("snapchat-sidebar").style.display = "none"
                                     setInputIcon(true)
                                     setIcon(icon.concat(<a href="#" id="snapchat-link"><FaSnapchat id="snapchat" /></a>))
                                     setIconSetting(icon_setting.concat(
-                                        <div id="snapchat-div">
-                                            <Stack direction='horizontal' gap={2}>
-                                                <FaSnapchat />
-                                                <span className="fw-bold">Snapchat</span>
-                                                <Button variant="close" onClick={(e) => {
-                                                    document.getElementById("snapchat-div").remove()
-                                                    document.getElementById("snapchat-link").remove()
-                                                }}></Button>
-                                            </Stack>
-                                            <InputGroup className="mb-3">
-                                                <InputGroup.Text>Color</InputGroup.Text>
-                                                <FormControl
-                                                    type='color'
-                                                    onChange={(e) => {
-                                                        document.getElementById("sanpchat").style.color = e.target.value
-                                                    }}
-                                                />
-                                            </InputGroup>
-                                            <InputGroup className="mb-3">
-                                                <InputGroup.Text>URL</InputGroup.Text>
-                                                <FormControl
-                                                    type='text'
-                                                    onChange={(e) => {
-                                                        document.getElementById("sanpchat-link").href = e.target.value
-                                                    }}
-                                                />
-                                            </InputGroup>
-                                        </div>
+                                        <>
+                                            <Button id="snapchat-removebtn" variant="close" onClick={(e) => {
+                                                document.getElementById("snapchat-sidebar").style.display = "block"
+                                                document.getElementById("snapchat-removebtn").style.display = "none"
+                                                document.getElementById("snapchat-div").remove()
+                                                document.getElementById("snapchat-link").remove()
+                                            }}></Button>
+                                            <div id="snapchat-div">
+                                                <Stack direction='horizontal' gap={2}>
+                                                    <FaSnapchat />
+                                                    <span className="fw-bold">Snapchat</span>
+                                                </Stack>
+                                                <InputGroup className="mb-3">
+                                                    <InputGroup.Text>Color</InputGroup.Text>
+                                                    <FormControl
+                                                        type='color'
+                                                        onChange={(e) => {
+                                                            document.getElementById("snapchat").style.color = e.target.value
+                                                        }}
+                                                    />
+                                                </InputGroup>
+                                                <InputGroup className="mb-3">
+                                                    <InputGroup.Text>URL</InputGroup.Text>
+                                                    <FormControl
+                                                        type='text'
+                                                        onChange={(e) => {
+                                                            document.getElementById("snapchat-link").href = e.target.value
+                                                        }}
+                                                    />
+                                                </InputGroup>
+                                            </div>
+                                        </>
                                     ))
                                 }} />
-                                <FaReddit onClick={(e) => {
+                                <FaReddit id="reddit-sidebar" onClick={(e) => {
+                                    document.getElementById("reddit-sidebar").style.display = "none"
                                     setInputIcon(true)
                                     setIcon(icon.concat(<a href="#" id="reddit-link"><FaReddit id="reddit" /></a>))
                                     setIconSetting(icon_setting.concat(
-                                        <div id="reddit-div">
-                                            <Stack direction='horizontal' gap={2}>
-                                                <FaReddit />
-                                                <span className="fw-bold">Redit</span>
-                                                <Button variant="close" onClick={(e) => {
-                                                    document.getElementById("reddit-div").remove()
-                                                    document.getElementById("reddit-link").remove()
-                                                }}></Button>
-                                            </Stack>
-                                            <InputGroup className="mb-3">
-                                                <InputGroup.Text>Color</InputGroup.Text>
-                                                <FormControl
-                                                    type='color'
-                                                    onChange={(e) => {
-                                                        document.getElementById("reddit").style.color = e.target.value
-                                                    }}
-                                                />
-                                            </InputGroup>
-                                            <InputGroup className="mb-3">
-                                                <InputGroup.Text>URL</InputGroup.Text>
-                                                <FormControl
-                                                    type='text'
-                                                    onChange={(e) => {
-                                                        document.getElementById("reddit-link").href = e.target.value
-                                                    }}
-                                                />
-                                            </InputGroup>
-                                        </div>
+                                        <>
+                                            <Button id="reddit-removebtn" variant="close" onClick={(e) => {
+                                                document.getElementById("reddit-sidebar").style.display = "block"
+                                                document.getElementById("reddit-removebtn").style.display = "none"
+                                                document.getElementById("reddit-div").remove()
+                                                document.getElementById("reddit-link").remove()
+                                            }}></Button>
+                                            <div id="reddit-div">
+                                                <Stack direction='horizontal' gap={2}>
+                                                    <FaReddit />
+                                                    <span className="fw-bold">Redit</span>
+                                                </Stack>
+                                                <InputGroup className="mb-3">
+                                                    <InputGroup.Text>Color</InputGroup.Text>
+                                                    <FormControl
+                                                        type='color'
+                                                        onChange={(e) => {
+                                                            document.getElementById("reddit").style.color = e.target.value
+                                                        }}
+                                                    />
+                                                </InputGroup>
+                                                <InputGroup className="mb-3">
+                                                    <InputGroup.Text>URL</InputGroup.Text>
+                                                    <FormControl
+                                                        type='text'
+                                                        onChange={(e) => {
+                                                            document.getElementById("reddit-link").href = e.target.value
+                                                        }}
+                                                    />
+                                                </InputGroup>
+                                            </div>
+                                        </>
                                     ))
                                 }} />
-                                <FaFacebookMessenger onClick={(e) => {
+                                <FaFacebookMessenger id="facebookmessenger-sidebar" onClick={(e) => {
+                                    document.getElementById("facebookmessenger-sidebar").style.display = "none"
                                     setInputIcon(true)
-                                    setIcon(icon.concat(<a href="#" id="messenger-link"><FaFacebookMessenger id="messenger" /></a>))
+                                    setIcon(icon.concat(<a href="#" id="facebookmessenger-link"><FaFacebookMessenger id="facebookmessenger" /></a>))
                                     setIconSetting(icon_setting.concat(
-                                        <div id="messenger-div">
-                                            <Stack direction='horizontal' gap={2}>
-                                                <FaFacebookMessenger />
-                                                <span className="fw-bold">Facebook Messenger</span>
-                                                <Button variant="close" onClick={(e) => {
-                                                    document.getElementById("messenger-link").remove()
-                                                    document.getElementById("messenger-div").remove()
-                                                }}></Button>
-                                            </Stack>
-                                            <InputGroup className="mb-3">
-                                                <InputGroup.Text>Color</InputGroup.Text>
-                                                <FormControl
-                                                    type='color'
-                                                    onChange={(e) => {
-                                                        document.getElementById("messenger").style.color = e.target.value
-                                                    }}
-                                                />
-                                            </InputGroup>
-                                            <InputGroup className="mb-3">
-                                                <InputGroup.Text>URL</InputGroup.Text>
-                                                <FormControl
-                                                    type='text'
-                                                    onChange={(e) => {
-                                                        document.getElementById("messenger-link").href = e.target.value
-                                                    }}
-                                                />
-                                            </InputGroup>
-                                        </div>
+                                        <>
+                                            <Button id="facebookmessenger-removebtn" variant="close" onClick={(e) => {
+                                                document.getElementById("facebookmessenger-sidebar").style.display = "block"
+                                                document.getElementById("facebookmessenger-removebtn").style.display = "none"
+                                                document.getElementById("facebookmessenger-link").remove()
+                                                document.getElementById("facebookmessenger-div").remove()
+                                            }}></Button>
+                                            <div id="facebookmessenger-div">
+                                                <Stack direction='horizontal' gap={2}>
+                                                    <FaFacebookMessenger />
+                                                    <span className="fw-bold">Facebook Messenger</span>
+                                                </Stack>
+                                                <InputGroup className="mb-3">
+                                                    <InputGroup.Text>Color</InputGroup.Text>
+                                                    <FormControl
+                                                        type='color'
+                                                        onChange={(e) => {
+                                                            document.getElementById("facebookmessenger").style.color = e.target.value
+                                                        }}
+                                                    />
+                                                </InputGroup>
+                                                <InputGroup className="mb-3">
+                                                    <InputGroup.Text>URL</InputGroup.Text>
+                                                    <FormControl
+                                                        type='text'
+                                                        onChange={(e) => {
+                                                            document.getElementById("facebookmessenger-link").href = e.target.value
+                                                        }}
+                                                    />
+                                                </InputGroup>
+                                            </div>
+                                        </>
                                     ))
                                 }} />
                             </Stack>
                             <Stack direction='horizontal' gap={2} className="my-3">
-                                <FaTripadvisor onClick={(e) => {
+                                <FaTripadvisor id="tripadvisor-sidebar" onClick={(e) => {
+                                    document.getElementById("tripadvisor-sidebar").style.display = "none"
                                     setInputIcon(true)
                                     setIcon(icon.concat(<a href="#" id="tripadvisor-link"><FaTripadvisor id="tripadvisor" /></a>))
                                     setIconSetting(icon_setting.concat(
-                                        <div id="tripadvisor-div">
-                                            <Stack direction='horizontal' gap={2}>
-                                                <FaTripadvisor />
-                                                <span className="fw-bold">TripAdvisor</span>
-                                                <Button variant="close" onClick={(e) => {
-                                                    document.getElementById("tripadvisor-div").remove()
-                                                    document.getElementById("tripadvisor-link").remove()
-                                                }}></Button>
-                                            </Stack>
-                                            <InputGroup className="mb-3">
-                                                <InputGroup.Text>Color</InputGroup.Text>
-                                                <FormControl
-                                                    type='color'
-                                                    onChange={(e) => {
-                                                        document.getElementById("tripadvisor").style.color = e.target.value
-                                                    }}
-                                                />
-                                            </InputGroup>
-                                            <InputGroup className="mb-3">
-                                                <InputGroup.Text>URL</InputGroup.Text>
-                                                <FormControl
-                                                    type='text'
-                                                    onChange={(e) => {
-                                                        document.getElementById("tripadvisor-link").href = e.target.value
-                                                    }}
-                                                />
-                                            </InputGroup>
-                                        </div>
+                                        <>
+                                            <Button id="tripadvisor-removebtn" variant="close" onClick={(e) => {
+                                                document.getElementById("tripadvisor-sidebar").style.display = "block"
+                                                document.getElementById("tripadvisor-removebtn").style.display = "none"
+                                                document.getElementById("tripadvisor-div").remove()
+                                                document.getElementById("tripadvisor-link").remove()
+                                            }}></Button>
+                                            <div id="tripadvisor-div">
+                                                <Stack direction='horizontal' gap={2}>
+                                                    <FaTripadvisor />
+                                                    <span className="fw-bold">TripAdvisor</span>
+                                                </Stack>
+                                                <InputGroup className="mb-3">
+                                                    <InputGroup.Text>Color</InputGroup.Text>
+                                                    <FormControl
+                                                        type='color'
+                                                        onChange={(e) => {
+                                                            document.getElementById("tripadvisor").style.color = e.target.value
+                                                        }}
+                                                    />
+                                                </InputGroup>
+                                                <InputGroup className="mb-3">
+                                                    <InputGroup.Text>URL</InputGroup.Text>
+                                                    <FormControl
+                                                        type='text'
+                                                        onChange={(e) => {
+                                                            document.getElementById("tripadvisor-link").href = e.target.value
+                                                        }}
+                                                    />
+                                                </InputGroup>
+                                            </div>
+                                        </>
                                     ))
                                 }} />
-                                <FaRss onClick={(e) => {
+                                <FaRss id="rss-sidebar" onClick={(e) => {
+                                    document.getElementById("rss-sidebar").style.display = "none"
                                     setInputIcon(true)
                                     setIcon(icon.concat(<a href="#" id="rss-link"><FaRss id="rss" /></a>))
                                     setIconSetting(icon_setting.concat(
-                                        <div id="rss-div">
-                                            <Stack direction='horizontal' gap={2}>
-                                                <FaRss />
-                                                <span className="fw-bold">TripAdvisor</span>
-                                                <Button variant="close" onClick={(e) => {
-                                                    document.getElementById("rss-div").remove()
-                                                    document.getElementById("rss-link").remove()
-                                                }}></Button>
-                                            </Stack>
-                                            <InputGroup className="mb-3">
-                                                <InputGroup.Text>Color</InputGroup.Text>
-                                                <FormControl
-                                                    type='color'
-                                                    onChange={(e) => {
-                                                        document.getElementById("rss").style.color = e.target.value
-                                                    }}
-                                                />
-                                            </InputGroup>
-                                            <InputGroup className="mb-3">
-                                                <InputGroup.Text>URL</InputGroup.Text>
-                                                <FormControl
-                                                    type='text'
-                                                    onChange={(e) => {
-                                                        document.getElementById("rss-link").href = e.target.value
-                                                    }}
-                                                />
-                                            </InputGroup>
-                                        </div>
+                                        <>
+                                            <Button id="rss-removebtn" variant="close" onClick={(e) => {
+                                                document.getElementById("rss-sidebar").style.display = "block"
+                                                document.getElementById("rss-removebtn").style.display = "none"
+                                                document.getElementById("rss-div").remove()
+                                                document.getElementById("rss-link").remove()
+                                            }}></Button>
+                                            <div id="rss-div">
+                                                <Stack direction='horizontal' gap={2}>
+                                                    <FaRss />
+                                                    <span className="fw-bold">RSS</span>
+                                                </Stack>
+                                                <InputGroup className="mb-3">
+                                                    <InputGroup.Text>Color</InputGroup.Text>
+                                                    <FormControl
+                                                        type='color'
+                                                        onChange={(e) => {
+                                                            document.getElementById("rss").style.color = e.target.value
+                                                        }}
+                                                    />
+                                                </InputGroup>
+                                                <InputGroup className="mb-3">
+                                                    <InputGroup.Text>URL</InputGroup.Text>
+                                                    <FormControl
+                                                        type='text'
+                                                        onChange={(e) => {
+                                                            document.getElementById("rss-link").href = e.target.value
+                                                        }}
+                                                    />
+                                                </InputGroup>
+                                            </div>
+                                        </>
                                     ))
                                 }} />
-                                <FaTumblr onClick={(e) => {
+                                <FaTumblr id="tumblr-sidebar" onClick={(e) => {
+                                    document.getElementById("tumblr-sidebar").style.display = "none"
                                     setInputIcon(true)
                                     setIcon(icon.concat(<a href="#" id="tumblr-link"><FaTumblr id="tumblr" /></a>))
                                     setIconSetting(icon_setting.concat(
-                                        <div id="tumblr-div">
-                                            <Stack direction='horizontal' gap={2}>
-                                                <FaRss />
-                                                <span className="fw-bold">Tumblr</span>
-                                                <Button variant="close" onClick={(e) => {
-                                                    document.getElementById("tumblr-div").remove()
-                                                    document.getElementById("tumblr-link").remove()
-                                                }}></Button>
-                                            </Stack>
-                                            <InputGroup className="mb-3">
-                                                <InputGroup.Text>Color</InputGroup.Text>
-                                                <FormControl
-                                                    type='color'
-                                                    onChange={(e) => {
-                                                        document.getElementById("tumblr").style.color = e.target.value
-                                                    }}
-                                                />
-                                            </InputGroup>
-                                            <InputGroup className="mb-3">
-                                                <InputGroup.Text>URL</InputGroup.Text>
-                                                <FormControl
-                                                    type='text'
-                                                    onChange={(e) => {
-                                                        document.getElementById("tumblr-link").href = e.target.value
-                                                    }}
-                                                />
-                                            </InputGroup>
-                                        </div>
+                                        <>
+                                            <Button id="tumblr-removebtn" variant="close" onClick={(e) => {
+                                                document.getElementById("tumblr-sidebar").style.display = "block"
+                                                document.getElementById("tumblr-removebtn").style.display = "none"
+                                                document.getElementById("tumblr-div").remove()
+                                                document.getElementById("tumblr-link").remove()
+                                            }}></Button>
+                                            <div id="tumblr-div">
+                                                <Stack direction='horizontal' gap={2}>
+                                                    <FaRss />
+                                                    <span className="fw-bold">Tumblr</span>
+                                                </Stack>
+                                                <InputGroup className="mb-3">
+                                                    <InputGroup.Text>Color</InputGroup.Text>
+                                                    <FormControl
+                                                        type='color'
+                                                        onChange={(e) => {
+                                                            document.getElementById("tumblr").style.color = e.target.value
+                                                        }}
+                                                    />
+                                                </InputGroup>
+                                                <InputGroup className="mb-3">
+                                                    <InputGroup.Text>URL</InputGroup.Text>
+                                                    <FormControl
+                                                        type='text'
+                                                        onChange={(e) => {
+                                                            document.getElementById("tumblr-link").href = e.target.value
+                                                        }}
+                                                    />
+                                                </InputGroup>
+                                            </div>
+                                        </>
                                     ))
                                 }} />
-                                <FaSpotify onClick={(e) => {
+                                <FaSpotify id="spotify-sidebar" onClick={(e) => {
+                                    document.getElementById("spotify-sidebar").style.display = "none"
                                     setInputIcon(true)
                                     setIcon(icon.concat(<a href="#" id="spotify-link"><FaSpotify id="spotify" /></a>))
                                     setIconSetting(icon_setting.concat(
-                                        <div id="spotify-div">
-                                            <Stack direction='horizontal' gap={2}>
-                                                <FaSpotify />
-                                                <span className="fw-bold">Spotify</span>
-                                                <Button variant="close" onClick={(e) => {
-                                                    document.getElementById("spotify-div").remove()
-                                                    document.getElementById("spotify-link").remove()
-                                                }}></Button>
-                                            </Stack>
-                                            <InputGroup className="mb-3">
-                                                <InputGroup.Text>Color</InputGroup.Text>
-                                                <FormControl
-                                                    type='color'
-                                                    onChange={(e) => {
-                                                        document.getElementById("spotify").style.color = e.target.value
-                                                    }}
-                                                />
-                                            </InputGroup>
-                                            <InputGroup className="mb-3">
-                                                <InputGroup.Text>URL</InputGroup.Text>
-                                                <FormControl
-                                                    type='text'
-                                                    onChange={(e) => {
-                                                        document.getElementById("spotify-link").href = e.target.value
-                                                    }}
-                                                />
-                                            </InputGroup>
-                                        </div>
+                                        <>
+                                            <Button id="spotify-removebtn" variant="close" onClick={(e) => {
+                                                document.getElementById("spotify-sidebar").style.display = "block"
+                                                document.getElementById("spotify-removebtn").style.display = "none"
+                                                document.getElementById("spotify-div").remove()
+                                                document.getElementById("spotify-link").remove()
+                                            }}></Button>
+                                            <div id="spotify-div">
+                                                <Stack direction='horizontal' gap={2}>
+                                                    <FaSpotify />
+                                                    <span className="fw-bold">Spotify</span>
+                                                </Stack>
+                                                <InputGroup className="mb-3">
+                                                    <InputGroup.Text>Color</InputGroup.Text>
+                                                    <FormControl
+                                                        type='color'
+                                                        onChange={(e) => {
+                                                            document.getElementById("spotify").style.color = e.target.value
+                                                        }}
+                                                    />
+                                                </InputGroup>
+                                                <InputGroup className="mb-3">
+                                                    <InputGroup.Text>URL</InputGroup.Text>
+                                                    <FormControl
+                                                        type='text'
+                                                        onChange={(e) => {
+                                                            document.getElementById("spotify-link").href = e.target.value
+                                                        }}
+                                                    />
+                                                </InputGroup>
+                                            </div>
+                                        </>
                                     ))
                                 }} />
-                                <FaSoundcloud onClick={(e) => {
+                                <FaSoundcloud id="soundcloud-sidebar" onClick={(e) => {
+                                    document.getElementById("soundcloud-sidebar").style.display = "none"
                                     setInputIcon(true)
                                     setIcon(icon.concat(<a href="#" id="soundcloud-link"><FaSoundcloud id="soundcloud" /></a>))
                                     setIconSetting(icon_setting.concat(
-                                        <div id="soundcloud-div">
-                                            <Stack direction='horizontal' gap={2}>
-                                                <FaSoundcloud />
-                                                <span className="fw-bold">Soundcloud</span>
-                                                <Button variant="close" onClick={(e) => {
-                                                    document.getElementById("soundcloud-div").remove()
-                                                    document.getElementById("soundcloud-link").remove()
-                                                }}></Button>
-                                            </Stack>
-                                            <InputGroup className="mb-3">
-                                                <InputGroup.Text>Color</InputGroup.Text>
-                                                <FormControl
-                                                    type='color'
-                                                    onChange={(e) => {
-                                                        document.getElementById("soundcloud").style.color = e.target.value
-                                                    }}
-                                                />
-                                            </InputGroup>
-                                            <InputGroup className="mb-3">
-                                                <InputGroup.Text>URL</InputGroup.Text>
-                                                <FormControl
-                                                    type='text'
-                                                    onChange={(e) => {
-                                                        document.getElementById("soundcloud-link").href = e.target.value
-                                                    }}
-                                                />
-                                            </InputGroup>
-                                        </div>
+                                        <>
+                                            <Button id="soundcloud-removebtn" variant="close" onClick={(e) => {
+                                                document.getElementById("soundcloud-sidebar").style.display = "block"
+                                                document.getElementById("soundcloud-removebtn").style.display = "none"
+                                                document.getElementById("soundcloud-div").remove()
+                                                document.getElementById("soundcloud-link").remove()
+                                            }}></Button>
+                                            <div id="soundcloud-div">
+                                                <Stack direction='horizontal' gap={2}>
+                                                    <FaSoundcloud />
+                                                    <span className="fw-bold">Soundcloud</span>
+                                                </Stack>
+                                                <InputGroup className="mb-3">
+                                                    <InputGroup.Text>Color</InputGroup.Text>
+                                                    <FormControl
+                                                        type='color'
+                                                        onChange={(e) => {
+                                                            document.getElementById("soundcloud").style.color = e.target.value
+                                                        }}
+                                                    />
+                                                </InputGroup>
+                                                <InputGroup className="mb-3">
+                                                    <InputGroup.Text>URL</InputGroup.Text>
+                                                    <FormControl
+                                                        type='text'
+                                                        onChange={(e) => {
+                                                            document.getElementById("soundcloud-link").href = e.target.value
+                                                        }}
+                                                    />
+                                                </InputGroup>
+                                            </div>
+                                        </>
                                     ))
                                 }} />
-                                <FaApple onClick={(e) => {
+                                <FaApple id="apple-sidebar" onClick={(e) => {
+                                    document.getElementById("apple-sidebar").style.display = "none"
                                     setInputIcon(true)
                                     setIcon(icon.concat(<a href="#" id="apple-link"><FaApple id="apple" /></a>))
                                     setIconSetting(icon_setting.concat(
-                                        <div id="apple-div">
-                                            <Stack direction='horizontal' gap={2}>
-                                                <FaApple />
-                                                <span className="fw-bold">Apple</span>
-                                                <Button variant="close" onClick={(e) => {
-                                                    document.getElementById("apple-div").remove()
-                                                    document.getElementById("apple-link").remove()
-                                                }}></Button>
-                                            </Stack>
-                                            <InputGroup className="mb-3">
-                                                <InputGroup.Text>Color</InputGroup.Text>
-                                                <FormControl
-                                                    type='color'
-                                                    onChange={(e) => {
-                                                        document.getElementById("apple").style.color = e.target.value
-                                                    }}
-                                                />
-                                            </InputGroup>
-                                            <InputGroup className="mb-3">
-                                                <InputGroup.Text>URL</InputGroup.Text>
-                                                <FormControl
-                                                    type='text'
-                                                    onChange={(e) => {
-                                                        document.getElementById("apple-link").href = e.target.value
-                                                    }}
-                                                />
-                                            </InputGroup>
-                                        </div>
+                                        <>
+                                            <Button id="apple-removebtn" variant="close" onClick={(e) => {
+                                                document.getElementById("apple-sidebar").style.display = "block"
+                                                document.getElementById("apple-removebtn").style.display = "none"
+                                                document.getElementById("apple-div").remove()
+                                                document.getElementById("apple-link").remove()
+                                            }}></Button>
+                                            <div id="apple-div">
+                                                <Stack direction='horizontal' gap={2}>
+                                                    <FaApple />
+                                                    <span className="fw-bold">Apple</span>
+                                                </Stack>
+                                                <InputGroup className="mb-3">
+                                                    <InputGroup.Text>Color</InputGroup.Text>
+                                                    <FormControl
+                                                        type='color'
+                                                        onChange={(e) => {
+                                                            document.getElementById("apple").style.color = e.target.value
+                                                        }}
+                                                    />
+                                                </InputGroup>
+                                                <InputGroup className="mb-3">
+                                                    <InputGroup.Text>URL</InputGroup.Text>
+                                                    <FormControl
+                                                        type='text'
+                                                        onChange={(e) => {
+                                                            document.getElementById("apple-link").href = e.target.value
+                                                        }}
+                                                    />
+                                                </InputGroup>
+                                            </div>
+                                        </>
                                     ))
                                 }} />
-                                <FaMeetup onClick={(e) => {
+                                <FaMeetup id="meetup-sidebar" onClick={(e) => {
+                                    document.getElementById("meetup-sidebar").style.display = "none"
                                     setInputIcon(true)
                                     setIcon(icon.concat(<a href="#" id="meetup-link"><FaMeetup id="meetup" /></a>))
                                     setIconSetting(icon_setting.concat(
-                                        <div id="meetup-div">
-                                            <Stack direction='horizontal' gap={2}>
-                                                <FaMeetup />
-                                                <span className="fw-bold">Meetup</span>
-                                                <Button variant="close" onClick={(e) => {
-                                                    document.getElementById("meetup-div").remove()
-                                                    document.getElementById("meetup-link").remove()
-                                                }}></Button>
-                                            </Stack>
-                                            <InputGroup className="mb-3">
-                                                <InputGroup.Text>Color</InputGroup.Text>
-                                                <FormControl
-                                                    type='color'
-                                                    onChange={(e) => {
-                                                        document.getElementById("meetup").style.color = e.target.value
-                                                    }}
-                                                />
-                                            </InputGroup>
-                                            <InputGroup className="mb-3">
-                                                <InputGroup.Text>URL</InputGroup.Text>
-                                                <FormControl
-                                                    type='text'
-                                                    onChange={(e) => {
-                                                        document.getElementById("meetup-link").href = e.target.value
-                                                    }}
-                                                />
-                                            </InputGroup>
-                                        </div>
+                                        <>
+                                            <Button id="meetup-removebtn" variant="close" onClick={(e) => {
+                                                document.getElementById("meetup-sidebar").style.display = "block"
+                                                document.getElementById("meetup-removebtn").style.display = "none"
+                                                document.getElementById("meetup-div").remove()
+                                                document.getElementById("meetup-link").remove()
+                                            }}></Button>
+                                            <div id="meetup-div">
+                                                <Stack direction='horizontal' gap={2}>
+                                                    <FaMeetup />
+                                                    <span className="fw-bold">Meetup</span>
+                                                </Stack>
+                                                <InputGroup className="mb-3">
+                                                    <InputGroup.Text>Color</InputGroup.Text>
+                                                    <FormControl
+                                                        type='color'
+                                                        onChange={(e) => {
+                                                            document.getElementById("meetup").style.color = e.target.value
+                                                        }}
+                                                    />
+                                                </InputGroup>
+                                                <InputGroup className="mb-3">
+                                                    <InputGroup.Text>URL</InputGroup.Text>
+                                                    <FormControl
+                                                        type='text'
+                                                        onChange={(e) => {
+                                                            document.getElementById("meetup-link").href = e.target.value
+                                                        }}
+                                                    />
+                                                </InputGroup>
+                                            </div>
+                                        </>
                                     ))
                                 }} />
-                                <FaProductHunt onClick={(e) => {
+                                <FaProductHunt id="producthunt-sidebar" onClick={(e) => {
+                                    document.getElementById("producthunt-sidebar").style.display = "none"
                                     setInputIcon(true)
                                     setIcon(icon.concat(<a href="#" id="producthunt-link"><FaProductHunt id="producthunt" /></a>))
                                     setIconSetting(icon_setting.concat(
-                                        <div id="producthunt-div">
-                                            <Stack direction='horizontal' gap={2}>
-                                                <FaProductHunt />
-                                                <span className="fw-bold">Producthunt</span>
-                                                <Button variant="close" onClick={(e) => {
-                                                    document.getElementById("producthunt-div").remove()
-                                                    document.getElementById("producthunt-link").remove()
-                                                }}></Button>
-                                            </Stack>
-                                            <InputGroup className="mb-3">
-                                                <InputGroup.Text>Color</InputGroup.Text>
-                                                <FormControl
-                                                    type='color'
-                                                    onChange={(e) => {
-                                                        document.getElementById("producthunt").style.color = e.target.value
-                                                    }}
-                                                />
-                                            </InputGroup>
-                                            <InputGroup className="mb-3">
-                                                <InputGroup.Text>URL</InputGroup.Text>
-                                                <FormControl
-                                                    type='text'
-                                                    onChange={(e) => {
-                                                        document.getElementById("producthunt-link").href = e.target.value
-                                                    }}
-                                                />
-                                            </InputGroup>
-                                        </div>
+                                        <>
+                                            <Button id="producthunt-removebtn" variant="close" onClick={(e) => {
+                                                document.getElementById("producthunt-sidebar").style.display = "block"
+                                                document.getElementById("producthunt-removebtn").style.display = "none"
+                                                document.getElementById("producthunt-div").remove()
+                                                document.getElementById("producthunt-link").remove()
+                                            }}></Button>
+                                            <div id="producthunt-div">
+                                                <Stack direction='horizontal' gap={2}>
+                                                    <FaProductHunt />
+                                                    <span className="fw-bold">Product Hunt</span>
+                                                </Stack>
+                                                <InputGroup className="mb-3">
+                                                    <InputGroup.Text>Color</InputGroup.Text>
+                                                    <FormControl
+                                                        type='color'
+                                                        onChange={(e) => {
+                                                            document.getElementById("producthunt").style.color = e.target.value
+                                                        }}
+                                                    />
+                                                </InputGroup>
+                                                <InputGroup className="mb-3">
+                                                    <InputGroup.Text>URL</InputGroup.Text>
+                                                    <FormControl
+                                                        type='text'
+                                                        onChange={(e) => {
+                                                            document.getElementById("producthunt-link").href = e.target.value
+                                                        }}
+                                                    />
+                                                </InputGroup>
+                                            </div>
+                                        </>
                                     ))
                                 }} />
-                                <FaYelp onClick={(e) => {
+                                <FaYelp id="yelp-sidebar" onClick={(e) => {
+                                    document.getElementById("yelp-sidebar").style.display = "none"
                                     setInputIcon(true)
                                     setIcon(icon.concat(<a href="#" id="yelp-link"><FaYelp id="yelp" /></a>))
                                     setIconSetting(icon_setting.concat(
-                                        <div id="yelp-div">
-                                            <Stack direction='horizontal' gap={2}>
-                                                <FaYelp />
-                                                <span className="fw-bold">Yelp</span>
-                                                <Button variant="close" onClick={(e) => {
-                                                    document.getElementById("yelp-div").remove()
-                                                    document.getElementById("yelp-link").remove()
-                                                }}></Button>
-                                            </Stack>
-                                            <InputGroup className="mb-3">
-                                                <InputGroup.Text>Color</InputGroup.Text>
-                                                <FormControl
-                                                    type='color'
-                                                    onChange={(e) => {
-                                                        document.getElementById("yelp").style.color = e.target.value
-                                                    }}
-                                                />
-                                            </InputGroup>
-                                            <InputGroup className="mb-3">
-                                                <InputGroup.Text>URL</InputGroup.Text>
-                                                <FormControl
-                                                    type='text'
-                                                    onChange={(e) => {
-                                                        document.getElementById("yelp-link").href = e.target.value
-                                                    }}
-                                                />
-                                            </InputGroup>
-                                        </div>
+                                        <>
+                                            <Button id="yelp-removebtn" variant="close" onClick={(e) => {
+                                                document.getElementById("yelp-sidebar").style.display = "block"
+                                                document.getElementById("yelp-removebtn").style.display = "none"
+                                                document.getElementById("yelp-div").remove()
+                                                document.getElementById("yelp-link").remove()
+                                            }}></Button>
+                                            <div id="yelp-div">
+                                                <Stack direction='horizontal' gap={2}>
+                                                    <FaYelp />
+                                                    <span className="fw-bold">Yelp</span>
+                                                </Stack>
+                                                <InputGroup className="mb-3">
+                                                    <InputGroup.Text>Color</InputGroup.Text>
+                                                    <FormControl
+                                                        type='color'
+                                                        onChange={(e) => {
+                                                            document.getElementById("yelp").style.color = e.target.value
+                                                        }}
+                                                    />
+                                                </InputGroup>
+                                                <InputGroup className="mb-3">
+                                                    <InputGroup.Text>URL</InputGroup.Text>
+                                                    <FormControl
+                                                        type='text'
+                                                        onChange={(e) => {
+                                                            document.getElementById("yelp-link").href = e.target.value
+                                                        }}
+                                                    />
+                                                </InputGroup>
+                                            </div>
+                                        </>
                                     ))
                                 }} />
-                                <FaMedium onClick={(e) => {
+                                <FaMedium id="medium-sidebar" onClick={(e) => {
+                                    document.getElementById("medium-sidebar").style.display = "none"
                                     setInputIcon(true)
                                     setIcon(icon.concat(<a href="#" id="medium-link"><FaMedium id="medium" /></a>))
                                     setIconSetting(icon_setting.concat(
-                                        <div id="medium-div">
-                                            <Stack direction='horizontal' gap={2}>
-                                                <FaMedium />
-                                                <span className="fw-bold">Medium</span>
-                                                <Button variant="close" onClick={(e) => {
-                                                    document.getElementById("medium-div").remove()
-                                                    document.getElementById("medium-link").remove()
-                                                }}></Button>
-                                            </Stack>
-                                            <InputGroup className="mb-3">
-                                                <InputGroup.Text>Color</InputGroup.Text>
-                                                <FormControl
-                                                    type='color'
-                                                    onChange={(e) => {
-                                                        document.getElementById("medium").style.color = e.target.value
-                                                    }}
-                                                />
-                                            </InputGroup>
-                                            <InputGroup className="mb-3">
-                                                <InputGroup.Text>URL</InputGroup.Text>
-                                                <FormControl
-                                                    type='text'
-                                                    onChange={(e) => {
-                                                        document.getElementById("medium-link").href = e.target.value
-                                                    }}
-                                                />
-                                            </InputGroup>
-                                        </div>
+                                        <>
+                                            <Button id="medium-removebtn" variant="close" onClick={(e) => {
+                                                document.getElementById("medium-sidebar").style.display = "block"
+                                                document.getElementById("medium-removebtn").style.display = "none"
+                                                document.getElementById("medium-div").remove()
+                                                document.getElementById("medium-link").remove()
+                                            }}></Button>
+                                            <div id="medium-div">
+                                                <Stack direction='horizontal' gap={2}>
+                                                    <FaMedium />
+                                                    <span className="fw-bold">Medium</span>
+                                                </Stack>
+                                                <InputGroup className="mb-3">
+                                                    <InputGroup.Text>Color</InputGroup.Text>
+                                                    <FormControl
+                                                        type='color'
+                                                        onChange={(e) => {
+                                                            document.getElementById("medium").style.color = e.target.value
+                                                        }}
+                                                    />
+                                                </InputGroup>
+                                                <InputGroup className="mb-3">
+                                                    <InputGroup.Text>URL</InputGroup.Text>
+                                                    <FormControl
+                                                        type='text'
+                                                        onChange={(e) => {
+                                                            document.getElementById("medium-link").href = e.target.value
+                                                        }}
+                                                    />
+                                                </InputGroup>
+                                            </div>
+                                        </>
                                     ))
                                 }} />
                             </Stack>
                             <Stack direction='horizontal' gap={4} className="my-3">
-                                <FaGithub onClick={(e) => {
+                                <FaGithub id="github-sidebar" onClick={(e) => {
+                                    document.getElementById("github-sidebar").style.display = "none"
                                     setInputIcon(true)
                                     setIcon(icon.concat(<a href="#" id="github-link"><FaGithub id="github" /></a>))
                                     setIconSetting(icon_setting.concat(
@@ -778,7 +873,9 @@ function SocialElement() {
                                             <Stack direction='horizontal' gap={2}>
                                                 <FaGithub />
                                                 <span className="fw-bold">Github</span>
-                                                <Button variant="close" onClick={(e) => {
+                                                <Button id="github-removebtn" variant="close" onClick={(e) => {
+                                                    document.getElementById("github-sidebar").style.display = "block"
+                                                    document.getElementById("github-removebtn").style.display = "none"
                                                     document.getElementById("github-div").remove()
                                                     document.getElementById("github-link").remove()
                                                 }}></Button>
@@ -804,723 +901,828 @@ function SocialElement() {
                                         </div>
                                     ))
                                 }} />
-                                <FaFlickr onClick={(e) => {
+                                <FaFlickr id="flickr-sidebar" onClick={(e) => {
+                                    document.getElementById("flickr-sidebar").style.display = "none"
                                     setInputIcon(true)
                                     setIcon(icon.concat(<a href="#" id="flickr-link"><FaFlickr id="flickr" /></a>))
                                     setIconSetting(icon_setting.concat(
-                                        <div id="flickr-div">
-                                            <Stack direction='horizontal' gap={2}>
-                                                <FaFlickr />
-                                                <span className="fw-bold">Flickr</span>
-                                                <Button variant="close" onClick={(e) => {
-                                                    document.getElementById("flickr-div").remove()
-                                                    document.getElementById("flickr-link").remove()
-                                                }}></Button>
-                                            </Stack>
-                                            <InputGroup className="mb-3">
-                                                <InputGroup.Text>Color</InputGroup.Text>
-                                                <FormControl
-                                                    type='color'
-                                                    onChange={(e) => {
-                                                        document.getElementById("flickr").style.color = e.target.value
-                                                    }}
-                                                />
-                                            </InputGroup>
-                                            <InputGroup className="mb-3">
-                                                <InputGroup.Text>URL</InputGroup.Text>
-                                                <FormControl
-                                                    type='text'
-                                                    onChange={(e) => {
-                                                        document.getElementById("flickr-link").href = e.target.value
-                                                    }}
-                                                />
-                                            </InputGroup>
-                                        </div>
+                                        <>
+                                            <Button id="flickr-removebtn" variant="close" onClick={(e) => {
+                                                document.getElementById("flickr-sidebar").style.display = "block"
+                                                document.getElementById("flickr-removebtn").style.display = "none"
+                                                document.getElementById("flickr-div").remove()
+                                                document.getElementById("flickr-link").remove()
+                                            }}></Button>
+                                            <div id="flickr-div">
+                                                <Stack direction='horizontal' gap={2}>
+                                                    <FaFlickr />
+                                                    <span className="fw-bold">Flickr</span>
+                                                </Stack>
+                                                <InputGroup className="mb-3">
+                                                    <InputGroup.Text>Color</InputGroup.Text>
+                                                    <FormControl
+                                                        type='color'
+                                                        onChange={(e) => {
+                                                            document.getElementById("flickr").style.color = e.target.value
+                                                        }}
+                                                    />
+                                                </InputGroup>
+                                                <InputGroup className="mb-3">
+                                                    <InputGroup.Text>URL</InputGroup.Text>
+                                                    <FormControl
+                                                        type='text'
+                                                        onChange={(e) => {
+                                                            document.getElementById("flickr-link").href = e.target.value
+                                                        }}
+                                                    />
+                                                </InputGroup>
+                                            </div>
+                                        </>
                                     ))
                                 }} />
-                                <FaSkype onClick={(e) => {
+                                <FaSkype id="skype-sidebar" onClick={(e) => {
+                                    document.getElementById("skype-sidebar").style.display = "none"
                                     setInputIcon(true)
                                     setIcon(icon.concat(<a href="#" id="skype-link"><FaSkype id="skype" /></a>))
                                     setIconSetting(icon_setting.concat(
-                                        <div id="skype-div">
-                                            <Stack direction='horizontal' gap={2}>
-                                                <FaSkype />
-                                                <span className="fw-bold">Skype</span>
-                                                <Button variant="close" onClick={(e) => {
-                                                    document.getElementById("skype-div").remove()
-                                                    document.getElementById("skype-link").remove()
-                                                }}></Button>
-                                            </Stack>
-                                            <InputGroup className="mb-3">
-                                                <InputGroup.Text>Color</InputGroup.Text>
-                                                <FormControl
-                                                    type='color'
-                                                    onChange={(e) => {
-                                                        document.getElementById("skype").style.color = e.target.value
-                                                    }}
-                                                />
-                                            </InputGroup>
-                                            <InputGroup className="mb-3">
-                                                <InputGroup.Text>URL</InputGroup.Text>
-                                                <FormControl
-                                                    type='text'
-                                                    onChange={(e) => {
-                                                        document.getElementById("skype-link").href = e.target.value
-                                                    }}
-                                                />
-                                            </InputGroup>
-                                        </div>
+                                        <>
+                                            <Button id="skype-removebtn" variant="close" onClick={(e) => {
+                                                document.getElementById("skype-sidebar").style.display = "block"
+                                                document.getElementById("skype-removebtn").style.display = "none"
+                                                document.getElementById("skype-div").remove()
+                                                document.getElementById("skype-link").remove()
+                                            }}></Button>
+                                            <div id="skype-div">
+                                                <Stack direction='horizontal' gap={2}>
+                                                    <FaSkype />
+                                                    <span className="fw-bold">Skype</span>
+                                                </Stack>
+                                                <InputGroup className="mb-3">
+                                                    <InputGroup.Text>Color</InputGroup.Text>
+                                                    <FormControl
+                                                        type='color'
+                                                        onChange={(e) => {
+                                                            document.getElementById("skype").style.color = e.target.value
+                                                        }}
+                                                    />
+                                                </InputGroup>
+                                                <InputGroup className="mb-3">
+                                                    <InputGroup.Text>URL</InputGroup.Text>
+                                                    <FormControl
+                                                        type='text'
+                                                        onChange={(e) => {
+                                                            document.getElementById("skype-link").href = e.target.value
+                                                        }}
+                                                    />
+                                                </InputGroup>
+                                            </div>
+                                        </>
                                     ))
                                 }} />
-                                <FaMailBulk onClick={(e) => {
+                                <FaMailBulk id="mailbulk-sidebar" onClick={(e) => {
+                                    document.getElementById("mailbulk-sidebar").style.display = "none"
                                     setInputIcon(true)
                                     setIcon(icon.concat(<a href="#" id="mailbulk-link"><FaMailBulk id="mailbulk" /></a>))
                                     setIconSetting(icon_setting.concat(
-                                        <div id="mailbulk-div">
-                                            <Stack direction='horizontal' gap={2}>
-                                                <FaMailBulk />
-                                                <span className="fw-bold">Mailbulk</span>
-                                                <Button variant="close" onClick={(e) => {
-                                                    document.getElementById("mailbulk-div").remove()
-                                                    document.getElementById("mailbulk-link").remove()
-                                                }}></Button>
-                                            </Stack>
-                                            <InputGroup className="mb-3">
-                                                <InputGroup.Text>Color</InputGroup.Text>
-                                                <FormControl
-                                                    type='color'
-                                                    onChange={(e) => {
-                                                        document.getElementById("mailbulk").style.color = e.target.value
-                                                    }}
-                                                />
-                                            </InputGroup>
-                                            <InputGroup className="mb-3">
-                                                <InputGroup.Text>URL</InputGroup.Text>
-                                                <FormControl
-                                                    type='text'
-                                                    onChange={(e) => {
-                                                        document.getElementById("mailbulk-link").href = e.target.value
-                                                    }}
-                                                />
-                                            </InputGroup>
-                                        </div>
+                                        <>
+                                            <Button id="mailbulk-removebtn" variant="close" onClick={(e) => {
+                                                document.getElementById("mailbulk-sidebar").style.display = "block"
+                                                document.getElementById("mailbulk-removebtn").style.display = "none"
+                                                document.getElementById("mailbulk-div").remove()
+                                                document.getElementById("mailbulk-link").remove()
+                                            }}></Button>
+                                            <div id="mailbulk-div">
+                                                <Stack direction='horizontal' gap={2}>
+                                                    <FaMailBulk />
+                                                    <span className="fw-bold">Mailbulk</span>
+                                                </Stack>
+                                                <InputGroup className="mb-3">
+                                                    <InputGroup.Text>Color</InputGroup.Text>
+                                                    <FormControl
+                                                        type='color'
+                                                        onChange={(e) => {
+                                                            document.getElementById("mailbulk").style.color = e.target.value
+                                                        }}
+                                                    />
+                                                </InputGroup>
+                                                <InputGroup className="mb-3">
+                                                    <InputGroup.Text>URL</InputGroup.Text>
+                                                    <FormControl
+                                                        type='text'
+                                                        onChange={(e) => {
+                                                            document.getElementById("mailbulk-link").href = e.target.value
+                                                        }}
+                                                    />
+                                                </InputGroup>
+                                            </div>
+                                        </>
                                     ))
                                 }} />
-                                <FaDiscord onClick={(e) => {
+                                <FaDiscord id="discord-sidebar" onClick={(e) => {
+                                    document.getElementById("discord-sidebar").style.display = "none"
                                     setInputIcon(true)
                                     setIcon(icon.concat(<a href="#" id="discord-link"><FaDiscord id="discord" /></a>))
                                     setIconSetting(icon_setting.concat(
-                                        <div id="discord-div">
-                                            <Stack direction='horizontal' gap={2}>
-                                                <FaDiscord />
-                                                <span className="fw-bold">Discord</span>
-                                                <Button variant="close" onClick={(e) => {
-                                                    document.getElementById("discord-div").remove()
-                                                    document.getElementById("discord-link").remove()
-                                                }}></Button>
-                                            </Stack>
-                                            <InputGroup className="mb-3">
-                                                <InputGroup.Text>Color</InputGroup.Text>
-                                                <FormControl
-                                                    type='color'
-                                                    onChange={(e) => {
-                                                        document.getElementById("discord").style.color = e.target.value
-                                                    }}
-                                                />
-                                            </InputGroup>
-                                            <InputGroup className="mb-3">
-                                                <InputGroup.Text>URL</InputGroup.Text>
-                                                <FormControl
-                                                    type='text'
-                                                    onChange={(e) => {
-                                                        document.getElementById("discord-link").href = e.target.value
-                                                    }}
-                                                />
-                                            </InputGroup>
-                                        </div>
+                                        <>
+                                            <Button id="discord-removebtn" variant="close" onClick={(e) => {
+                                                document.getElementById("discord-sidebar").style.display = "block"
+                                                document.getElementById("discord-removebtn").style.display = "none"
+                                                document.getElementById("discord-div").remove()
+                                                document.getElementById("discord-link").remove()
+                                            }}></Button>
+                                            <div id="discord-div">
+                                                <Stack direction='horizontal' gap={2}>
+                                                    <FaDiscord />
+                                                    <span className="fw-bold">Discord</span>
+                                                </Stack>
+                                                <InputGroup className="mb-3">
+                                                    <InputGroup.Text>Color</InputGroup.Text>
+                                                    <FormControl
+                                                        type='color'
+                                                        onChange={(e) => {
+                                                            document.getElementById("discord").style.color = e.target.value
+                                                        }}
+                                                    />
+                                                </InputGroup>
+                                                <InputGroup className="mb-3">
+                                                    <InputGroup.Text>URL</InputGroup.Text>
+                                                    <FormControl
+                                                        type='text'
+                                                        onChange={(e) => {
+                                                            document.getElementById("discord-link").href = e.target.value
+                                                        }}
+                                                    />
+                                                </InputGroup>
+                                            </div>
+                                        </>
                                     ))
                                 }} />
-                                <FaGooglePlus onClick={(e) => {
+                                <FaGooglePlus id="googleplus-sidebar" onClick={(e) => {
+                                    document.getElementById("googleplus-sidebar").style.display = "none"
                                     setInputIcon(true)
                                     setIcon(icon.concat(<a href="#" id="googleplus-link"><FaGooglePlus id="googleplus" /></a>))
                                     setIconSetting(icon_setting.concat(
-                                        <div id="googleplus-div">
-                                            <Stack direction='horizontal' gap={2}>
-                                                <FaGooglePlus />
-                                                <span className="fw-bold">Google Plus</span>
-                                                <Button variant="close" onClick={(e) => {
-                                                    document.getElementById("googleplus-div").remove()
-                                                    document.getElementById("googleplus-link").remove()
-                                                }}></Button>
-                                            </Stack>
-                                            <InputGroup className="mb-3">
-                                                <InputGroup.Text>Color</InputGroup.Text>
-                                                <FormControl
-                                                    type='color'
-                                                    onChange={(e) => {
-                                                        document.getElementById("googleplus").style.color = e.target.value
-                                                    }}
-                                                />
-                                            </InputGroup>
-                                            <InputGroup className="mb-3">
-                                                <InputGroup.Text>URL</InputGroup.Text>
-                                                <FormControl
-                                                    type='text'
-                                                    onChange={(e) => {
-                                                        document.getElementById("googleplus-link").href = e.target.value
-                                                    }}
-                                                />
-                                            </InputGroup>
-                                        </div>
+                                        <>
+                                            <Button id="googleplus-removebtn" variant="close" onClick={(e) => {
+                                                document.getElementById("googleplus-sidebar").style.display = "block"
+                                                document.getElementById("googleplus-removebtn").style.display = "none"
+                                                document.getElementById("googleplus-div").remove()
+                                                document.getElementById("googleplus-link").remove()
+                                            }}></Button>
+                                            <div id="googleplus-div">
+                                                <Stack direction='horizontal' gap={2}>
+                                                    <FaGooglePlus />
+                                                    <span className="fw-bold">Google Plus</span>
+                                                </Stack>
+                                                <InputGroup className="mb-3">
+                                                    <InputGroup.Text>Color</InputGroup.Text>
+                                                    <FormControl
+                                                        type='color'
+                                                        onChange={(e) => {
+                                                            document.getElementById("googleplus").style.color = e.target.value
+                                                        }}
+                                                    />
+                                                </InputGroup>
+                                                <InputGroup className="mb-3">
+                                                    <InputGroup.Text>URL</InputGroup.Text>
+                                                    <FormControl
+                                                        type='text'
+                                                        onChange={(e) => {
+                                                            document.getElementById("googleplus-link").href = e.target.value
+                                                        }}
+                                                    />
+                                                </InputGroup>
+                                            </div>
+                                        </>
                                     ))
                                 }} />
-                                <FaTelegram onClick={(e) => {
+                                <FaTelegram id="telegram-sidebar" onClick={(e) => {
+                                    document.getElementById("telegram-sidebar").style.display = "none"
                                     setInputIcon(true)
                                     setIcon(icon.concat(<a href="#" id="telegram-link"><FaTelegram id="telegram" /></a>))
                                     setIconSetting(icon_setting.concat(
-                                        <div id="telegram-div">
-                                            <Stack direction='horizontal' gap={2}>
-                                                <FaTelegram />
-                                                <span className="fw-bold">Telegram</span>
-                                                <Button variant="close" onClick={(e) => {
-                                                    document.getElementById("telegram-div").remove()
-                                                    document.getElementById("telegram-link").remove()
-                                                }}></Button>
-                                            </Stack>
-                                            <InputGroup className="mb-3">
-                                                <InputGroup.Text>Color</InputGroup.Text>
-                                                <FormControl
-                                                    type='color'
-                                                    onChange={(e) => {
-                                                        document.getElementById("telegram").style.color = e.target.value
-                                                    }}
-                                                />
-                                            </InputGroup>
-                                            <InputGroup className="mb-3">
-                                                <InputGroup.Text>URL</InputGroup.Text>
-                                                <FormControl
-                                                    type='text'
-                                                    onChange={(e) => {
-                                                        document.getElementById("telegram-link").href = e.target.value
-                                                    }}
-                                                />
-                                            </InputGroup>
-                                        </div>
+                                        <>
+                                            <Button id="telegram-removebtn" variant="close" onClick={(e) => {
+                                                document.getElementById("telegram-sidebar").style.display = "block"
+                                                document.getElementById("telegram-removebtn").style.display = "none"
+                                                document.getElementById("telegram-div").remove()
+                                                document.getElementById("telegram-link").remove()
+                                            }}></Button>
+                                            <div id="telegram-div">
+                                                <Stack direction='horizontal' gap={2}>
+                                                    <FaTelegram />
+                                                    <span className="fw-bold">Telegram</span>
+                                                </Stack>
+                                                <InputGroup className="mb-3">
+                                                    <InputGroup.Text>Color</InputGroup.Text>
+                                                    <FormControl
+                                                        type='color'
+                                                        onChange={(e) => {
+                                                            document.getElementById("telegram").style.color = e.target.value
+                                                        }}
+                                                    />
+                                                </InputGroup>
+                                                <InputGroup className="mb-3">
+                                                    <InputGroup.Text>URL</InputGroup.Text>
+                                                    <FormControl
+                                                        type='text'
+                                                        onChange={(e) => {
+                                                            document.getElementById("telegram-link").href = e.target.value
+                                                        }}
+                                                    />
+                                                </InputGroup>
+                                            </div>
+                                        </>
                                     ))
                                 }} />
                             </Stack>
                         </> : <>
                             <Stack direction='horizontal' gap={2}>
-                                <FaFacebookSquare onClick={(e) => {
+                                <FaFacebookSquare id="facebooksquare-sidebar" onClick={(e) => {
+                                    document.getElementById("facebooksquare-sidebar").style.display = "none"
                                     setInputIcon(true)
                                     setIcon(icon.concat(<a href="#" id="facebooksquare-link"><FaFacebookSquare id="facebooksquare" /></a>))
                                     setIconSetting(icon_setting.concat(
-                                        <div id="facebooksquare-div">
-                                            <Stack direction='horizontal' gap={2}>
-                                                <FaFacebookSquare />
-                                                <span className="fw-bold">Facebook Square</span>
-                                                <Button variant="close" onClick={(e) => {
-                                                    document.getElementById("facebooksquare-div").remove()
-                                                    document.getElementById("facebooksquare-link").remove()
-                                                }}></Button>
-                                            </Stack>
-                                            <InputGroup className="mb-3">
-                                                <InputGroup.Text>Color</InputGroup.Text>
-                                                <FormControl
-                                                    type='color'
-                                                    onChange={(e) => {
-                                                        document.getElementById("facebooksquare").style.color = e.target.value
-                                                    }}
-                                                />
-                                            </InputGroup>
-                                            <InputGroup className="mb-3">
-                                                <InputGroup.Text>URL</InputGroup.Text>
-                                                <FormControl
-                                                    type='text'
-                                                    onChange={(e) => {
-                                                        document.getElementById("facebooksquare-link").href = e.target.value
-                                                    }}
-                                                />
-                                            </InputGroup>
-                                        </div>
+                                        <>
+                                            <Button id="facebooksquare-removebtn" variant="close" onClick={(e) => {
+                                                document.getElementById("facebooksquare-sidebar").style.display = "block"
+                                                document.getElementById("facebooksquare-removebtn").style.display = "none"
+                                                document.getElementById("facebooksquare-div").remove()
+                                                document.getElementById("facebooksquare-link").remove()
+                                            }}></Button>
+                                            <div id="facebooksquare-div">
+                                                <Stack direction='horizontal' gap={2}>
+                                                    <FaFacebookSquare />
+                                                    <span className="fw-bold">Facebook Square</span>
+                                                </Stack>
+                                                <InputGroup className="mb-3">
+                                                    <InputGroup.Text>Color</InputGroup.Text>
+                                                    <FormControl
+                                                        type='color'
+                                                        onChange={(e) => {
+                                                            document.getElementById("facebooksquare").style.color = e.target.value
+                                                        }}
+                                                    />
+                                                </InputGroup>
+                                                <InputGroup className="mb-3">
+                                                    <InputGroup.Text>URL</InputGroup.Text>
+                                                    <FormControl
+                                                        type='text'
+                                                        onChange={(e) => {
+                                                            document.getElementById("facebooksquare-link").href = e.target.value
+                                                        }}
+                                                    />
+                                                </InputGroup>
+                                            </div>
+                                        </>
                                     ))
                                 }} />
-                                <FaTwitterSquare onClick={(e) => {
+                                <FaTwitterSquare id="twittersquare-sidebar" onClick={(e) => {
+                                    document.getElementById("twittersquare-sidebar").style.display = "none"
                                     setInputIcon(true)
                                     setIcon(icon.concat(<a href="#" id="twittersquare-link"><FaTwitterSquare id="twittersquare" /></a>))
                                     setIconSetting(icon_setting.concat(
-                                        <div id="twittersquare-div">
-                                            <Stack direction='horizontal' gap={2}>
-                                                <FaTwitterSquare />
-                                                <span className="fw-bold">Twitter Square</span>
-                                                <Button variant="close" onClick={(e) => {
-                                                    document.getElementById("twittersquare-div").remove()
-                                                    document.getElementById("twittersquare-link").remove()
-                                                }}></Button>
-                                            </Stack>
-                                            <InputGroup className="mb-3">
-                                                <InputGroup.Text>Color</InputGroup.Text>
-                                                <FormControl
-                                                    type='color'
-                                                    onChange={(e) => {
-                                                        document.getElementById("twittersquare").style.color = e.target.value
-                                                    }}
-                                                />
-                                            </InputGroup>
-                                            <InputGroup className="mb-3">
-                                                <InputGroup.Text>URL</InputGroup.Text>
-                                                <FormControl
-                                                    type='text'
-                                                    onChange={(e) => {
-                                                        document.getElementById("twittersquare-link").href = e.target.value
-                                                    }}
-                                                />
-                                            </InputGroup>
-                                        </div>
+                                        <>
+                                            <Button id="twittersquare-removebtn" variant="close" onClick={(e) => {
+                                                document.getElementById("twittersquare-sidebar").style.display = "block"
+                                                document.getElementById("twittersquare-removebtn").style.display = "none"
+                                                document.getElementById("twittersquare-div").remove()
+                                                document.getElementById("twittersquare-link").remove()
+                                            }}></Button>
+                                            <div id="twittersquare-div">
+                                                <Stack direction='horizontal' gap={2}>
+                                                    <FaTwitterSquare />
+                                                    <span className="fw-bold">Twitter Square</span>
+                                                </Stack>
+                                                <InputGroup className="mb-3">
+                                                    <InputGroup.Text>Color</InputGroup.Text>
+                                                    <FormControl
+                                                        type='color'
+                                                        onChange={(e) => {
+                                                            document.getElementById("twittersquare").style.color = e.target.value
+                                                        }}
+                                                    />
+                                                </InputGroup>
+                                                <InputGroup className="mb-3">
+                                                    <InputGroup.Text>URL</InputGroup.Text>
+                                                    <FormControl
+                                                        type='text'
+                                                        onChange={(e) => {
+                                                            document.getElementById("twittersquare-link").href = e.target.value
+                                                        }}
+                                                    />
+                                                </InputGroup>
+                                            </div>
+                                        </>
                                     ))
                                 }} />
-                                <FaLinkedin onClick={(e) => {
+                                <FaLinkedin id="linkedinsquare-sidebar" onClick={(e) => {
+                                    document.getElementById("linkedinsquare-sidebar").style.display = "none"
                                     setInputIcon(true)
                                     setIcon(icon.concat(<a href="#" id="linkedinsquare-link"><FaLinkedin id="linkedinsquare" /></a>))
                                     setIconSetting(icon_setting.concat(
-                                        <div id="linkedinsquare-div">
-                                            <Stack direction='horizontal' gap={2}>
-                                                <FaLinkedin />
-                                                <span className="fw-bold">linkedin Square</span>
-                                                <Button variant="close" onClick={(e) => {
-                                                    document.getElementById("linkedinsquare-div").remove()
-                                                    document.getElementById("linkedinsquare-link").remove()
-                                                }}></Button>
-                                            </Stack>
-                                            <InputGroup className="mb-3">
-                                                <InputGroup.Text>Color</InputGroup.Text>
-                                                <FormControl
-                                                    type='color'
-                                                    onChange={(e) => {
-                                                        document.getElementById("linkedinsquare").style.color = e.target.value
-                                                    }}
-                                                />
-                                            </InputGroup>
-                                            <InputGroup className="mb-3">
-                                                <InputGroup.Text>URL</InputGroup.Text>
-                                                <FormControl
-                                                    type='text'
-                                                    onChange={(e) => {
-                                                        document.getElementById("linkedinsquare-link").href = e.target.value
-                                                    }}
-                                                />
-                                            </InputGroup>
-                                        </div>
+                                        <>
+                                            <Button id="linkedinsquare-remvovebtn" variant="close" onClick={(e) => {
+                                                document.getElementById("linkedinsquare-sidebar").style.display = "block"
+                                                document.getElementById("linkedinsquare-remvovebtn").style.display = "none"
+                                                document.getElementById("linkedinsquare-div").remove()
+                                                document.getElementById("linkedinsquare-link").remove()
+                                            }}></Button>
+                                            <div id="linkedinsquare-div">
+                                                <Stack direction='horizontal' gap={2}>
+                                                    <FaLinkedin />
+                                                    <span className="fw-bold">linkedin Square</span>
+                                                </Stack>
+                                                <InputGroup className="mb-3">
+                                                    <InputGroup.Text>Color</InputGroup.Text>
+                                                    <FormControl
+                                                        type='color'
+                                                        onChange={(e) => {
+                                                            document.getElementById("linkedinsquare").style.color = e.target.value
+                                                        }}
+                                                    />
+                                                </InputGroup>
+                                                <InputGroup className="mb-3">
+                                                    <InputGroup.Text>URL</InputGroup.Text>
+                                                    <FormControl
+                                                        type='text'
+                                                        onChange={(e) => {
+                                                            document.getElementById("linkedinsquare-link").href = e.target.value
+                                                        }}
+                                                    />
+                                                </InputGroup>
+                                            </div>
+                                        </>
                                     ))
                                 }} />
-                                <FaInstagramSquare onClick={(e) => {
+                                <FaInstagramSquare id="instagramsquare-sidebar" onClick={(e) => {
+                                    document.getElementById("instagramsquare-sidebar").style.display = "none"
                                     setInputIcon(true)
                                     setIcon(icon.concat(<a href="#" id="instagramsquare-link"><FaInstagramSquare id="instagramsquare" /></a>))
                                     setIconSetting(icon_setting.concat(
-                                        <div id="instagramsquare-div">
-                                            <Stack direction='horizontal' gap={2}>
-                                                <FaInstagramSquare />
-                                                <span className="fw-bold">Instagram Square</span>
-                                                <Button variant="close" onClick={(e) => {
-                                                    document.getElementById("instagramsquare-div").remove()
-                                                    document.getElementById("instagramsquare-link").remove()
-                                                }}></Button>
-                                            </Stack>
-                                            <InputGroup className="mb-3">
-                                                <InputGroup.Text>Color</InputGroup.Text>
-                                                <FormControl
-                                                    type='color'
-                                                    onChange={(e) => {
-                                                        document.getElementById("instagramsquare").style.color = e.target.value
-                                                    }}
-                                                />
-                                            </InputGroup>
-                                            <InputGroup className="mb-3">
-                                                <InputGroup.Text>URL</InputGroup.Text>
-                                                <FormControl
-                                                    type='text'
-                                                    onChange={(e) => {
-                                                        document.getElementById("instagramsquare-link").href = e.target.value
-                                                    }}
-                                                />
-                                            </InputGroup>
-                                        </div>
+                                        <>
+                                            <Button id="instagramsquare-remvovebtn" variant="close" onClick={(e) => {
+                                                document.getElementById("instagramsquare-sidebar").style.display = "block"
+                                                document.getElementById("instagramsquare-remvovebtn").style.display = "none"
+                                                document.getElementById("instagramsquare-div").remove()
+                                                document.getElementById("instagramsquare-link").remove()
+                                            }}></Button>
+                                            <div id="instagramsquare-div">
+                                                <Stack direction='horizontal' gap={2}>
+                                                    <FaInstagramSquare />
+                                                    <span className="fw-bold">Instagram Square</span>
+                                                </Stack>
+                                                <InputGroup className="mb-3">
+                                                    <InputGroup.Text>Color</InputGroup.Text>
+                                                    <FormControl
+                                                        type='color'
+                                                        onChange={(e) => {
+                                                            document.getElementById("instagramsquare").style.color = e.target.value
+                                                        }}
+                                                    />
+                                                </InputGroup>
+                                                <InputGroup className="mb-3">
+                                                    <InputGroup.Text>URL</InputGroup.Text>
+                                                    <FormControl
+                                                        type='text'
+                                                        onChange={(e) => {
+                                                            document.getElementById("instagramsquare-link").href = e.target.value
+                                                        }}
+                                                    />
+                                                </InputGroup>
+                                            </div>
+                                        </>
                                     ))
                                 }} />
-                                <FaPinterestSquare onClick={(e) => {
+                                <FaPinterestSquare id="pinterestsquare-sidebar" onClick={(e) => {
+                                    document.getElementById("pinterestsquare-sidebar").style.display = "none"
                                     setInputIcon(true)
                                     setIcon(icon.concat(<a href="#" id="pinterestsquare-link"><FaPinterestSquare id="pinterestsquare" /></a>))
                                     setIconSetting(icon_setting.concat(
-                                        <div id="pinterestsquare-div">
-                                            <Stack direction='horizontal' gap={2}>
-                                                <FaPinterestSquare />
-                                                <span className="fw-bold">Pinterest Square</span>
-                                                <Button variant="close" onClick={(e) => {
-                                                    document.getElementById("pinterestsquare-div").remove()
-                                                    document.getElementById("pinterestsquare-link").remove()
-                                                }}></Button>
-                                            </Stack>
-                                            <InputGroup className="mb-3">
-                                                <InputGroup.Text>Color</InputGroup.Text>
-                                                <FormControl
-                                                    type='color'
-                                                    onChange={(e) => {
-                                                        document.getElementById("pinterestsquare").style.color = e.target.value
-                                                    }}
-                                                />
-                                            </InputGroup>
-                                            <InputGroup className="mb-3">
-                                                <InputGroup.Text>URL</InputGroup.Text>
-                                                <FormControl
-                                                    type='text'
-                                                    onChange={(e) => {
-                                                        document.getElementById("pinterestsquare-link").href = e.target.value
-                                                    }}
-                                                />
-                                            </InputGroup>
-                                        </div>
+                                        <>
+                                            <Button id="pinterestsquare-removebtn" variant="close" onClick={(e) => {
+                                                document.getElementById("pinterestsquare-sidebar").style.display = "block"
+                                                document.getElementById("pinterestsquare-removebtn").style.display = "none"
+                                                document.getElementById("pinterestsquare-div").remove()
+                                                document.getElementById("pinterestsquare-link").remove()
+                                            }}></Button>
+                                            <div id="pinterestsquare-div">
+                                                <Stack direction='horizontal' gap={2}>
+                                                    <FaPinterestSquare />
+                                                    <span className="fw-bold">Pinterest Square</span>
+                                                </Stack>
+                                                <InputGroup className="mb-3">
+                                                    <InputGroup.Text>Color</InputGroup.Text>
+                                                    <FormControl
+                                                        type='color'
+                                                        onChange={(e) => {
+                                                            document.getElementById("pinterestsquare").style.color = e.target.value
+                                                        }}
+                                                    />
+                                                </InputGroup>
+                                                <InputGroup className="mb-3">
+                                                    <InputGroup.Text>URL</InputGroup.Text>
+                                                    <FormControl
+                                                        type='text'
+                                                        onChange={(e) => {
+                                                            document.getElementById("pinterestsquare-link").href = e.target.value
+                                                        }}
+                                                    />
+                                                </InputGroup>
+                                            </div>
+                                        </>
                                     ))
                                 }} />
-                                <FaVimeoSquare onClick={(e) => {
+                                <FaVimeoSquare id="vimeosquare-sidebar" onClick={(e) => {
+                                    document.getElementById("vimeosquare-sidebar").style.display = "none"
                                     setInputIcon(true)
                                     setIcon(icon.concat(<a href="#" id="vimeosquare-link"><FaVimeoSquare id="vimeosquare" /></a>))
                                     setIconSetting(icon_setting.concat(
-                                        <div id="vimeosquare-div">
-                                            <Stack direction='horizontal' gap={2}>
-                                                <FaVimeoSquare />
-                                                <span className="fw-bold">Vimeo Square</span>
-                                                <Button variant="close" onClick={(e) => {
-                                                    document.getElementById("vimeosquare-div").remove()
-                                                    document.getElementById("vimeosquare-link").remove()
-                                                }}></Button>
-                                            </Stack>
-                                            <InputGroup className="mb-3">
-                                                <InputGroup.Text>Color</InputGroup.Text>
-                                                <FormControl
-                                                    type='color'
-                                                    onChange={(e) => {
-                                                        document.getElementById("vimeosquare").style.color = e.target.value
-                                                    }}
-                                                />
-                                            </InputGroup>
-                                            <InputGroup className="mb-3">
-                                                <InputGroup.Text>URL</InputGroup.Text>
-                                                <FormControl
-                                                    type='text'
-                                                    onChange={(e) => {
-                                                        document.getElementById("vimeosquare-link").href = e.target.value
-                                                    }}
-                                                />
-                                            </InputGroup>
-                                        </div>
+                                        <>
+                                            <Button id="vimeosquare-removebtn" variant="close" onClick={(e) => {
+                                                document.getElementById("vimeosquare-sidebar").style.display = "block"
+                                                document.getElementById("vimeosquare-removebtn").style.display = "none"
+                                                document.getElementById("vimeosquare-div").remove()
+                                                document.getElementById("vimeosquare-link").remove()
+                                            }}></Button>
+                                            <div id="vimeosquare-div">
+                                                <Stack direction='horizontal' gap={2}>
+                                                    <FaVimeoSquare />
+                                                    <span className="fw-bold">Vimeo Square</span>
+                                                </Stack>
+                                                <InputGroup className="mb-3">
+                                                    <InputGroup.Text>Color</InputGroup.Text>
+                                                    <FormControl
+                                                        type='color'
+                                                        onChange={(e) => {
+                                                            document.getElementById("vimeosquare").style.color = e.target.value
+                                                        }}
+                                                    />
+                                                </InputGroup>
+                                                <InputGroup className="mb-3">
+                                                    <InputGroup.Text>URL</InputGroup.Text>
+                                                    <FormControl
+                                                        type='text'
+                                                        onChange={(e) => {
+                                                            document.getElementById("vimeosquare-link").href = e.target.value
+                                                        }}
+                                                    />
+                                                </InputGroup>
+                                            </div>
+                                        </>
                                     ))
                                 }} />
-                                <FaYoutubeSquare onClick={(e) => {
+                                <FaYoutubeSquare id="youtubesquare-sidebar" onClick={(e) => {
+                                    document.getElementById("youtubesquare-sidebar").style.display = "none"
                                     setInputIcon(true)
                                     setIcon(icon.concat(<a href="#" id="youtubesquare-link"><FaYoutubeSquare id="youtubesquare" /></a>))
                                     setIconSetting(icon_setting.concat(
-                                        <div id="youtubesquare-div">
-                                            <Stack direction='horizontal' gap={2}>
-                                                <FaYoutubeSquare />
-                                                <span className="fw-bold">Youtube Square</span>
-                                                <Button variant="close" onClick={(e) => {
-                                                    document.getElementById("youtubesquare-div").remove()
-                                                    document.getElementById("youtubesquare-link").remove()
-                                                }}></Button>
-                                            </Stack>
-                                            <InputGroup className="mb-3">
-                                                <InputGroup.Text>Color</InputGroup.Text>
-                                                <FormControl
-                                                    type='color'
-                                                    onChange={(e) => {
-                                                        document.getElementById("youtubesquare").style.color = e.target.value
-                                                    }}
-                                                />
-                                            </InputGroup>
-                                            <InputGroup className="mb-3">
-                                                <InputGroup.Text>URL</InputGroup.Text>
-                                                <FormControl
-                                                    type='text'
-                                                    onChange={(e) => {
-                                                        document.getElementById("youtubesquare-link").href = e.target.value
-                                                    }}
-                                                />
-                                            </InputGroup>
-                                        </div>
+                                        <>
+                                            <Button id="youtubesquare-removebtn" variant="close" onClick={(e) => {
+                                                document.getElementById("youtubesquare-sidebar").style.display = "block"
+                                                document.getElementById("youtubesquare-removebtn").style.display = "none"
+                                                document.getElementById("youtubesquare-div").remove()
+                                                document.getElementById("youtubesquare-link").remove()
+                                            }}></Button>
+                                            <div id="youtubesquare-div">
+                                                <Stack direction='horizontal' gap={2}>
+                                                    <FaYoutubeSquare />
+                                                    <span className="fw-bold">Youtube Square</span>
+                                                </Stack>
+                                                <InputGroup className="mb-3">
+                                                    <InputGroup.Text>Color</InputGroup.Text>
+                                                    <FormControl
+                                                        type='color'
+                                                        onChange={(e) => {
+                                                            document.getElementById("youtubesquare").style.color = e.target.value
+                                                        }}
+                                                    />
+                                                </InputGroup>
+                                                <InputGroup className="mb-3">
+                                                    <InputGroup.Text>URL</InputGroup.Text>
+                                                    <FormControl
+                                                        type='text'
+                                                        onChange={(e) => {
+                                                            document.getElementById("youtubesquare-link").href = e.target.value
+                                                        }}
+                                                    />
+                                                </InputGroup>
+                                            </div>
+                                        </>
                                     ))
                                 }} />
-                                <FaSnapchatSquare onClick={(e) => {
+                                <FaSnapchatSquare id="snapchatsquare-sidebar" onClick={(e) => {
+                                    document.getElementById("snapchatsquare-sidebar").style.display = "none"
                                     setInputIcon(true)
                                     setIcon(icon.concat(<a href="#" id="snapchatsquare-link"><FaSnapchatSquare id="snapchatsquare" /></a>))
                                     setIconSetting(icon_setting.concat(
-                                        <div id="snapchatsquare-div">
-                                            <Stack direction='horizontal' gap={2}>
-                                                <FaSnapchatSquare />
-                                                <span className="fw-bold">Snapchat Square</span>
-                                                <Button variant="close" onClick={(e) => {
-                                                    document.getElementById("snapchatsquare-div").remove()
-                                                    document.getElementById("snapchatsquare-link").remove()
-                                                }}></Button>
-                                            </Stack>
-                                            <InputGroup className="mb-3">
-                                                <InputGroup.Text>Color</InputGroup.Text>
-                                                <FormControl
-                                                    type='color'
-                                                    onChange={(e) => {
-                                                        document.getElementById("snapchatsquare").style.color = e.target.value
-                                                    }}
-                                                />
-                                            </InputGroup>
-                                            <InputGroup className="mb-3">
-                                                <InputGroup.Text>URL</InputGroup.Text>
-                                                <FormControl
-                                                    type='text'
-                                                    onChange={(e) => {
-                                                        document.getElementById("snapchatsquare-link").href = e.target.value
-                                                    }}
-                                                />
-                                            </InputGroup>
-                                        </div>
+                                        <>
+                                            <Button id="snapchatsquare-removebtn" variant="close" onClick={(e) => {
+                                                document.getElementById("snapchatsquare-sidebar").style.display = "block"
+                                                document.getElementById("snapchatsquare-removebtn").style.display = "none"
+                                                document.getElementById("snapchatsquare-div").remove()
+                                                document.getElementById("snapchatsquare-link").remove()
+                                            }}></Button>
+                                            <div id="snapchatsquare-div">
+                                                <Stack direction='horizontal' gap={2}>
+                                                    <FaSnapchatSquare />
+                                                    <span className="fw-bold">Snapchat Square</span>
+                                                </Stack>
+                                                <InputGroup className="mb-3">
+                                                    <InputGroup.Text>Color</InputGroup.Text>
+                                                    <FormControl
+                                                        type='color'
+                                                        onChange={(e) => {
+                                                            document.getElementById("snapchatsquare").style.color = e.target.value
+                                                        }}
+                                                    />
+                                                </InputGroup>
+                                                <InputGroup className="mb-3">
+                                                    <InputGroup.Text>URL</InputGroup.Text>
+                                                    <FormControl
+                                                        type='text'
+                                                        onChange={(e) => {
+                                                            document.getElementById("snapchatsquare-link").href = e.target.value
+                                                        }}
+                                                    />
+                                                </InputGroup>
+                                            </div>
+                                        </>
                                     ))
                                 }} />
-                                <FaRedditSquare onClick={(e) => {
+                                <FaRedditSquare id="redditsquare-sidebar" onClick={(e) => {
+                                    document.getElementById("snapchatsquare-sidebar").style.display = "none"
                                     setInputIcon(true)
                                     setIcon(icon.concat(<a href="#" id="redditsquare-link"><FaRedditSquare id="redditsquare" /></a>))
                                     setIconSetting(icon_setting.concat(
-                                        <div id="redditsquare-div">
-                                            <Stack direction='horizontal' gap={2}>
-                                                <FaRedditSquare />
-                                                <span className="fw-bold">Reddit Square</span>
-                                                <Button variant="close" onClick={(e) => {
-                                                    document.getElementById("redditsquare-div").remove()
-                                                    document.getElementById("redditsquare-link").remove()
-                                                }}></Button>
-                                            </Stack>
-                                            <InputGroup className="mb-3">
-                                                <InputGroup.Text>Color</InputGroup.Text>
-                                                <FormControl
-                                                    type='color'
-                                                    onChange={(e) => {
-                                                        document.getElementById("redditsquare").style.color = e.target.value
-                                                    }}
-                                                />
-                                            </InputGroup>
-                                            <InputGroup className="mb-3">
-                                                <InputGroup.Text>URL</InputGroup.Text>
-                                                <FormControl
-                                                    type='text'
-                                                    onChange={(e) => {
-                                                        document.getElementById("redditsquare-link").href = e.target.value
-                                                    }}
-                                                />
-                                            </InputGroup>
-                                        </div>
+                                        <>
+                                            <Button id="redditsquare-removebtn" variant="close" onClick={(e) => {
+                                                document.getElementById("redditsquare-sidebar").style.display = "block"
+                                                document.getElementById("redditsquare-removebtn").style.display = "none"
+                                                document.getElementById("redditsquare-div").remove()
+                                                document.getElementById("redditsquare-link").remove()
+                                            }}></Button>
+                                            <div id="redditsquare-div">
+                                                <Stack direction='horizontal' gap={2}>
+                                                    <FaRedditSquare />
+                                                    <span className="fw-bold">Reddit Square</span>
+                                                </Stack>
+                                                <InputGroup className="mb-3">
+                                                    <InputGroup.Text>Color</InputGroup.Text>
+                                                    <FormControl
+                                                        type='color'
+                                                        onChange={(e) => {
+                                                            document.getElementById("redditsquare").style.color = e.target.value
+                                                        }}
+                                                    />
+                                                </InputGroup>
+                                                <InputGroup className="mb-3">
+                                                    <InputGroup.Text>URL</InputGroup.Text>
+                                                    <FormControl
+                                                        type='text'
+                                                        onChange={(e) => {
+                                                            document.getElementById("redditsquare-link").href = e.target.value
+                                                        }}
+                                                    />
+                                                </InputGroup>
+                                            </div>
+                                        </>
                                     ))
                                 }} />
                             </Stack>
                             <Stack direction='horizontal' gap={2}>
-                                <FaRssSquare onClick={(e) => {
+                                <FaRssSquare id="rsssquare-sidebar" onClick={(e) => {
+                                    document.getElementById("rsssquare-sidebar").style.display = "none"
                                     setInputIcon(true)
                                     setIcon(icon.concat(<a href="#" id="rsssquare-link"><FaRssSquare id="rsssquare" /></a>))
                                     setIconSetting(icon_setting.concat(
-                                        <div id="rsssquare-div">
-                                            <Stack direction='horizontal' gap={2}>
-                                                <FaRssSquare />
-                                                <span className="fw-bold">RSS Square</span>
-                                                <Button variant="close" onClick={(e) => {
-                                                    document.getElementById("rsssquare-div").remove()
-                                                    document.getElementById("rsssquare-link").remove()
-                                                }}></Button>
-                                            </Stack>
-                                            <InputGroup className="mb-3">
-                                                <InputGroup.Text>Color</InputGroup.Text>
-                                                <FormControl
-                                                    type='color'
-                                                    onChange={(e) => {
-                                                        document.getElementById("rsssquare").style.color = e.target.value
-                                                    }}
-                                                />
-                                            </InputGroup>
-                                            <InputGroup className="mb-3">
-                                                <InputGroup.Text>URL</InputGroup.Text>
-                                                <FormControl
-                                                    type='text'
-                                                    onChange={(e) => {
-                                                        document.getElementById("rsssquare-link").href = e.target.value
-                                                    }}
-                                                />
-                                            </InputGroup>
-                                        </div>
+                                        <>
+                                            <Button id="rsssquare-removebtn" variant="close" onClick={(e) => {
+                                                document.getElementById("rsssquare-sidebar").style.display = "block"
+                                                document.getElementById("rsssquare-removebtn").style.display = "none"
+                                                document.getElementById("rsssquare-div").remove()
+                                                document.getElementById("rsssquare-link").remove()
+                                            }}></Button>
+                                            <div id="rsssquare-div">
+                                                <Stack direction='horizontal' gap={2}>
+                                                    <FaRssSquare />
+                                                    <span className="fw-bold">RSS Square</span>
+                                                </Stack>
+                                                <InputGroup className="mb-3">
+                                                    <InputGroup.Text>Color</InputGroup.Text>
+                                                    <FormControl
+                                                        type='color'
+                                                        onChange={(e) => {
+                                                            document.getElementById("rsssquare").style.color = e.target.value
+                                                        }}
+                                                    />
+                                                </InputGroup>
+                                                <InputGroup className="mb-3">
+                                                    <InputGroup.Text>URL</InputGroup.Text>
+                                                    <FormControl
+                                                        type='text'
+                                                        onChange={(e) => {
+                                                            document.getElementById("rsssquare-link").href = e.target.value
+                                                        }}
+                                                    />
+                                                </InputGroup>
+                                            </div>
+                                        </>
                                     ))
                                 }} />
-                                <FaTumblrSquare onClick={(e) => {
+                                <FaTumblrSquare id="tumblrsquare-sidebar" onClick={(e) => {
+                                    document.getElementById("tumblrsquare-sidebar").style.display = "none"
                                     setInputIcon(true)
                                     setIcon(icon.concat(<a href="#" id="tumblrsquare-link"><FaTumblrSquare id="tumblrsquare" /></a>))
                                     setIconSetting(icon_setting.concat(
-                                        <div id="tumblrsquare-div">
-                                            <Stack direction='horizontal' gap={2}>
-                                                <FaTumblrSquare />
-                                                <span className="fw-bold">Twitter Square</span>
-                                                <Button variant="close" onClick={(e) => {
-                                                    document.getElementById("tumblrsquare-div").remove()
-                                                    document.getElementById("tumblrsquare-link").remove()
-                                                }}></Button>
-                                            </Stack>
-                                            <InputGroup className="mb-3">
-                                                <InputGroup.Text>Color</InputGroup.Text>
-                                                <FormControl
-                                                    type='color'
-                                                    onChange={(e) => {
-                                                        document.getElementById("tumblrsquare").style.color = e.target.value
-                                                    }}
-                                                />
-                                            </InputGroup>
-                                            <InputGroup className="mb-3">
-                                                <InputGroup.Text>URL</InputGroup.Text>
-                                                <FormControl
-                                                    type='text'
-                                                    onChange={(e) => {
-                                                        document.getElementById("tumblrsquare-link").href = e.target.value
-                                                    }}
-                                                />
-                                            </InputGroup>
-                                        </div>
+                                        <>
+                                            <Button id="tumblrsquare-removebtn" variant="close" onClick={(e) => {
+                                                document.getElementById("tumblrsquare-sidebar").style.display = "block"
+                                                document.getElementById("tumblrsquare-removebtn").style.display = "none"
+                                                document.getElementById("tumblrsquare-div").remove()
+                                                document.getElementById("tumblrsquare-link").remove()
+                                            }}></Button>
+                                            <div id="tumblrsquare-div">
+                                                <Stack direction='horizontal' gap={2}>
+                                                    <FaTumblrSquare />
+                                                    <span className="fw-bold">Twitter Square</span>
+                                                </Stack>
+                                                <InputGroup className="mb-3">
+                                                    <InputGroup.Text>Color</InputGroup.Text>
+                                                    <FormControl
+                                                        type='color'
+                                                        onChange={(e) => {
+                                                            document.getElementById("tumblrsquare").style.color = e.target.value
+                                                        }}
+                                                    />
+                                                </InputGroup>
+                                                <InputGroup className="mb-3">
+                                                    <InputGroup.Text>URL</InputGroup.Text>
+                                                    <FormControl
+                                                        type='text'
+                                                        onChange={(e) => {
+                                                            document.getElementById("tumblrsquare-link").href = e.target.value
+                                                        }}
+                                                    />
+                                                </InputGroup>
+                                            </div>
+                                        </>
                                     ))
                                 }} />
-                                <FaMedium onClick={(e) => {
+                                <FaMedium id="mediumsquare-sidebar" onClick={(e) => {
+                                    document.getElementById("mediumsquare-sidebar").style.display = "none"
                                     setInputIcon(true)
                                     setIcon(icon.concat(<a href="#" id="mediumsquare-link"><FaMedium id="mediumsquare" /></a>))
                                     setIconSetting(icon_setting.concat(
-                                        <div id="mediumsquare-div">
-                                            <Stack direction='horizontal' gap={2}>
-                                                <FaMedium />
-                                                <span className="fw-bold">Medium Square</span>
-                                                <Button variant="close" onClick={(e) => {
-                                                    document.getElementById("mediumsquare-div").remove()
-                                                    document.getElementById("mediumsquare-link").remove()
-                                                }}></Button>
-                                            </Stack>
-                                            <InputGroup className="mb-3">
-                                                <InputGroup.Text>Color</InputGroup.Text>
-                                                <FormControl
-                                                    type='color'
-                                                    onChange={(e) => {
-                                                        document.getElementById("mediumsquare").style.color = e.target.value
-                                                    }}
-                                                />
-                                            </InputGroup>
-                                            <InputGroup className="mb-3">
-                                                <InputGroup.Text>URL</InputGroup.Text>
-                                                <FormControl
-                                                    type='text'
-                                                    onChange={(e) => {
-                                                        document.getElementById("mediumsquare-link").href = e.target.value
-                                                    }}
-                                                />
-                                            </InputGroup>
-                                        </div>
+                                        <>
+                                            <Button id="mediumsquare-removebtn" variant="close" onClick={(e) => {
+                                                document.getElementById("mediumsquare-sidebar").style.display = "block"
+                                                document.getElementById("mediumsquare-removebtn").style.display = "none"
+                                                document.getElementById("mediumsquare-div").remove()
+                                                document.getElementById("mediumsquare-link").remove()
+                                            }}></Button>
+                                            <div id="mediumsquare-div">
+                                                <Stack direction='horizontal' gap={2}>
+                                                    <FaMedium />
+                                                    <span className="fw-bold">Medium Square</span>
+                                                </Stack>
+                                                <InputGroup className="mb-3">
+                                                    <InputGroup.Text>Color</InputGroup.Text>
+                                                    <FormControl
+                                                        type='color'
+                                                        onChange={(e) => {
+                                                            document.getElementById("mediumsquare").style.color = e.target.value
+                                                        }}
+                                                    />
+                                                </InputGroup>
+                                                <InputGroup className="mb-3">
+                                                    <InputGroup.Text>URL</InputGroup.Text>
+                                                    <FormControl
+                                                        type='text'
+                                                        onChange={(e) => {
+                                                            document.getElementById("mediumsquare-link").href = e.target.value
+                                                        }}
+                                                    />
+                                                </InputGroup>
+                                            </div>
+                                        </>
                                     ))
                                 }} />
-                                <FaFlickr onClick={(e) => {
+                                <FaFlickr id="flickrsquare-sidebar" onClick={(e) => {
+                                    document.getElementById("flickrsquare-sidebar").style.display = "none"
                                     setInputIcon(true)
                                     setIcon(icon.concat(<a href="#" id="flickrsquare-link"><FaFlickr id="flickrsquare" /></a>))
                                     setIconSetting(icon_setting.concat(
-                                        <div id="flickrsquare-div">
-                                            <Stack direction='horizontal' gap={2}>
-                                                <FaFlickr />
-                                                <span className="fw-bold">Flickr Square</span>
-                                                <Button variant="close" onClick={(e) => {
-                                                    document.getElementById("flickrsquare-div").remove()
-                                                    document.getElementById("flickrsquare-link").remove()
-                                                }}></Button>
-                                            </Stack>
-                                            <InputGroup className="mb-3">
-                                                <InputGroup.Text>Color</InputGroup.Text>
-                                                <FormControl
-                                                    type='color'
-                                                    onChange={(e) => {
-                                                        document.getElementById("flickrsquare").style.color = e.target.value
-                                                    }}
-                                                />
-                                            </InputGroup>
-                                            <InputGroup className="mb-3">
-                                                <InputGroup.Text>URL</InputGroup.Text>
-                                                <FormControl
-                                                    type='text'
-                                                    onChange={(e) => {
-                                                        document.getElementById("flickrsquare-link").href = e.target.value
-                                                    }}
-                                                />
-                                            </InputGroup>
-                                        </div>
+                                        <>
+                                            <Button id="flickrsquare-removebtn" variant="close" onClick={(e) => {
+                                                document.getElementById("flickrsquare-sidebar").style.display = "block"
+                                                document.getElementById("flickrsquare-removebtn").style.display = "none"
+                                                document.getElementById("flickrsquare-div").remove()
+                                                document.getElementById("flickrsquare-link").remove()
+                                            }}></Button>
+                                            <div id="flickrsquare-div">
+                                                <Stack direction='horizontal' gap={2}>
+                                                    <FaFlickr />
+                                                    <span className="fw-bold">Flickr Square</span>
+                                                </Stack>
+                                                <InputGroup className="mb-3">
+                                                    <InputGroup.Text>Color</InputGroup.Text>
+                                                    <FormControl
+                                                        type='color'
+                                                        onChange={(e) => {
+                                                            document.getElementById("flickrsquare").style.color = e.target.value
+                                                        }}
+                                                    />
+                                                </InputGroup>
+                                                <InputGroup className="mb-3">
+                                                    <InputGroup.Text>URL</InputGroup.Text>
+                                                    <FormControl
+                                                        type='text'
+                                                        onChange={(e) => {
+                                                            document.getElementById("flickrsquare-link").href = e.target.value
+                                                        }}
+                                                    />
+                                                </InputGroup>
+                                            </div>
+                                        </>
                                     ))
                                 }} />
-                                <FaGooglePlusSquare onClick={(e) => {
+                                <FaGooglePlusSquare id="googleplussquare-sidebar" onClick={(e) => {
+                                    document.getElementById("googleplussquare-sidebar").style.display = "none"
                                     setInputIcon(true)
                                     setIcon(icon.concat(<a href="#" id="googleplussquare-link"><FaGooglePlusSquare id="googleplussquare" /></a>))
                                     setIconSetting(icon_setting.concat(
-                                        <div id="googleplussquare-div">
-                                            <Stack direction='horizontal' gap={2}>
-                                                <FaGooglePlusSquare />
-                                                <span className="fw-bold">GooglePlus Square</span>
-                                                <Button variant="close" onClick={(e) => {
-                                                    document.getElementById("googleplussquare-div").remove()
-                                                    document.getElementById("googleplussquare-link").remove()
-                                                }}></Button>
-                                            </Stack>
-                                            <InputGroup className="mb-3">
-                                                <InputGroup.Text>Color</InputGroup.Text>
-                                                <FormControl
-                                                    type='color'
-                                                    onChange={(e) => {
-                                                        document.getElementById("googleplussquare").style.color = e.target.value
-                                                    }}
-                                                />
-                                            </InputGroup>
-                                            <InputGroup className="mb-3">
-                                                <InputGroup.Text>URL</InputGroup.Text>
-                                                <FormControl
-                                                    type='text'
-                                                    onChange={(e) => {
-                                                        document.getElementById("googleplussquare-link").href = e.target.value
-                                                    }}
-                                                />
-                                            </InputGroup>
-                                        </div>
+                                        <>
+                                            <Button id="googleplussquare-removebtn" variant="close" onClick={(e) => {
+                                                document.getElementById("googleplussquare-sidebar").style.display = "block"
+                                                document.getElementById("googleplussquare-removebtn").style.display = "none"
+                                                document.getElementById("googleplussquare-div").remove()
+                                                document.getElementById("googleplussquare-link").remove()
+                                            }}></Button>
+                                            <div id="googleplussquare-div">
+                                                <Stack direction='horizontal' gap={2}>
+                                                    <FaGooglePlusSquare />
+                                                    <span className="fw-bold">GooglePlus Square</span>
+                                                </Stack>
+                                                <InputGroup className="mb-3">
+                                                    <InputGroup.Text>Color</InputGroup.Text>
+                                                    <FormControl
+                                                        type='color'
+                                                        onChange={(e) => {
+                                                            document.getElementById("googleplussquare").style.color = e.target.value
+                                                        }}
+                                                    />
+                                                </InputGroup>
+                                                <InputGroup className="mb-3">
+                                                    <InputGroup.Text>URL</InputGroup.Text>
+                                                    <FormControl
+                                                        type='text'
+                                                        onChange={(e) => {
+                                                            document.getElementById("googleplussquare-link").href = e.target.value
+                                                        }}
+                                                    />
+                                                </InputGroup>
+                                            </div>
+                                        </>
                                     ))
                                 }} />
-                                <FaGithubSquare onClick={(e) => {
+                                <FaGithubSquare id="githubsquare-sidebar" onClick={(e) => {
+                                    document.getElementById("githubsquare-sidebar").style.display = "none"
                                     setInputIcon(true)
                                     setIcon(icon.concat(<a href="#" id="githubsquare-link"><FaGithubSquare id="githubsquare" /></a>))
                                     setIconSetting(icon_setting.concat(
-                                        <div id="githubsquare-div">
-                                            <Stack direction='horizontal' gap={2}>
-                                                <FaGithubSquare />
-                                                <span className="fw-bold">Github Square</span>
-                                                <Button variant="close" onClick={(e) => {
-                                                    document.getElementById("githubsquare-div").remove()
-                                                    document.getElementById("githubsquare-link").remove()
-                                                }}></Button>
-                                            </Stack>
-                                            <InputGroup className="mb-3">
-                                                <InputGroup.Text>Color</InputGroup.Text>
-                                                <FormControl
-                                                    type='color'
-                                                    onChange={(e) => {
-                                                        document.getElementById("githubsquare").style.color = e.target.value
-                                                    }}
-                                                />
-                                            </InputGroup>
-                                            <InputGroup className="mb-3">
-                                                <InputGroup.Text>URL</InputGroup.Text>
-                                                <FormControl
-                                                    type='text'
-                                                    onChange={(e) => {
-                                                        document.getElementById("githubsquare-link").href = e.target.value
-                                                    }}
-                                                />
-                                            </InputGroup>
-                                        </div>
+                                        <>
+                                            <Button id="githubsquare-removebtn" variant="close" onClick={(e) => {
+                                                document.getElementById("githubsquare-sidebar").style.display = "block"
+                                                document.getElementById("githubsquare-removebtn").style.display = "none"
+                                                document.getElementById("githubsquare-div").remove()
+                                                document.getElementById("githubsquare-link").remove()
+                                            }}></Button>
+                                            <div id="githubsquare-div">
+                                                <Stack direction='horizontal' gap={2}>
+                                                    <FaGithubSquare />
+                                                    <span className="fw-bold">Github Square</span>
+                                                </Stack>
+                                                <InputGroup className="mb-3">
+                                                    <InputGroup.Text>Color</InputGroup.Text>
+                                                    <FormControl
+                                                        type='color'
+                                                        onChange={(e) => {
+                                                            document.getElementById("githubsquare").style.color = e.target.value
+                                                        }}
+                                                    />
+                                                </InputGroup>
+                                                <InputGroup className="mb-3">
+                                                    <InputGroup.Text>URL</InputGroup.Text>
+                                                    <FormControl
+                                                        type='text'
+                                                        onChange={(e) => {
+                                                            document.getElementById("githubsquare-link").href = e.target.value
+                                                        }}
+                                                    />
+                                                </InputGroup>
+                                            </div>
+                                        </>
                                     ))
                                 }} />
                             </Stack>

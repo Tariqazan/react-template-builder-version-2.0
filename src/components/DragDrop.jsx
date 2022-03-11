@@ -53,7 +53,7 @@ function DragDrop() {
     }
 
     const action = isOver & canDrop;
-    
+
     let color = 'black'
 
     if (action) {
@@ -91,7 +91,7 @@ function DragDrop() {
 
     return (
         <>
-            <button className = "btn btn-primary" onClick={ScreenShot}>Capture</button>
+            <button className="btn btn-primary" onClick={ScreenShot}>Capture</button>
             {displayhtmlcode === "none" ? (<button className="btn btn-primary" onClick={htmlCode}>Get HTML</button>) : (<button className="btn btn-primary" onClick={htmlCode}>X</button>)}
             {mobileStyle === "none" ? (<button className="btn btn-primary" onClick={mobileView}>Mobile View</button>) : (<button className="btn btn-primary" onClick={mobileView}>X</button>)}
             <div id="screenshot"></div>

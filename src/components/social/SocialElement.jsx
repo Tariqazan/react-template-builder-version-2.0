@@ -25,6 +25,7 @@ function SocialElement() {
     const [icon_setting, setIconSetting] = useState([])
     const [upload_icon, setUploadIcon] = useState([])
     const [upload_icon_id, setUploadIconID] = useState(1)
+    const [icon_display, setIconDisplay] = useState("block")
 
 
     const uploadIcon = (e) => {
@@ -83,68 +84,74 @@ function SocialElement() {
                                     setInputIcon(true)
                                     setIcon(icon.concat(<a href="#" id="facebook-link"><FaFacebook id="facebook" /></a>))
                                     setIconSetting(icon_setting.concat(
-                                        <div id="facebook-div">
-                                            <Stack direction='horizontal' gap={2}>
-                                                <FaFacebook />
-                                                <span className="fw-bold">Facebook</span>
-                                                <Button variant="close" onClick={(e) => {
-                                                    document.getElementById("facebook-link").remove()
-                                                    document.getElementById("facebook-div").remove()
-                                                }}></Button>
-                                            </Stack>
-                                            <InputGroup className="mb-3">
-                                                <InputGroup.Text>Color</InputGroup.Text>
-                                                <FormControl
-                                                    type='color'
-                                                    onChange={(e) => {
-                                                        document.getElementById("facebook").style.color = e.target.value
-                                                    }}
-                                                />
-                                            </InputGroup>
-                                            <InputGroup className="mb-3">
-                                                <InputGroup.Text>URL</InputGroup.Text>
-                                                <FormControl
-                                                    type='text'
-                                                    onChange={(e) => {
-                                                        document.getElementById("facebook-link").href = e.target.value
-                                                    }}
-                                                />
-                                            </InputGroup>
-                                        </div>
+                                        <>
+                                            <Button variant="close" id="facebook-removebtn" onClick={(e) => {
+                                                document.getElementById("facebook-removebtn").style.display = "none"
+                                                document.getElementById("facebook-link").remove()
+                                                document.getElementById("facebook-div").remove()
+                                            }}></Button>
+                                            <div id="facebook-div">
+                                                <Stack direction='horizontal' gap={2}>
+                                                    <FaFacebook />
+                                                    <span className="fw-bold">Facebook</span>
+                                                </Stack>
+                                                <InputGroup className="mb-3">
+                                                    <InputGroup.Text>Color</InputGroup.Text>
+                                                    <FormControl
+                                                        type='color'
+                                                        onChange={(e) => {
+                                                            document.getElementById("facebook").style.color = e.target.value
+                                                        }}
+                                                    />
+                                                </InputGroup>
+                                                <InputGroup className="mb-3">
+                                                    <InputGroup.Text>URL</InputGroup.Text>
+                                                    <FormControl
+                                                        type='text'
+                                                        onChange={(e) => {
+                                                            document.getElementById("facebook-link").href = e.target.value
+                                                        }}
+                                                    />
+                                                </InputGroup>
+                                            </div>
+                                        </>
                                     ))
                                 }} />
                                 <FaTwitter onClick={(e) => {
                                     setInputIcon(true)
                                     setIcon(icon.concat(<a href="#" id="twitter-link"><FaTwitter id="twitter" /></a>))
                                     setIconSetting(icon_setting.concat(
-                                        <div id="twitter-div">
-                                            <Stack direction='horizontal' gap={2}>
-                                                <FaTwitter />
-                                                <span className="fw-bold">Twitter</span>
-                                                <Button variant="close" onClick={(e) => {
-                                                    document.getElementById("twitter-link").remove()
-                                                    document.getElementById("twitter-div").remove()
-                                                }}></Button>
-                                            </Stack>
-                                            <InputGroup className="mb-3">
-                                                <InputGroup.Text>Color</InputGroup.Text>
-                                                <FormControl
-                                                    type='color'
-                                                    onChange={(e) => {
-                                                        document.getElementById("twitter").style.color = e.target.value
-                                                    }}
-                                                />
-                                            </InputGroup>
-                                            <InputGroup className="mb-3">
-                                                <InputGroup.Text>URL</InputGroup.Text>
-                                                <FormControl
-                                                    type='text'
-                                                    onChange={(e) => {
-                                                        document.getElementById("twitter-link").href = e.target.value
-                                                    }}
-                                                />
-                                            </InputGroup>
-                                        </div>
+                                        <>
+                                            <Button variant="close" id="twitter-removebtn" onClick={(e) => {
+                                                document.getElementById("twitter-removebtn").remove()
+                                                document.getElementById("twitter-link").remove()
+                                                document.getElementById("twitter-div").remove()
+                                            }}></Button>
+                                            <div id="twitter-div">
+                                                <Stack direction='horizontal' gap={2}>
+                                                    <FaTwitter />
+                                                    <span className="fw-bold">Twitter</span>
+                                                </Stack>
+                                                <InputGroup className="mb-3">
+                                                    <InputGroup.Text>Color</InputGroup.Text>
+                                                    <FormControl
+                                                        type='color'
+                                                        onChange={(e) => {
+                                                            document.getElementById("twitter").style.color = e.target.value
+                                                        }}
+                                                    />
+                                                </InputGroup>
+                                                <InputGroup className="mb-3">
+                                                    <InputGroup.Text>URL</InputGroup.Text>
+                                                    <FormControl
+                                                        type='text'
+                                                        onChange={(e) => {
+                                                            document.getElementById("twitter-link").href = e.target.value
+                                                        }}
+                                                    />
+                                                </InputGroup>
+                                            </div>
+                                        </>
                                     ))
                                 }} />
                                 <FaLinkedinIn onClick={(e) => {

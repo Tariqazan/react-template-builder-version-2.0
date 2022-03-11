@@ -19,9 +19,7 @@ function MenuElement() {
         <div ref={ref}>
             {show ?
                 <div className='sidenav'>
-                    <div>
-                        <div><Button onClick={handleClose}>X</Button></div>
-                    </div>
+                    <Button onClick={handleClose}>X</Button>
                     <div>
                         <Button variant="close" onClick={(e) => {
                             setShow(false)
@@ -31,27 +29,30 @@ function MenuElement() {
                         <Button variant='secondary' onClick={(e) => {
                             setID(id + 1)
                             setMenu(true)
-                            setMenuItem(menuitem.concat(<li class="menu-link" id={'menuitem' + id}><a id={'menulink' + id} href="#">Page</a></li>))
+                            setMenuItem(menuitem.concat(<li className="menu-link" id={'menuitem' + id}><a id={'menulink' + id} href="#">Page</a></li>))
                             setMenuOption(menuoption.concat(
-                                <div id={'menuoption' + id}>
-                                    <Button className={id} variant='danger' style={{ 'float': 'right' }} onClick={(e) => {
+                                <>
+                                    <Button className={id} id={id} variant='danger' style={{ 'float': 'right' }} onClick={(e) => {
+                                        document.getElementById(e.target.id).style.display="none"
                                         document.getElementById("menuitem" + e.target.classList[0]).remove()
                                         document.getElementById("menuoption" + e.target.classList[0]).remove()
                                     }}>X</Button>
-                                    <InputGroup className="my-2">
-                                        <InputGroup.Text id="basic-addon1">Text</InputGroup.Text>
-                                        <FormControl type='text' className={id} onChange={(e) => {
-                                            document.getElementById("menulink" + e.target.classList[0]).innerHTML = e.target.value
-                                        }}></FormControl>
-                                    </InputGroup>
-                                    <InputGroup className="my-2">
-                                        <InputGroup.Text id="basic-addon1">URL</InputGroup.Text>
-                                        <FormControl type='text' className={id} onChange={(e) => {
-                                            document.getElementById("menulink" + e.target.classList[0]).href = e.target.value
-                                        }}></FormControl>
-                                    </InputGroup>
-                                    <hr />
-                                </div>
+                                    <div id={'menuoption' + id}>
+                                        <InputGroup className="my-2">
+                                            <InputGroup.Text id="basic-addon1">Text</InputGroup.Text>
+                                            <FormControl type='text' className={id} onChange={(e) => {
+                                                document.getElementById("menulink" + e.target.classList[0]).innerHTML = e.target.value
+                                            }}></FormControl>
+                                        </InputGroup>
+                                        <InputGroup className="my-2">
+                                            <InputGroup.Text id="basic-addon1">URL</InputGroup.Text>
+                                            <FormControl type='text' className={id} onChange={(e) => {
+                                                document.getElementById("menulink" + e.target.classList[0]).href = e.target.value
+                                            }}></FormControl>
+                                        </InputGroup>
+                                        <hr />
+                                    </div>
+                                </>
                             ))
                         }}>Add New Item</Button>
                     </div>

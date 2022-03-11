@@ -1,3 +1,4 @@
 export const ItemTypes = {
-    DraggedElement: 'draggedelement'
+    DraggedElement: 'draggedelement',
+    DroppedElement:'droppedelement'
 }

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 
 import { Elements } from '../Elements';
 import Drag from './Drag';
@@ -22,6 +22,7 @@ import MenuElement from './menu/MenuElement';
 import TimerElement from './timer/TimerElement';
 import SocialElement from './social/SocialElement';
 
+import update from 'immutability-helper';
 function DragDrop() {
     const [Drop, setDrop] = useState([])
     const [hasdropped, setHasDropped] = useState(false)
@@ -71,6 +72,8 @@ function DragDrop() {
         }
         setHTML(style + html)
     }
+
+
     const htmlCode = (e) => {
         const style = `<style>*{max-width:320px;word-wrap:break-word;}img{width:100%;}.action-div {display: none;}.nav-link{text-decoration:none;margin: 20px 10px;color:black}.timer-div {display: flex;justify-content: center;}.icon-div {justify-content: center;}</style>`
         const html = document.getElementById("dropzone").innerHTML
@@ -104,70 +107,60 @@ function DragDrop() {
             </div>
             <Row>
                 <Col md={8}>
-                    <div ref={drop} id="dropzone" style={{ color }}>
+                    <div id='dropzone' ref={drop} style={{ color }}>
                         {hasdropped ? <>
-                            {Drop.map((element) => {
-                                if (element.text === "Columns") {
-                                    return (
-                                        <ColumnElement></ColumnElement>
-                                    )
-                                }
-                                else if (element.text === "Button") {
-                                    return (
-                                        <ButtonElement></ButtonElement>
-                                    )
-                                }
-                                else if (element.text === "Carousel") {
-                                    return (
-                                        <CarouselElement></CarouselElement>
-                                    )
-                                }
-                                else if (element.text === "Divider") {
-                                    return (
-                                        <DividerElement></DividerElement>
-                                    )
-                                }
-                                else if (element.text === "Heading") {
-                                    return (
-                                        <HeadingElement></HeadingElement>
-                                    )
-                                }
-                                else if (element.text === "HTML") {
-                                    return (
-                                        <HTMLElement></HTMLElement>
-                                    )
-                                }
-                                else if (element.text === "Image") {
-                                    return (
-                                        <ImageElement></ImageElement>
-                                    )
-                                }
-                                else if (element.text === "Text") {
-                                    return (
-                                        <TextElement></TextElement>
-                                    )
-                                }
-                                else if (element.text === "Timer") {
-                                    return (
-                                        <TimerElement></TimerElement>
-                                    )
-                                }
-                                else if (element.text === "Video") {
-                                    return (
-                                        <VideoElement></VideoElement>
-                                    )
-                                }
-                                else if (element.text === "Social") {
-                                    return (
-                                        <SocialElement></SocialElement>
-                                    )
-                                }
-                                else if (element.text === "Menu") {
-                                    return (
-                                        <MenuElement></MenuElement>
-                                    )
-                                }
-                            })}
+                            {Drop.map((element) => (
+                                <>
+                                    {
+                                        element.id === 1 ?
+                                            <ColumnElement /> : <></>
+                                    }
+                                    {
+                                        element.id === 2 ?
+                                            <ButtonElement /> : <></>
+                                    }
+                                    {
+                                        element.id === 3 ?
+                                            <CarouselElement /> : <></>
+                                    }
+                                    {
+                                        element.id === 4 ?
+                                            <DividerElement /> : <></>
+                                    }
+                                    {
+                                        element.id === 5 ?
+                                            <HeadingElement /> : <></>
+                                    }
+                                    {
+                                        element.id === 6 ?
+                                            <HTMLElement /> : <></>
+                                    }
+                                    {
+                                        element.id === 7 ?
+                                            <ImageElement /> : <></>
+                                    }
+                                    {
+                                        element.id === 8 ?
+                                            <MenuElement /> : <></>
+                                    }
+                                    {
+                                        element.id === 9 ?
+                                            <SocialElement /> : <></>
+                                    }
+                                    {
+                                        element.id === 10 ?
+                                            <TextElement /> : <></>
+                                    }
+                                    {
+                                        element.id === 11 ?
+                                            <TimerElement /> : <></>
+                                    }
+                                    {
+                                        element.id === 12 ?
+                                            <VideoElement /> : <></>
+                                    }
+                                </>
+                            ))}
                         </> :
                             <Row>
                                 <Col md={12}><p className="p-2 text-center">Drop Here</p></Col>

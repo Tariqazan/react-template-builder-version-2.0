@@ -68,7 +68,7 @@ function CarouselElement() {
               setRemove(false)
             }}></Button>
             <label htmlFor="image">Image 1</label>
-            <input type="file" className='form-control' onChange={(e) => {
+            <input type="file" className='form-control' accept='image/*' onChange={(e) => {
               const objectURL = URL.createObjectURL(e.target.files[0])
               setImage1(objectURL)
             }} />
@@ -76,7 +76,7 @@ function CarouselElement() {
               setImgURL1(e.target.value)
             }} />
             <label htmlFor="image">Image 2</label>
-            <input type="file" className='form-control' onChange={(e) => {
+            <input type="file" className='form-control' accept='image/*' onChange={(e) => {
               const objectURL = URL.createObjectURL(e.target.files[0])
               setImage2(objectURL)
             }} />
@@ -84,7 +84,7 @@ function CarouselElement() {
               setImgURL2(e.target.value)
             }} />
             <label htmlFor="image">Image 3</label>
-            <input type="file" className='form-control' onChange={(e) => {
+            <input type="file" className='form-control' accept='image/*' onChange={(e) => {
               const objectURL = URL.createObjectURL(e.target.files[0])
               setImage3(objectURL)
             }} />

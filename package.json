@@ -8,6 +8,7 @@
         "@testing-library/user-event": "^13.5.0",
         "@toast-ui/react-image-editor": "^3.15.2",
         "html2canvas": "^1.4.1",
+        "immutability-helper": "^3.1.1",
         "react": "^17.0.2",
         "react-bootstrap": "^2.1.2",
         "react-contenteditable": "^3.3.6",

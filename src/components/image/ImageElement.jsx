@@ -50,7 +50,10 @@ function ImageElement() {
                         <Button variant="info" className="my-3" onClick={handleeffectdrawerOpen}>
                             Add Effect
                         </Button>
-                        <FormControl type="number" onChange={(e) => setWidth(e.target.value + "%")}></FormControl>
+                        <div className="">
+                            <label htmlFor="">Width</label>
+                            <FormControl type="range" onChange={(e) => setWidth(e.target.value + "%")}></FormControl>
+                        </div>
                         <FormControl type="file" onChange={handlechangeImage} accept="image/*" />
                         <Row className="my-2">
                             <Col md={4}><Button onClick={(e) => setjustifyContent("flex-start")}>Left</Button></Col>

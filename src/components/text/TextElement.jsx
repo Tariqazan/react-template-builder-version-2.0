@@ -30,10 +30,10 @@ function TextElement() {
                         <div><Button onClick={handleClose}>X</Button></div>
                     </div>
                     <div>
-                        <Button variant='close' onClick={(e) => {
+                        <Button variant="danger" onClick={(e) => {
                             setShow(false)
                             setRemove(false)
-                        }}></Button>
+                        }}>Remove</Button>
                     </div>
                 </div> : <></>}
             {remove ?

@@ -57,10 +57,10 @@ function SocialElement() {
                         <div><Button onClick={handleClose}>X</Button></div>
                     </div>
                     <div>
-                        <Button variant="close" onClick={(e) => {
+                        <Button variant="danger" onClick={(e) => {
                             setShow(false)
                             setRemove(false)
-                        }}></Button>
+                        }}>Remove</Button>
                         <Form.Label>Container Padding</Form.Label>
                         <Form.Control type="number" onChange={(e => document.getElementById('icon').style.padding = e.target.value + 'px')}></Form.Control>
                         <select id="icon-type" className="form-control" onChange={(e => {

@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 
 import { Elements } from '../Elements';
 import Drag from './Drag';
@@ -72,7 +72,6 @@ function DragDrop() {
         }
         setHTML(style + html)
     }
-
 
     const htmlCode = (e) => {
         const style = `<style>*{max-width:320px;word-wrap:break-word;}img{width:100%;}.action-div {display: none;}.nav-link{text-decoration:none;margin: 20px 10px;color:black}.timer-div {display: flex;justify-content: center;}.icon-div {justify-content: center;}</style>`

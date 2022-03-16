@@ -47,6 +47,10 @@ p {
     overflow-wrap: break-word;
 }
 
+.text-break {
+    word-wrap: break-word;
+}
+
 .timer-div {
     display: flex;
     justify-content: center;

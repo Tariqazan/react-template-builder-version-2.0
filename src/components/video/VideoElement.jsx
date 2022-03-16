@@ -1,9 +1,9 @@
-import React, { useState, useRef } from "react";
-import { Offcanvas, Button } from 'react-bootstrap';
-import Drop from '../Drop';
+import React, { useEffect, useState } from "react";
+import { Button } from 'react-bootstrap';
+import DropElement from '../Drop';
 import { useDetectClickOutside } from 'react-detect-click-outside';
 
-function VideoElement() {
+function VideoElement({ Drop, setDrop }) {
     const [remove, setRemove] = useState(true)
     const [show, setShow] = useState(false);
 
@@ -24,7 +24,6 @@ function VideoElement() {
     }
 
     const ref = useDetectClickOutside({ onTriggered: handleClose });
-
     return (
         <div ref={ref}>
             {show ?
@@ -33,10 +32,10 @@ function VideoElement() {
                         <div><Button onClick={handleClose}>X</Button></div>
                     </div>
                     <div>
-                        <Button variant="close" onClick={(e) => {
+                        <Button variant="danger" onClick={(e) => {
                             setShow(false)
                             setRemove(false)
-                        }}></Button>
+                        }}>Remove</Button>
                         <input type="file" className="form-control" onChange={handleChange} accept="video/*" />
                     </div>
                 </div> : <></>}
@@ -51,7 +50,7 @@ function VideoElement() {
                 :
                 (
                     <>
-                        <Drop></Drop>
+                        <DropElement></DropElement>
                     </>
                 )
             }

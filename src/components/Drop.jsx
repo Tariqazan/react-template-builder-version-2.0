@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState } from 'react';
 
 import { Elements } from '../Elements';
 import { ItemTypes } from '../ItemTypes';
@@ -19,8 +19,6 @@ import TextElement from './text/TextElement';
 import MenuElement from './menu/MenuElement';
 import TimerElement from './timer/TimerElement';
 import SocialElement from './social/SocialElement';
-
-import update from 'immutability-helper';
 
 
 function Drop() {

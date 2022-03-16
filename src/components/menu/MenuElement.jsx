@@ -37,10 +37,10 @@ function MenuElement() {
             {show ?
                 <div className="sidenav">
                     <Button onClick={handleClose}>X</Button>
-                    <Button variant="close" onClick={(e) => {
+                    <Button variant="danger" onClick={(e) => {
                         setShow(false)
                         setRemove(false)
-                    }}></Button>
+                    }}>Remove</Button>
                     <label htmlFor="">Background</label>
                     <FormControl type='color' onChange={(e) => {
                         setBackground(e.target.value)

@@ -31,10 +31,10 @@ function DividerElement() {
                         <div><Button show={true}>X</Button></div>
                     </div>
                     <div>
-                        <Button variant="close" onClick={(e) => {
+                        <Button variant="danger" onClick={(e) => {
                             setShow(false)
                             setRemove(false)
-                        }}></Button>
+                        }}>Remove</Button>
                         <InputGroup className='my-2'>
                             <InputGroup.Text id="basic-addon1">Width</InputGroup.Text>
                             <FormControl type='number' onChange={(e) => {

@@ -18,8 +18,8 @@ function HeadingElement() {
     return (
         <div ref={ref}>
             {remove ?
-                <div style={{ 'display': 'flex', 'justifyContent': justifyContent, 'color': color }} onClick={handleOpen}>
-                    <p contentEditable="true" style={{ 'width': '100%', 'fontSize': fontsize, }}>heading</p>
+                <div className='d-flex' style={{ 'justifyContent': justifyContent, 'color': color }} onClick={handleOpen}>
+                    <p className='text-break' contentEditable="true" style={{ 'fontSize': fontsize, }}>heading</p>
                 </div> : <Drop></Drop>}
 
             {show ?
@@ -28,10 +28,10 @@ function HeadingElement() {
                         <div><Button onClick={handleClose}>X</Button></div>
                     </div>
                     <div>
-                        <Button variant="close" onClick={(e) => {
+                        <Button variant="danger" onClick={(e) => {
                             setShow(false)
                             setRemove(false)
-                        }}></Button>
+                        }}>Remove</Button>
                         <Row className='my-2'>
                             <Col md={3}><Button onClick={() => { setFontSize("2.5rem") }}>H1</Button></Col>
                             <Col md={3}><Button onClick={() => { setFontSize("2rem") }}>H2</Button></Col>

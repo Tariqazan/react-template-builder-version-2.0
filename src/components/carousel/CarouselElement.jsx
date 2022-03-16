@@ -63,10 +63,10 @@ function CarouselElement() {
             <div><Button onClick={handleClose}>X</Button></div>
           </div>
           <div>
-            <Button variant="close" onClick={(e) => {
+            <Button variant="danger" onClick={(e) => {
               setShow(false)
               setRemove(false)
-            }}></Button>
+            }}>Remove</Button>
             <label htmlFor="image">Image 1</label>
             <input type="file" className='form-control' accept='image/*' onChange={(e) => {
               const objectURL = URL.createObjectURL(e.target.files[0])

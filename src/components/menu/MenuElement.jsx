@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Button, FormControl } from 'react-bootstrap'
+import { Button, Form, FormControl } from 'react-bootstrap'
 import Drop from '../Drop';
 import { useDetectClickOutside } from 'react-detect-click-outside';
 
@@ -29,8 +29,11 @@ function MenuElement() {
         setItemList(itemlist.filter(items => items.id != item));
     };
 
+    // responsive
+    const [responsive, setResponsive] = useState(false)
+    const [responsiveclassName, setResponsiveClassName] = useState("")
     return (
-        <div ref={ref}>
+        <div ref={ref} className={responsiveclassName}>
             {remove ? <ul className='d-flex' style={{ 'backgroundColor': background }} onClick={handleOpen}>{itemlist.map((i) => (
                 <li key={i.id} className='px-3'><a href="/#" id={i.id} style={{ 'color': textcolor }}>{i.menu}</a></li>
             ))}</ul> : <Drop></Drop>}
@@ -69,6 +72,21 @@ function MenuElement() {
                             {i.option}
                         </div>
                     ))}
+                    <Form.Check
+                        type="switch"
+                        label="Hide on MobileView"
+                        defaultChecked={responsive}
+                        onChange={() => {
+                            if (responsive === false) {
+                                setResponsive(true)
+                                setResponsiveClassName("hide-mobile")
+                            }
+                            else {
+                                setResponsive(false)
+                                setResponsiveClassName("")
+                            }
+                        }}
+                    />
                 </div> : <></>}
         </div>
     )

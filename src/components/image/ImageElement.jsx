@@ -1,6 +1,6 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 
-import { Row, Col, Image, Offcanvas, FormControl, Button } from 'react-bootstrap';
+import { Row, Col, Image, Offcanvas, Form, FormControl, Button } from 'react-bootstrap';
 
 import ImageEditor from '@toast-ui/react-image-editor';
 import 'tui-image-editor/dist/tui-image-editor.css';
@@ -34,9 +34,13 @@ function ImageElement() {
         setPicture(objectURL)
     }
 
+    // responsive
+    const [responsive, setResponsive] = useState(false)
+    const [responsiveclassName, setResponsiveClassName] = useState("")
+
     const ref = useDetectClickOutside({ onTriggered: handleClose });
     return (
-        <div ref={ref}>
+        <div ref={ref} className={responsiveclassName}>
             {show ?
                 <div className='sidenav'>
                     <div>
@@ -60,6 +64,21 @@ function ImageElement() {
                             <Col md={4}><Button onClick={(e) => setjustifyContent("center")}>Center</Button></Col>
                             <Col md={4}><Button onClick={(e) => setjustifyContent("flex-end")}>Right</Button></Col>
                         </Row>
+                        <Form.Check
+                            type="switch"
+                            label="Hide on MobileView"
+                            defaultChecked={responsive}
+                            onChange={() => {
+                                if (responsive === false) {
+                                    setResponsive(true)
+                                    setResponsiveClassName("hide-mobile")
+                                }
+                                else {
+                                    setResponsive(false)
+                                    setResponsiveClassName("")
+                                }
+                            }}
+                        />
                     </div>
                 </div> : <></>}
             {effect ? (<>

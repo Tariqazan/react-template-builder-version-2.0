@@ -1,7 +1,9 @@
-import React, { useEffect, useState } from "react";
-import { Button } from 'react-bootstrap';
+import React, { useState } from "react";
+import { Button, Form } from 'react-bootstrap';
 import DropElement from '../Drop';
 import { useDetectClickOutside } from 'react-detect-click-outside';
+import { useDrag } from 'react-dnd';
+import { ItemTypes } from '../../ItemTypes'
 
 function VideoElement({ Drop, setDrop }) {
     const [remove, setRemove] = useState(true)
@@ -23,29 +25,19 @@ function VideoElement({ Drop, setDrop }) {
         'height': 'auto'
     }
 
+    // responsive
+    const [responsive, setResponsive] = useState(false)
+    const [responsiveclassName, setResponsiveClassName] = useState("")
+
     const ref = useDetectClickOutside({ onTriggered: handleClose });
+
     return (
-        <div ref={ref}>
-            {show ?
-                <div className='sidenav'>
-                    <div>
-                        <div><Button onClick={handleClose}>X</Button></div>
-                    </div>
-                    <div>
-                        <Button variant="danger" onClick={(e) => {
-                            setShow(false)
-                            setRemove(false)
-                        }}>Remove</Button>
-                        <input type="file" className="form-control" onChange={handleChange} accept="video/*" />
-                    </div>
-                </div> : <></>}
+        <div ref={ref} className={responsiveclassName}>
             {remove ?
                 (
-                    <>
-                        <div className="item-border" onClick={handleOpen}>
-                            <video src={video} style={videostyle} controls></video>
-                        </div>
-                    </>
+                    <div className="item-border" onClick={handleOpen}>
+                        <video src={video} style={videostyle} controls></video>
+                    </div>
                 )
                 :
                 (
@@ -54,6 +46,34 @@ function VideoElement({ Drop, setDrop }) {
                     </>
                 )
             }
+            {show ?
+                <div className='sidenav'>
+                    <div>
+                        <Button onClick={handleClose}>X</Button>
+                    </div>
+                    <div>
+                        <Button variant="danger" onClick={(e) => {
+                            setShow(false)
+                            setRemove(false)
+                        }}>Remove</Button>
+                        <input type="file" className="form-control" onChange={handleChange} accept="video/*" />
+                        <Form.Check
+                            type="switch"
+                            label="Hide on MobileView"
+                            defaultChecked={responsive}
+                            onChange={() => {
+                                if (responsive === false) {
+                                    setResponsive(true)
+                                    setResponsiveClassName("hide-mobile")
+                                }
+                                else {
+                                    setResponsive(false)
+                                    setResponsiveClassName("")
+                                }
+                            }}
+                        />
+                    </div>
+                </div> : <></>}
         </div>
     )
 }

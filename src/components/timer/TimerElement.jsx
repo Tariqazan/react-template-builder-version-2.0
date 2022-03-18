@@ -1,5 +1,5 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { Button, Col, FormControl, Row } from 'react-bootstrap';
+import React, { useState } from 'react';
+import { Button, Form, Col, FormControl, Row } from 'react-bootstrap';
 import Drop from '../Drop';
 import CountdownTimer from './CountDownTimer';
 
@@ -23,8 +23,12 @@ function TimerElement() {
     const [diffDate, setdiffDate] = useState(null)
     const ref = useDetectClickOutside({ onTriggered: handleClose });
 
+    // responsive
+    const [responsive, setResponsive] = useState(false)
+    const [responsiveclassName, setResponsiveClassName] = useState("")
+
     return (
-        <div ref={ref}>
+        <div ref={ref} className={responsiveclassName}>
             {remove ? <div style={{ 'backgroundColor': background, 'color': color }} onClick={handleOpen}><CountdownTimer targetDate={diffDate}></CountdownTimer></div> : <Drop></Drop>}
             {show ?
                 <div className='sidenav'>
@@ -55,6 +59,21 @@ function TimerElement() {
                                 <FormControl type="color" value={color} onChange={(e) => setColor(e.target.value)}></FormControl>
                             </Col>
                         </Row>
+                        <Form.Check
+                            type="switch"
+                            label="Hide on MobileView"
+                            defaultChecked={responsive}
+                            onChange={() => {
+                                if (responsive === false) {
+                                    setResponsive(true)
+                                    setResponsiveClassName("hide-mobile")
+                                }
+                                else {
+                                    setResponsive(false)
+                                    setResponsiveClassName("")
+                                }
+                            }}
+                        />
                     </div>
                 </div> : <></>}</div>
     )

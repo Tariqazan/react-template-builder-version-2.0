@@ -1,5 +1,5 @@
-import React, { useState, useRef } from 'react';
-import { Row, Col, Button, InputGroup, FormControl } from 'react-bootstrap';
+import React, { useState } from 'react';
+import { Row, Col, Button, Form, InputGroup, FormControl } from 'react-bootstrap';
 import Drop from '../Drop';
 import { useDetectClickOutside } from 'react-detect-click-outside';
 
@@ -12,14 +12,18 @@ function HeadingElement() {
     const [fontsize, setFontSize] = useState("16px")
 
 
+    // responsive
+    const [responsive, setResponsive] = useState(false)
+    const [responsiveclassName, setResponsiveClassName] = useState("")
+
     const handleOpen = () => setShow(true)
     const handleClose = () => setShow(false)
     const ref = useDetectClickOutside({ onTriggered: handleClose });
     return (
-        <div ref={ref}>
+        <div ref={ref} className={responsiveclassName}>
             {remove ?
                 <div className='d-flex' style={{ 'justifyContent': justifyContent, 'color': color }} onClick={handleOpen}>
-                    <p className='text-break' contentEditable="true" style={{ 'fontSize': fontsize, }}>heading</p>
+                    <p className='text-break' contentEditable="true" suppressContentEditableWarning style={{ 'fontSize': fontsize, }}>heading</p>
                 </div> : <Drop></Drop>}
 
             {show ?
@@ -69,6 +73,21 @@ function HeadingElement() {
                             <Col md={4}><Button onClick={(e) => setjustifyContent("flex-end")}>Right</Button></Col>
                         </Row>
                     </div>
+                    <Form.Check
+                        type="switch"
+                        label="Hide on MobileView"
+                        defaultChecked={responsive}
+                        onChange={() => {
+                            if (responsive === false) {
+                                setResponsive(true)
+                                setResponsiveClassName("hide-mobile")
+                            }
+                            else {
+                                setResponsive(false)
+                                setResponsiveClassName("")
+                            }
+                        }}
+                    />
                 </div> : <></>}
         </div>
     )

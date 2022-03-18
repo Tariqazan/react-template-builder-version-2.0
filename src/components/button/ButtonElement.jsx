@@ -74,7 +74,7 @@ function ButtonElement({ setDropped, dropped }) {
               'borderRadius': borderRadius, 'backgroundColor': backgroundcolor,
               'color': textcolor, 'width': width
             }}>
-            <span contentEditable="true" ref={boxRef}>Button Text
+            <span className='text-break' contentEditable="true" suppressContentEditableWarning ref={boxRef}>Button Text
               {boxOutsideClick ? <></> : <div className="bg-white">
                 <select onChange={(e) => {
                   document.execCommand("fontName", false, e.target.value)
@@ -224,14 +224,15 @@ function ButtonElement({ setDropped, dropped }) {
         <Form.Check
           type="switch"
           label="Hide on MobileView"
-          value={responsive}
+          defaultChecked={responsive}
           onChange={() => {
-            if (responsive === true) {
-              setResponsive(false)
-              setResponsiveClassName("")
-            } else {
+            if (responsive === false) {
               setResponsive(true)
               setResponsiveClassName("hide-mobile")
+            }
+            else {
+              setResponsive(false)
+              setResponsiveClassName("")
             }
           }}
         />

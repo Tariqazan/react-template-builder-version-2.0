@@ -49,8 +49,12 @@ function SocialElement() {
     const handleClose = () => setShow(false);
 
     const ref = useDetectClickOutside({ onTriggered: handleClose });
+
+    // responsive
+    const [responsive, setResponsive] = useState(false)
+    const [responsiveclassName, setResponsiveClassName] = useState("")
     return (
-        <div ref={ref}>
+        <div ref={ref} className={responsiveclassName}>
             {show ?
                 <div className='sidenav'>
                     <div>
@@ -1731,6 +1735,21 @@ function SocialElement() {
                             <InputGroup.Text>Upload Icon</InputGroup.Text>
                             <FormControl type='file' onChange={uploadIcon}></FormControl>
                         </InputGroup>
+                        <Form.Check
+                            type="switch"
+                            label="Hide on MobileView"
+                            defaultChecked={responsive}
+                            onChange={() => {
+                                if (responsive === false) {
+                                    setResponsive(true)
+                                    setResponsiveClassName("hide-mobile")
+                                }
+                                else {
+                                    setResponsive(false)
+                                    setResponsiveClassName("")
+                                }
+                            }}
+                        />
                     </div>
                 </div> : <></>}
             {remove ?

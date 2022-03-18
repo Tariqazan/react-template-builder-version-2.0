@@ -7,6 +7,10 @@ import { useDetectClickOutside } from 'react-detect-click-outside';
 function DividerElement() {
     const [show, setShow] = useState(false)
 
+    // responsive
+    const [responsive, setResponsive] = useState(false)
+    const [responsiveclassName, setResponsiveClassName] = useState("")
+
     const handleOpen = () => setShow(true)
     const handleClose = () => setShow(false)
 
@@ -19,16 +23,16 @@ function DividerElement() {
 
     const ref = useDetectClickOutside({ onTriggered: handleClose });
     return (
-        <div ref={ref}>
+        <div ref={ref} className={responsiveclassName}>
             {remove ?
-                <div className='border py-3' style={{ 'display': 'flex', 'justifyContent': justifyContent }} onClick={handleOpen}>
+                <div className='py-3' style={{ 'display': 'flex', 'justifyContent': justifyContent }} onClick={handleOpen}>
                     <div style={{ 'width': width, 'borderTopStyle': borderStyle, 'borderTopColor': color, 'borderWidth': height }}></div>
                 </div> : <Drop></Drop>}
 
             {show ?
                 <div className='sidenav'>
                     <div>
-                        <div><Button show={true}>X</Button></div>
+                        <div><Button onClick={handleClose}>X</Button></div>
                     </div>
                     <div>
                         <Button variant="danger" onClick={(e) => {
@@ -67,6 +71,21 @@ function DividerElement() {
                             <Col md={4}><Button onClick={(e) => setjustifyContent("flex-end")}>Right</Button></Col>
                         </Row>
                     </div>
+                    <Form.Check
+                        type="switch"
+                        label="Hide on MobileView"
+                        defaultChecked={responsive}
+                        onChange={() => {
+                            if (responsive === false) {
+                                setResponsive(true)
+                                setResponsiveClassName("hide-mobile")
+                            }
+                            else {
+                                setResponsive(false)
+                                setResponsiveClassName("")
+                            }
+                        }}
+                    />
                 </div> : <></>}
         </div>
     )

@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 
 import ContentEditable from "react-contenteditable";
 
-import { Row, Col, Button } from 'react-bootstrap';
+import { Form, Button } from 'react-bootstrap';
 import Drop from '../Drop';
 import { useDetectClickOutside } from 'react-detect-click-outside';
 
@@ -22,8 +22,12 @@ function TextElement() {
     const [value, setValue] = useState('add content')
 
     const ref = useDetectClickOutside({ onTriggered: handleClose });
+
+    // responsive
+    const [responsive, setResponsive] = useState(false)
+    const [responsiveclassName, setResponsiveClassName] = useState("")
     return (
-        <div ref={ref}>
+        <div ref={ref} className={responsiveclassName}>
             {show ?
                 <div className='sidenav'>
                     <div>
@@ -34,6 +38,21 @@ function TextElement() {
                             setShow(false)
                             setRemove(false)
                         }}>Remove</Button>
+                        <Form.Check
+                            type="switch"
+                            label="Hide on MobileView"
+                            defaultChecked={responsive}
+                            onChange={() => {
+                                if (responsive === false) {
+                                    setResponsive(true)
+                                    setResponsiveClassName("hide-mobile")
+                                }
+                                else {
+                                    setResponsive(false)
+                                    setResponsiveClassName("")
+                                }
+                            }}
+                        />
                     </div>
                 </div> : <></>}
             {remove ?

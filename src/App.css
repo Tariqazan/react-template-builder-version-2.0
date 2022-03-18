@@ -234,3 +234,9 @@ ul {
         height: 350px;
     }
 }
+
+@media only screen and (max-width: 770px) {
+    .hide-mobile {
+        display: none;
+    }
+}

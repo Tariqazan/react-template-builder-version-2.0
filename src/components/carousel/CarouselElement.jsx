@@ -6,6 +6,10 @@ import { useDetectClickOutside } from 'react-detect-click-outside';
 function CarouselElement() {
   const [show, setShow] = useState(false)
 
+  // responsive
+  const [responsive, setResponsive] = useState(false)
+  const [responsiveclassName, setResponsiveClassName] = useState("")
+
   const [padding, setPadding] = useState(0)
 
   const [paddingTop, setPaddingTop] = useState(0)
@@ -27,7 +31,7 @@ function CarouselElement() {
 
   const ref = useDetectClickOutside({ onTriggered: handleClose });
   return (
-    <div ref={ref} style={{ 'padding': padding, 'paddingTop': paddingTop, 'paddingBottom': paddingBottom, 'paddingLeft': paddingLeft, 'paddingRight': paddingRight }}>
+    <div ref={ref} className={responsiveclassName} style={{ 'padding': padding, 'paddingTop': paddingTop, 'paddingBottom': paddingBottom, 'paddingLeft': paddingLeft, 'paddingRight': paddingRight }}>
       {remove ? <Carousel variant="dark" onClick={handleOpen}>
         <Carousel.Item>
           <a href={img_url1}>
@@ -122,6 +126,21 @@ function CarouselElement() {
               </Col>
             </Row>
           </div>
+          <Form.Check
+            type="switch"
+            label="Hide on MobileView"
+            defaultChecked={responsive}
+            onChange={() => {
+              if (responsive === false) {
+                setResponsive(true)
+                setResponsiveClassName("hide-mobile")
+              }
+              else {
+                setResponsive(false)
+                setResponsiveClassName("")
+              }
+            }}
+          />
         </div> : <></>}
     </div>
   )

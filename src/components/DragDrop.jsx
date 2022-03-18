@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 
 import { Elements } from '../Elements';
 import Drag from './Drag';
@@ -50,7 +50,42 @@ function DragDrop() {
 
     const addElementDropped = (id) => {
         const elements = Elements.filter((element) => id === element.id)
-        setDrop((Drop) => [...Drop, elements[0]])
+        if (elements[0].text === "Button") {
+            setDrop((Drop) => [...Drop, { item: <ButtonElement></ButtonElement> }])
+        }
+        else if (elements[0].text === "Columns") {
+            setDrop((Drop) => [...Drop, { item: <ColumnElement></ColumnElement> }])
+        }
+        else if (elements[0].text === "Carousel") {
+            setDrop((Drop) => [...Drop, { item: <CarouselElement></CarouselElement> }])
+        }
+        else if (elements[0].text === "Divider") {
+            setDrop((Drop) => [...Drop, { item: <DividerElement></DividerElement> }])
+        }
+        else if (elements[0].text === "Heading") {
+            setDrop((Drop) => [...Drop, { item: <HeadingElement></HeadingElement> }])
+        }
+        else if (elements[0].text === "HTML") {
+            setDrop((Drop) => [...Drop, { item: <HTMLElement></HTMLElement> }])
+        }
+        else if (elements[0].text === "Image") {
+            setDrop((Drop) => [...Drop, { item: <ImageElement></ImageElement> }])
+        }
+        else if (elements[0].text === "Menu") {
+            setDrop((Drop) => [...Drop, { item: <MenuElement></MenuElement> }])
+        }
+        else if (elements[0].text === "Social") {
+            setDrop((Drop) => [...Drop, { item: <SocialElement></SocialElement> }])
+        }
+        else if (elements[0].text === "Text") {
+            setDrop((Drop) => [...Drop, { item: <TextElement></TextElement> }])
+        }
+        else if (elements[0].text === "Timer") {
+            setDrop((Drop) => [...Drop, { item: <TimerElement></TimerElement> }])
+        }
+        else if (elements[0].text === "Video") {
+            setDrop((Drop) => [...Drop, { item: <VideoElement></VideoElement> }])
+        }
     }
 
     const action = isOver & canDrop;
@@ -74,7 +109,7 @@ function DragDrop() {
     }
 
     const htmlCode = (e) => {
-        const style = `<style>*{max-width:320px;word-wrap:break-word;}img{width:100%;}.action-div {display: none;}.nav-link{text-decoration:none;margin: 20px 10px;color:black}.timer-div {display: flex;justify-content: center;}.icon-div {justify-content: center;}</style>`
+        const style = `<style>*{max-width:320px;word-wrap:break-word;}img{width:100%;}.sidenav{display:none;}.action-div {display: none;}.nav-link{text-decoration:none;margin: 20px 10px;color:black}.timer-div {display: flex;justify-content: center;}.icon-div {justify-content: center;}</style>`
         const html = document.getElementById("dropzone").innerHTML
         setHTML(style + html)
         if (displayhtmlcode === "none") {
@@ -107,63 +142,16 @@ function DragDrop() {
             <Row>
                 <Col md={8}>
                     <div id='dropzone' ref={drop} style={{ color }}>
-                        {hasdropped ? <>
-                            {Drop.map((element) => (
-                                <>
-                                    {
-                                        element.id === 1 ?
-                                            <ColumnElement /> : <></>
-                                    }
-                                    {
-                                        element.id === 2 ?
-                                            <ButtonElement /> : <></>
-                                    }
-                                    {
-                                        element.id === 3 ?
-                                            <CarouselElement /> : <></>
-                                    }
-                                    {
-                                        element.id === 4 ?
-                                            <DividerElement /> : <></>
-                                    }
-                                    {
-                                        element.id === 5 ?
-                                            <HeadingElement /> : <></>
-                                    }
-                                    {
-                                        element.id === 6 ?
-                                            <HTMLElement /> : <></>
-                                    }
-                                    {
-                                        element.id === 7 ?
-                                            <ImageElement /> : <></>
-                                    }
-                                    {
-                                        element.id === 8 ?
-                                            <MenuElement /> : <></>
-                                    }
-                                    {
-                                        element.id === 9 ?
-                                            <SocialElement /> : <></>
-                                    }
-                                    {
-                                        element.id === 10 ?
-                                            <TextElement /> : <></>
-                                    }
-                                    {
-                                        element.id === 11 ?
-                                            <TimerElement /> : <></>
-                                    }
-                                    {
-                                        element.id === 12 ?
-                                            <VideoElement /> : <></>
-                                    }
-                                </>
-                            ))}
-                        </> :
-                            <Row>
-                                <Col md={12}><p className="p-2 text-center">Drop Here</p></Col>
-                            </Row>}
+                        <Row>
+                            {hasdropped ? <>
+                                {Drop.map((element, index) => (
+                                    <>{element.item}</>
+                                ))}
+                            </> :
+                                <Row>
+                                    <Col md={12}><p className="p-2 text-center">Drop Here</p></Col>
+                                </Row>}
+                        </Row>
                     </div>
                 </Col>
                 <Col md={4}>

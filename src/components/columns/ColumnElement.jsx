@@ -1508,7 +1508,7 @@ function ColumnElement() {
                         </Row>
                         <Row>
                             <Col md={12}>
-                                <label htmlFor="">Background Image</label>
+                                <label htmlFor="">Row Background Image</label>
                                 <FormControl type='file' accept='image/*' onChange={(e) => {
                                     const objectURL = URL.createObjectURL(e.target.files[0])
                                     setBackgroundImage(objectURL)
@@ -1519,7 +1519,7 @@ function ColumnElement() {
                 </div> : <></>}
             <div onClick={handleShow}>
                 {column === "column-12" ?
-                    <Row style={{ 'backgroundImage': `url(` + backgroundImage + `)` }} onClick={handleShow}>
+                    <Row style={{ 'backgroundImage': `url(` + backgroundImage + `)`,'backgroundSize':'cover','backgroundRepeat':'no-repeat' }} onClick={handleShow}>
                         <Col md={12} style={{
                             'backgroundColor': background1,
                             'padding': padding1,

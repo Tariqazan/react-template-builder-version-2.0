@@ -1751,16 +1751,18 @@ function SocialElement() {
                             }}
                         />
                     </div>
-                </div> : <></>}
-            {remove ?
-                (
-                    <Stack direction="horizontal" gap={3} className='icon-div item-border' id={"icon" + id} onClick={handleOpen}>
-                        {input_icon ? <> {icon}</> : <><FaFacebook /><FaTwitter /><FaInstagram /></>}
-                    </Stack>
-                ) :
-                (
-                    <Drop></Drop>
-                )
+                </div> : <></>
+            }
+            {
+                remove ?
+                    (
+                        <Stack direction="horizontal" gap={3} className='icon-div item-border text-break' id={"icon" + id} onClick={handleOpen}>
+                            {input_icon ? <> {icon}</> : <><FaFacebook /><FaTwitter /><FaInstagram /></>}
+                        </Stack>
+                    ) :
+                    (
+                        <Drop></Drop>
+                    )
             }
         </div>
     )

@@ -1,10 +1,8 @@
-import React, { useState } from 'react';
-
+import React, { useRef, useState } from 'react';
 import { Row, Col, Button, Table, Tabs, Tab, FormControl, FormSelect } from 'react-bootstrap';
-
 import Drop from '../Drop';
-
 import { useDetectClickOutside } from 'react-detect-click-outside';
+
 function ColumnElement() {
     const [show, setShow] = useState(true)
     const [columnStyle, setColumnStyle] = useState("column12")
@@ -160,1366 +158,1368 @@ function ColumnElement() {
 
     const [backgroundImage, setBackgroundImage] = useState(null)
     const ref = useDetectClickOutside({ onTriggered: handleClose });
+
+    const rowRef = useRef(null)
     return (
         <div ref={ref}>
             {show ?
                 <div className='sidenav'>
-                    <div>
-                        <div><Button onClick={handleClose}>X</Button></div>
-                    </div>
-                    <div>
-                        <Row>
-                            <Col md={6}>
-                                <Table striped bordered onClick={SelectColumn12}>
-                                    <thead>
-                                        <tr>
-                                            <th></th>
-                                        </tr>
-                                    </thead>
-                                </Table>
-                            </Col>
-                            <Col md={6}>
-                                <Table striped bordered onClick={SelectColumn6}>
-                                    <thead>
-                                        <tr>
-                                            <th></th>
-                                            <th></th>
-                                        </tr>
-                                    </thead>
-                                </Table>
-                            </Col>
-                            <Col md={6}>
-                                <Table striped bordered onClick={SelectColumn4}>
-                                    <thead>
-                                        <tr>
-                                            <th></th>
-                                            <th></th>
-                                            <th></th>
-                                        </tr>
-                                    </thead>
-                                </Table>
-                            </Col>
-                            <Col md={6}>
-                                <Table striped bordered onClick={SelectColumn3}>
-                                    <thead>
-                                        <tr>
-                                            <th></th>
-                                            <th></th>
-                                            <th></th>
-                                            <th></th>
-                                        </tr>
-                                    </thead>
-                                </Table>
-                            </Col>
-                            <Col md={6}>
-                                <Table striped bordered onClick={SelectColumn6left}>
-                                    <thead>
-                                        <tr>
-                                            <th style={{ width: "30%" }}></th>
-                                            <th></th>
-                                        </tr>
-                                    </thead>
-                                </Table>
-                            </Col>
-                            <Col md={6}>
-                                <Table striped bordered onClick={SelectColumn6right}>
-                                    <thead>
-                                        <tr>
-                                            <th></th>
-                                            <th style={{ width: "30%" }}></th>
-                                        </tr>
-                                    </thead>
-                                </Table>
-                            </Col>
-                            <Col md={6}>
-                                <Table striped bordered onClick={SelectColumn3left}>
-                                    <thead>
-                                        <tr>
-                                            <th style={{ width: "20%" }}></th>
-                                            <th></th>
-                                            <th style={{ width: "20%" }}></th>
-                                            <th></th>
-                                        </tr>
-                                    </thead>
-                                </Table>
-                            </Col>
-                            <Col md={6}>
-                                <Table striped bordered onClick={SelectColumn3right}>
-                                    <thead>
-                                        <tr>
-                                            <th></th>
-                                            <th style={{ width: "20%" }}></th>
-                                            <th></th>
-                                            <th style={{ width: "20%" }}></th>
-                                        </tr>
-                                    </thead>
-                                </Table>
-                            </Col>
-                        </Row>
-                        <Row>
-                            {columnStyle === "column12" ? <Tabs defaultActiveKey="column1" id="uncontrolled-tab-example" className="mb-3">
-                                <Tab eventKey="column1" title="Column1">
-                                    <Row>
-                                        <Col md={12}>
-                                            <label htmlFor="">Background</label>
-                                            <FormControl type='color' onChange={(e) => {
-                                                setBackground1(e.target.value)
-                                            }}></FormControl>
-                                        </Col>
-                                    </Row>
-                                    <Row>
-                                        <Col md={12}>
-                                            <label htmlFor="">Padding</label>
-                                            <FormControl type='number' onChange={(e) => {
-                                                setPadding1(e.target.value + "px")
-                                            }}></FormControl>
-                                        </Col>
-                                        <Col md={6}>
-                                            <label htmlFor="">Padding Top</label>
-                                            <FormControl type='number' onChange={(e) => {
-                                                setPaddingTop1(e.target.value + "px")
-                                            }}></FormControl>
-                                        </Col>
-                                        <Col md={6}>
-                                            <label htmlFor="">Padding Bottom</label>
-                                            <FormControl type='number' onChange={(e) => {
-                                                setPaddingBottom1(e.target.value + "px")
-                                            }}></FormControl>
-                                        </Col>
-                                        <Col md={6}>
-                                            <label htmlFor="">Padding Left</label>
-                                            <FormControl type='number' onChange={(e) => {
-                                                setPaddingLeft1(e.target.value + "px")
-                                            }}></FormControl>
-                                        </Col>
-                                        <Col md={6}>
-                                            <label htmlFor="">Padding Right</label>
-                                            <FormControl type='number' onChange={(e) => {
-                                                setPaddingRight1(e.target.value + "px")
-                                            }}></FormControl>
-                                        </Col>
-                                    </Row>
-                                    <Row>
-                                        <label htmlFor="">Border Style</label>
+                    <Button onClick={handleClose}>X</Button>
+                    <Button variant='danger' onClick={() => {
+                       rowRef.current.removeChild(rowRef.current.remove())
+                       setShow(false)
+                    }}>Remove</Button>
+                    <Row>
+                        <Col md={6}>
+                            <Table striped bordered onClick={SelectColumn12}>
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                            </Table>
+                        </Col>
+                        <Col md={6}>
+                            <Table striped bordered onClick={SelectColumn6}>
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                            </Table>
+                        </Col>
+                        <Col md={6}>
+                            <Table striped bordered onClick={SelectColumn4}>
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                            </Table>
+                        </Col>
+                        <Col md={6}>
+                            <Table striped bordered onClick={SelectColumn3}>
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                            </Table>
+                        </Col>
+                        <Col md={6}>
+                            <Table striped bordered onClick={SelectColumn6left}>
+                                <thead>
+                                    <tr>
+                                        <th style={{ width: "30%" }}></th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                            </Table>
+                        </Col>
+                        <Col md={6}>
+                            <Table striped bordered onClick={SelectColumn6right}>
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th style={{ width: "30%" }}></th>
+                                    </tr>
+                                </thead>
+                            </Table>
+                        </Col>
+                        <Col md={6}>
+                            <Table striped bordered onClick={SelectColumn3left}>
+                                <thead>
+                                    <tr>
+                                        <th style={{ width: "20%" }}></th>
+                                        <th></th>
+                                        <th style={{ width: "20%" }}></th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                            </Table>
+                        </Col>
+                        <Col md={6}>
+                            <Table striped bordered onClick={SelectColumn3right}>
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th style={{ width: "20%" }}></th>
+                                        <th></th>
+                                        <th style={{ width: "20%" }}></th>
+                                    </tr>
+                                </thead>
+                            </Table>
+                        </Col>
+                    </Row>
+                    <Row>
+                        {columnStyle === "column12" ? <Tabs defaultActiveKey="column1" id="uncontrolled-tab-example" className="mb-3">
+                            <Tab eventKey="column1" title="Column1">
+                                <Row>
+                                    <Col md={12}>
+                                        <label htmlFor="">Background</label>
+                                        <FormControl type='color' onChange={(e) => {
+                                            setBackground1(e.target.value)
+                                        }}></FormControl>
+                                    </Col>
+                                </Row>
+                                <Row>
+                                    <Col md={12}>
+                                        <label htmlFor="">Padding</label>
+                                        <FormControl type='number' onChange={(e) => {
+                                            setPadding1(e.target.value + "px")
+                                        }}></FormControl>
+                                    </Col>
+                                    <Col md={6}>
+                                        <label htmlFor="">Padding Top</label>
+                                        <FormControl type='number' onChange={(e) => {
+                                            setPaddingTop1(e.target.value + "px")
+                                        }}></FormControl>
+                                    </Col>
+                                    <Col md={6}>
+                                        <label htmlFor="">Padding Bottom</label>
+                                        <FormControl type='number' onChange={(e) => {
+                                            setPaddingBottom1(e.target.value + "px")
+                                        }}></FormControl>
+                                    </Col>
+                                    <Col md={6}>
+                                        <label htmlFor="">Padding Left</label>
+                                        <FormControl type='number' onChange={(e) => {
+                                            setPaddingLeft1(e.target.value + "px")
+                                        }}></FormControl>
+                                    </Col>
+                                    <Col md={6}>
+                                        <label htmlFor="">Padding Right</label>
+                                        <FormControl type='number' onChange={(e) => {
+                                            setPaddingRight1(e.target.value + "px")
+                                        }}></FormControl>
+                                    </Col>
+                                </Row>
+                                <Row>
+                                    <label htmlFor="">Border Style</label>
+                                    <FormSelect onChange={(e) => {
+                                        setBorderStyle1(e.target.value)
+                                    }}>
+                                        <option value="solid">Solid</option>
+                                        <option value="dashed">Dashed</option>
+                                        <option value="dotted">Dotted</option>
+                                    </FormSelect>
+                                    <FormControl type='number' onChange={(e) => {
+                                        setBorderWidth1(e.target.value + "px")
+                                    }}></FormControl>
+                                    <FormControl type="color" onChange={(e) => {
+                                        setBorderColor1(e.target.value)
+                                    }}></FormControl>
+                                </Row>
+                                <Row>
+                                    <Col md={6}>
+                                        <label htmlFor="">Border Top Style</label>
                                         <FormSelect onChange={(e) => {
-                                            setBorderStyle1(e.target.value)
+                                            setBorderStyleTop1(e.target.value)
                                         }}>
                                             <option value="solid">Solid</option>
                                             <option value="dashed">Dashed</option>
                                             <option value="dotted">Dotted</option>
                                         </FormSelect>
                                         <FormControl type='number' onChange={(e) => {
-                                            setBorderWidth1(e.target.value + "px")
+                                            setBorderTopWidth1(e.target.value + "px")
                                         }}></FormControl>
                                         <FormControl type="color" onChange={(e) => {
-                                            setBorderColor1(e.target.value)
+                                            setBorderTopColor1(e.target.value)
                                         }}></FormControl>
-                                    </Row>
-                                    <Row>
-                                        <Col md={6}>
-                                            <label htmlFor="">Border Top Style</label>
-                                            <FormSelect onChange={(e) => {
-                                                setBorderStyleTop1(e.target.value)
-                                            }}>
-                                                <option value="solid">Solid</option>
-                                                <option value="dashed">Dashed</option>
-                                                <option value="dotted">Dotted</option>
-                                            </FormSelect>
-                                            <FormControl type='number' onChange={(e) => {
-                                                setBorderTopWidth1(e.target.value + "px")
-                                            }}></FormControl>
-                                            <FormControl type="color" onChange={(e) => {
-                                                setBorderTopColor1(e.target.value)
-                                            }}></FormControl>
-                                        </Col>
-                                        <Col md={6}>
-                                            <label htmlFor="">Border Bottom Style</label>
-                                            <FormSelect onChange={(e) => {
-                                                setBorderStyleBottom1(e.target.value)
-                                            }}>
-                                                <option value="solid">Solid</option>
-                                                <option value="dashed">Dashed</option>
-                                                <option value="dotted">Dotted</option>
-                                            </FormSelect>
-                                            <FormControl type='number' onChange={(e) => {
-                                                setBorderBottomWidth1(e.target.value + "px")
-                                            }}></FormControl>
-                                            <FormControl type="color" onChange={(e) => {
-                                                setBorderBottomColor1(e.target.value)
-                                            }}></FormControl>
-                                        </Col>
-                                        <Col md={6}>
-                                            <label htmlFor="">Border Left Style</label>
-                                            <FormSelect onChange={(e) => {
-                                                setBorderStyleLeft1(e.target.value)
-                                            }}>
-                                                <option value="solid">Solid</option>
-                                                <option value="dashed">Dashed</option>
-                                                <option value="dotted">Dotted</option>
-                                            </FormSelect>
-                                            <FormControl type='number' onChange={(e) => {
-                                                setBorderLeftWidth1(e.target.value + "px")
-                                            }}></FormControl>
-                                            <FormControl type="color" onChange={(e) => {
-                                                setBorderLeftColor1(e.target.value)
-                                            }}></FormControl>
-                                        </Col>
-                                        <Col md={6}>
-                                            <label htmlFor="">Border Right Style</label>
-                                            <FormSelect onChange={(e) => {
-                                                setBorderStyleRight1(e.target.value)
-                                            }}>
-                                                <option value="solid">Solid</option>
-                                                <option value="dashed">Dashed</option>
-                                                <option value="dotted">Dotted</option>
-                                            </FormSelect>
-                                            <FormControl type='number' onChange={(e) => {
-                                                setBorderRightWidth1(e.target.value + "px")
-                                            }}></FormControl>
-                                            <FormControl type="color" onChange={(e) => {
-                                                setBorderRightColor1(e.target.value)
-                                            }}></FormControl>
-                                        </Col>
-                                    </Row>
-                                </Tab>
-                            </Tabs> : <></>}
-                            {columnStyle === "column6" ? <Tabs defaultActiveKey="column1" id="uncontrolled-tab-example" className="mb-3">
-                                <Tab eventKey="column1" title="Column1">
-                                    <Row>
-                                        <Col md={12}>
-                                            <label htmlFor="">Background</label>
-                                            <FormControl type='color' onChange={(e) => {
-                                                setBackground1(e.target.value)
-                                            }}></FormControl>
-                                        </Col>
-                                    </Row>
-                                    <Row>
-                                        <Col md={12}>
-                                            <label htmlFor="">Padding</label>
-                                            <FormControl type='number' onChange={(e) => {
-                                                setPadding1(e.target.value + "px")
-                                            }}></FormControl>
-                                        </Col>
-                                        <Col md={6}>
-                                            <label htmlFor="">Padding Top</label>
-                                            <FormControl type='number' onChange={(e) => {
-                                                setPaddingTop1(e.target.value + "px")
-                                            }}></FormControl>
-                                        </Col>
-                                        <Col md={6}>
-                                            <label htmlFor="">Padding Bottom</label>
-                                            <FormControl type='number' onChange={(e) => {
-                                                setPaddingBottom1(e.target.value + "px")
-                                            }}></FormControl>
-                                        </Col>
-                                        <Col md={6}>
-                                            <label htmlFor="">Padding Left</label>
-                                            <FormControl type='number' onChange={(e) => {
-                                                setPaddingLeft1(e.target.value + "px")
-                                            }}></FormControl>
-                                        </Col>
-                                        <Col md={6}>
-                                            <label htmlFor="">Padding Right</label>
-                                            <FormControl type='number' onChange={(e) => {
-                                                setPaddingRight1(e.target.value + "px")
-                                            }}></FormControl>
-                                        </Col>
-                                    </Row>
-                                    <Row>
-                                        <label htmlFor="">Border Style</label>
+                                    </Col>
+                                    <Col md={6}>
+                                        <label htmlFor="">Border Bottom Style</label>
                                         <FormSelect onChange={(e) => {
-                                            setBorderStyle1(e.target.value)
+                                            setBorderStyleBottom1(e.target.value)
                                         }}>
                                             <option value="solid">Solid</option>
                                             <option value="dashed">Dashed</option>
                                             <option value="dotted">Dotted</option>
                                         </FormSelect>
                                         <FormControl type='number' onChange={(e) => {
-                                            setBorderWidth1(e.target.value + "px")
+                                            setBorderBottomWidth1(e.target.value + "px")
                                         }}></FormControl>
                                         <FormControl type="color" onChange={(e) => {
-                                            setBorderColor1(e.target.value)
+                                            setBorderBottomColor1(e.target.value)
                                         }}></FormControl>
-                                    </Row>
-                                    <Row>
-                                        <Col md={6}>
-                                            <label htmlFor="">Border Top Style</label>
-                                            <FormSelect onChange={(e) => {
-                                                setBorderStyleTop1(e.target.value)
-                                            }}>
-                                                <option value="solid">Solid</option>
-                                                <option value="dashed">Dashed</option>
-                                                <option value="dotted">Dotted</option>
-                                            </FormSelect>
-                                            <FormControl type='number' onChange={(e) => {
-                                                setBorderTopWidth1(e.target.value + "px")
-                                            }}></FormControl>
-                                            <FormControl type="color" onChange={(e) => {
-                                                setBorderTopColor1(e.target.value)
-                                            }}></FormControl>
-                                        </Col>
-                                        <Col md={6}>
-                                            <label htmlFor="">Border Bottom Style</label>
-                                            <FormSelect onChange={(e) => {
-                                                setBorderStyleBottom1(e.target.value)
-                                            }}>
-                                                <option value="solid">Solid</option>
-                                                <option value="dashed">Dashed</option>
-                                                <option value="dotted">Dotted</option>
-                                            </FormSelect>
-                                            <FormControl type='number' onChange={(e) => {
-                                                setBorderBottomWidth1(e.target.value + "px")
-                                            }}></FormControl>
-                                            <FormControl type="color" onChange={(e) => {
-                                                setBorderBottomColor1(e.target.value)
-                                            }}></FormControl>
-                                        </Col>
-                                        <Col md={6}>
-                                            <label htmlFor="">Border Left Style</label>
-                                            <FormSelect onChange={(e) => {
-                                                setBorderStyleLeft1(e.target.value)
-                                            }}>
-                                                <option value="solid">Solid</option>
-                                                <option value="dashed">Dashed</option>
-                                                <option value="dotted">Dotted</option>
-                                            </FormSelect>
-                                            <FormControl type='number' onChange={(e) => {
-                                                setBorderLeftWidth1(e.target.value + "px")
-                                            }}></FormControl>
-                                            <FormControl type="color" onChange={(e) => {
-                                                setBorderLeftColor1(e.target.value)
-                                            }}></FormControl>
-                                        </Col>
-                                        <Col md={6}>
-                                            <label htmlFor="">Border Right Style</label>
-                                            <FormSelect onChange={(e) => {
-                                                setBorderStyleRight1(e.target.value)
-                                            }}>
-                                                <option value="solid">Solid</option>
-                                                <option value="dashed">Dashed</option>
-                                                <option value="dotted">Dotted</option>
-                                            </FormSelect>
-                                            <FormControl type='number' onChange={(e) => {
-                                                setBorderRightWidth1(e.target.value + "px")
-                                            }}></FormControl>
-                                            <FormControl type="color" onChange={(e) => {
-                                                setBorderRightColor1(e.target.value)
-                                            }}></FormControl>
-                                        </Col>
-                                    </Row>
-                                </Tab>
-                                <Tab eventKey="column2" title="Column2">
-                                    <Row>
-                                        <Col md={12}>
-                                            <label htmlFor="">Background</label>
-                                            <FormControl type='color' onChange={(e) => {
-                                                setBackground2(e.target.value)
-                                            }}></FormControl>
-                                        </Col>
-                                    </Row>
-                                    <Row>
-                                        <Col md={12}>
-                                            <label htmlFor="">Padding</label>
-                                            <FormControl type='number' onChange={(e) => {
-                                                setPadding2(e.target.value + "px")
-                                            }}></FormControl>
-                                        </Col>
-                                        <Col md={6}>
-                                            <label htmlFor="">Padding Top</label>
-                                            <FormControl type='number' onChange={(e) => {
-                                                setPaddingTop2(e.target.value + "px")
-                                            }}></FormControl>
-                                        </Col>
-                                        <Col md={6}>
-                                            <label htmlFor="">Padding Bottom</label>
-                                            <FormControl type='number' onChange={(e) => {
-                                                setPaddingBottom2(e.target.value + "px")
-                                            }}></FormControl>
-                                        </Col>
-                                        <Col md={6}>
-                                            <label htmlFor="">Padding Left</label>
-                                            <FormControl type='number' onChange={(e) => {
-                                                setPaddingLeft2(e.target.value + "px")
-                                            }}></FormControl>
-                                        </Col>
-                                        <Col md={6}>
-                                            <label htmlFor="">Padding Right</label>
-                                            <FormControl type='number' onChange={(e) => {
-                                                setPaddingRight2(e.target.value + "px")
-                                            }}></FormControl>
-                                        </Col>
-                                    </Row>
-                                    <Row>
-                                        <label htmlFor="">Border Style</label>
+                                    </Col>
+                                    <Col md={6}>
+                                        <label htmlFor="">Border Left Style</label>
                                         <FormSelect onChange={(e) => {
-                                            setBorderStyle2(e.target.value)
+                                            setBorderStyleLeft1(e.target.value)
                                         }}>
                                             <option value="solid">Solid</option>
                                             <option value="dashed">Dashed</option>
                                             <option value="dotted">Dotted</option>
                                         </FormSelect>
                                         <FormControl type='number' onChange={(e) => {
-                                            setBorderWidth2(e.target.value + "px")
+                                            setBorderLeftWidth1(e.target.value + "px")
                                         }}></FormControl>
                                         <FormControl type="color" onChange={(e) => {
-                                            setBorderColor2(e.target.value)
+                                            setBorderLeftColor1(e.target.value)
                                         }}></FormControl>
-                                    </Row>
-                                    <Row>
-                                        <Col md={6}>
-                                            <label htmlFor="">Border Top Style</label>
-                                            <FormSelect onChange={(e) => {
-                                                setBorderStyleTop2(e.target.value)
-                                            }}>
-                                                <option value="solid">Solid</option>
-                                                <option value="dashed">Dashed</option>
-                                                <option value="dotted">Dotted</option>
-                                            </FormSelect>
-                                            <FormControl type='number' onChange={(e) => {
-                                                setBorderTopWidth2(e.target.value + "px")
-                                            }}></FormControl>
-                                            <FormControl type="color" onChange={(e) => {
-                                                setBorderTopColor2(e.target.value)
-                                            }}></FormControl>
-                                        </Col>
-                                        <Col md={6}>
-                                            <label htmlFor="">Border Bottom Style</label>
-                                            <FormSelect onChange={(e) => {
-                                                setBorderStyleBottom2(e.target.value)
-                                            }}>
-                                                <option value="solid">Solid</option>
-                                                <option value="dashed">Dashed</option>
-                                                <option value="dotted">Dotted</option>
-                                            </FormSelect>
-                                            <FormControl type='number' onChange={(e) => {
-                                                setBorderBottomWidth2(e.target.value + "px")
-                                            }}></FormControl>
-                                            <FormControl type="color" onChange={(e) => {
-                                                setBorderBottomColor2(e.target.value)
-                                            }}></FormControl>
-                                        </Col>
-                                        <Col md={6}>
-                                            <label htmlFor="">Border Left Style</label>
-                                            <FormSelect onChange={(e) => {
-                                                setBorderStyleLeft2(e.target.value)
-                                            }}>
-                                                <option value="solid">Solid</option>
-                                                <option value="dashed">Dashed</option>
-                                                <option value="dotted">Dotted</option>
-                                            </FormSelect>
-                                            <FormControl type='number' onChange={(e) => {
-                                                setBorderLeftWidth2(e.target.value + "px")
-                                            }}></FormControl>
-                                            <FormControl type="color" onChange={(e) => {
-                                                setBorderLeftColor2(e.target.value)
-                                            }}></FormControl>
-                                        </Col>
-                                        <Col md={6}>
-                                            <label htmlFor="">Border Right Style</label>
-                                            <FormSelect onChange={(e) => {
-                                                setBorderStyleRight2(e.target.value)
-                                            }}>
-                                                <option value="solid">Solid</option>
-                                                <option value="dashed">Dashed</option>
-                                                <option value="dotted">Dotted</option>
-                                            </FormSelect>
-                                            <FormControl type='number' onChange={(e) => {
-                                                setBorderRightWidth2(e.target.value + "px")
-                                            }}></FormControl>
-                                            <FormControl type="color" onChange={(e) => {
-                                                setBorderRightColor2(e.target.value)
-                                            }}></FormControl>
-                                        </Col>
-                                    </Row>
-                                </Tab>
-                            </Tabs> : <></>}
-                            {columnStyle === "column4" ? <Tabs defaultActiveKey="column1" id="uncontrolled-tab-example" className="mb-3">
-                                <Tab eventKey="column1" title="Column1">
-                                    <Row>
-                                        <Col md={12}>
-                                            <label htmlFor="">Background</label>
-                                            <FormControl type='color' onChange={(e) => {
-                                                setBackground1(e.target.value)
-                                            }}></FormControl>
-                                        </Col>
-                                    </Row>
-                                    <Row>
-                                        <Col md={12}>
-                                            <label htmlFor="">Padding</label>
-                                            <FormControl type='number' onChange={(e) => {
-                                                setPadding1(e.target.value + "px")
-                                            }}></FormControl>
-                                        </Col>
-                                        <Col md={6}>
-                                            <label htmlFor="">Padding Top</label>
-                                            <FormControl type='number' onChange={(e) => {
-                                                setPaddingTop1(e.target.value + "px")
-                                            }}></FormControl>
-                                        </Col>
-                                        <Col md={6}>
-                                            <label htmlFor="">Padding Bottom</label>
-                                            <FormControl type='number' onChange={(e) => {
-                                                setPaddingBottom1(e.target.value + "px")
-                                            }}></FormControl>
-                                        </Col>
-                                        <Col md={6}>
-                                            <label htmlFor="">Padding Left</label>
-                                            <FormControl type='number' onChange={(e) => {
-                                                setPaddingLeft1(e.target.value + "px")
-                                            }}></FormControl>
-                                        </Col>
-                                        <Col md={6}>
-                                            <label htmlFor="">Padding Right</label>
-                                            <FormControl type='number' onChange={(e) => {
-                                                setPaddingRight1(e.target.value + "px")
-                                            }}></FormControl>
-                                        </Col>
-                                    </Row>
-                                    <Row>
-                                        <label htmlFor="">Border Style</label>
+                                    </Col>
+                                    <Col md={6}>
+                                        <label htmlFor="">Border Right Style</label>
                                         <FormSelect onChange={(e) => {
-                                            setBorderStyle1(e.target.value)
+                                            setBorderStyleRight1(e.target.value)
                                         }}>
                                             <option value="solid">Solid</option>
                                             <option value="dashed">Dashed</option>
                                             <option value="dotted">Dotted</option>
                                         </FormSelect>
                                         <FormControl type='number' onChange={(e) => {
-                                            setBorderWidth1(e.target.value + "px")
+                                            setBorderRightWidth1(e.target.value + "px")
                                         }}></FormControl>
                                         <FormControl type="color" onChange={(e) => {
-                                            setBorderColor1(e.target.value)
+                                            setBorderRightColor1(e.target.value)
                                         }}></FormControl>
-                                    </Row>
-                                    <Row>
-                                        <Col md={6}>
-                                            <label htmlFor="">Border Top Style</label>
-                                            <FormSelect onChange={(e) => {
-                                                setBorderStyleTop1(e.target.value)
-                                            }}>
-                                                <option value="solid">Solid</option>
-                                                <option value="dashed">Dashed</option>
-                                                <option value="dotted">Dotted</option>
-                                            </FormSelect>
-                                            <FormControl type='number' onChange={(e) => {
-                                                setBorderTopWidth1(e.target.value + "px")
-                                            }}></FormControl>
-                                            <FormControl type="color" onChange={(e) => {
-                                                setBorderTopColor1(e.target.value)
-                                            }}></FormControl>
-                                        </Col>
-                                        <Col md={6}>
-                                            <label htmlFor="">Border Bottom Style</label>
-                                            <FormSelect onChange={(e) => {
-                                                setBorderStyleBottom1(e.target.value)
-                                            }}>
-                                                <option value="solid">Solid</option>
-                                                <option value="dashed">Dashed</option>
-                                                <option value="dotted">Dotted</option>
-                                            </FormSelect>
-                                            <FormControl type='number' onChange={(e) => {
-                                                setBorderBottomWidth1(e.target.value + "px")
-                                            }}></FormControl>
-                                            <FormControl type="color" onChange={(e) => {
-                                                setBorderBottomColor1(e.target.value)
-                                            }}></FormControl>
-                                        </Col>
-                                        <Col md={6}>
-                                            <label htmlFor="">Border Left Style</label>
-                                            <FormSelect onChange={(e) => {
-                                                setBorderStyleLeft1(e.target.value)
-                                            }}>
-                                                <option value="solid">Solid</option>
-                                                <option value="dashed">Dashed</option>
-                                                <option value="dotted">Dotted</option>
-                                            </FormSelect>
-                                            <FormControl type='number' onChange={(e) => {
-                                                setBorderLeftWidth1(e.target.value + "px")
-                                            }}></FormControl>
-                                            <FormControl type="color" onChange={(e) => {
-                                                setBorderLeftColor1(e.target.value)
-                                            }}></FormControl>
-                                        </Col>
-                                        <Col md={6}>
-                                            <label htmlFor="">Border Right Style</label>
-                                            <FormSelect onChange={(e) => {
-                                                setBorderStyleRight1(e.target.value)
-                                            }}>
-                                                <option value="solid">Solid</option>
-                                                <option value="dashed">Dashed</option>
-                                                <option value="dotted">Dotted</option>
-                                            </FormSelect>
-                                            <FormControl type='number' onChange={(e) => {
-                                                setBorderRightWidth1(e.target.value + "px")
-                                            }}></FormControl>
-                                            <FormControl type="color" onChange={(e) => {
-                                                setBorderRightColor1(e.target.value)
-                                            }}></FormControl>
-                                        </Col>
-                                    </Row>
-                                </Tab>
-                                <Tab eventKey="column2" title="Column2">
-                                    <Row>
-                                        <Col md={12}>
-                                            <label htmlFor="">Background</label>
-                                            <FormControl type='color' onChange={(e) => {
-                                                setBackground2(e.target.value)
-                                            }}></FormControl>
-                                        </Col>
-                                    </Row>
-                                    <Row>
-                                        <Col md={12}>
-                                            <label htmlFor="">Padding</label>
-                                            <FormControl type='number' onChange={(e) => {
-                                                setPadding2(e.target.value + "px")
-                                            }}></FormControl>
-                                        </Col>
-                                        <Col md={6}>
-                                            <label htmlFor="">Padding Top</label>
-                                            <FormControl type='number' onChange={(e) => {
-                                                setPaddingTop2(e.target.value + "px")
-                                            }}></FormControl>
-                                        </Col>
-                                        <Col md={6}>
-                                            <label htmlFor="">Padding Bottom</label>
-                                            <FormControl type='number' onChange={(e) => {
-                                                setPaddingBottom2(e.target.value + "px")
-                                            }}></FormControl>
-                                        </Col>
-                                        <Col md={6}>
-                                            <label htmlFor="">Padding Left</label>
-                                            <FormControl type='number' onChange={(e) => {
-                                                setPaddingLeft2(e.target.value + "px")
-                                            }}></FormControl>
-                                        </Col>
-                                        <Col md={6}>
-                                            <label htmlFor="">Padding Right</label>
-                                            <FormControl type='number' onChange={(e) => {
-                                                setPaddingRight2(e.target.value + "px")
-                                            }}></FormControl>
-                                        </Col>
-                                    </Row>
-                                    <Row>
-                                        <label htmlFor="">Border Style</label>
+                                    </Col>
+                                </Row>
+                            </Tab>
+                        </Tabs> : <></>}
+                        {columnStyle === "column6" ? <Tabs defaultActiveKey="column1" id="uncontrolled-tab-example" className="mb-3">
+                            <Tab eventKey="column1" title="Column1">
+                                <Row>
+                                    <Col md={12}>
+                                        <label htmlFor="">Background</label>
+                                        <FormControl type='color' onChange={(e) => {
+                                            setBackground1(e.target.value)
+                                        }}></FormControl>
+                                    </Col>
+                                </Row>
+                                <Row>
+                                    <Col md={12}>
+                                        <label htmlFor="">Padding</label>
+                                        <FormControl type='number' onChange={(e) => {
+                                            setPadding1(e.target.value + "px")
+                                        }}></FormControl>
+                                    </Col>
+                                    <Col md={6}>
+                                        <label htmlFor="">Padding Top</label>
+                                        <FormControl type='number' onChange={(e) => {
+                                            setPaddingTop1(e.target.value + "px")
+                                        }}></FormControl>
+                                    </Col>
+                                    <Col md={6}>
+                                        <label htmlFor="">Padding Bottom</label>
+                                        <FormControl type='number' onChange={(e) => {
+                                            setPaddingBottom1(e.target.value + "px")
+                                        }}></FormControl>
+                                    </Col>
+                                    <Col md={6}>
+                                        <label htmlFor="">Padding Left</label>
+                                        <FormControl type='number' onChange={(e) => {
+                                            setPaddingLeft1(e.target.value + "px")
+                                        }}></FormControl>
+                                    </Col>
+                                    <Col md={6}>
+                                        <label htmlFor="">Padding Right</label>
+                                        <FormControl type='number' onChange={(e) => {
+                                            setPaddingRight1(e.target.value + "px")
+                                        }}></FormControl>
+                                    </Col>
+                                </Row>
+                                <Row>
+                                    <label htmlFor="">Border Style</label>
+                                    <FormSelect onChange={(e) => {
+                                        setBorderStyle1(e.target.value)
+                                    }}>
+                                        <option value="solid">Solid</option>
+                                        <option value="dashed">Dashed</option>
+                                        <option value="dotted">Dotted</option>
+                                    </FormSelect>
+                                    <FormControl type='number' onChange={(e) => {
+                                        setBorderWidth1(e.target.value + "px")
+                                    }}></FormControl>
+                                    <FormControl type="color" onChange={(e) => {
+                                        setBorderColor1(e.target.value)
+                                    }}></FormControl>
+                                </Row>
+                                <Row>
+                                    <Col md={6}>
+                                        <label htmlFor="">Border Top Style</label>
                                         <FormSelect onChange={(e) => {
-                                            setBorderStyle2(e.target.value)
+                                            setBorderStyleTop1(e.target.value)
                                         }}>
                                             <option value="solid">Solid</option>
                                             <option value="dashed">Dashed</option>
                                             <option value="dotted">Dotted</option>
                                         </FormSelect>
                                         <FormControl type='number' onChange={(e) => {
-                                            setBorderWidth2(e.target.value + "px")
+                                            setBorderTopWidth1(e.target.value + "px")
                                         }}></FormControl>
                                         <FormControl type="color" onChange={(e) => {
-                                            setBorderColor2(e.target.value)
+                                            setBorderTopColor1(e.target.value)
                                         }}></FormControl>
-                                    </Row>
-                                    <Row>
-                                        <Col md={6}>
-                                            <label htmlFor="">Border Top Style</label>
-                                            <FormSelect onChange={(e) => {
-                                                setBorderStyleTop2(e.target.value)
-                                            }}>
-                                                <option value="solid">Solid</option>
-                                                <option value="dashed">Dashed</option>
-                                                <option value="dotted">Dotted</option>
-                                            </FormSelect>
-                                            <FormControl type='number' onChange={(e) => {
-                                                setBorderTopWidth2(e.target.value + "px")
-                                            }}></FormControl>
-                                            <FormControl type="color" onChange={(e) => {
-                                                setBorderTopColor2(e.target.value)
-                                            }}></FormControl>
-                                        </Col>
-                                        <Col md={6}>
-                                            <label htmlFor="">Border Bottom Style</label>
-                                            <FormSelect onChange={(e) => {
-                                                setBorderStyleBottom2(e.target.value)
-                                            }}>
-                                                <option value="solid">Solid</option>
-                                                <option value="dashed">Dashed</option>
-                                                <option value="dotted">Dotted</option>
-                                            </FormSelect>
-                                            <FormControl type='number' onChange={(e) => {
-                                                setBorderBottomWidth2(e.target.value + "px")
-                                            }}></FormControl>
-                                            <FormControl type="color" onChange={(e) => {
-                                                setBorderBottomColor2(e.target.value)
-                                            }}></FormControl>
-                                        </Col>
-                                        <Col md={6}>
-                                            <label htmlFor="">Border Left Style</label>
-                                            <FormSelect onChange={(e) => {
-                                                setBorderStyleLeft2(e.target.value)
-                                            }}>
-                                                <option value="solid">Solid</option>
-                                                <option value="dashed">Dashed</option>
-                                                <option value="dotted">Dotted</option>
-                                            </FormSelect>
-                                            <FormControl type='number' onChange={(e) => {
-                                                setBorderLeftWidth2(e.target.value + "px")
-                                            }}></FormControl>
-                                            <FormControl type="color" onChange={(e) => {
-                                                setBorderLeftColor2(e.target.value)
-                                            }}></FormControl>
-                                        </Col>
-                                        <Col md={6}>
-                                            <label htmlFor="">Border Right Style</label>
-                                            <FormSelect onChange={(e) => {
-                                                setBorderStyleRight2(e.target.value)
-                                            }}>
-                                                <option value="solid">Solid</option>
-                                                <option value="dashed">Dashed</option>
-                                                <option value="dotted">Dotted</option>
-                                            </FormSelect>
-                                            <FormControl type='number' onChange={(e) => {
-                                                setBorderRightWidth2(e.target.value + "px")
-                                            }}></FormControl>
-                                            <FormControl type="color" onChange={(e) => {
-                                                setBorderRightColor2(e.target.value)
-                                            }}></FormControl>
-                                        </Col>
-                                    </Row>
-                                </Tab>
-                                <Tab eventKey="column3" title="Column3">
-                                    <Row>
-                                        <Col md={12}>
-                                            <label htmlFor="">Background</label>
-                                            <FormControl type='color' onChange={(e) => {
-                                                setBackground3(e.target.value)
-                                            }}></FormControl>
-                                        </Col>
-                                    </Row>
-                                    <Row>
-                                        <Col md={12}>
-                                            <label htmlFor="">Padding</label>
-                                            <FormControl type='number' onChange={(e) => {
-                                                setPadding3(e.target.value + "px")
-                                            }}></FormControl>
-                                        </Col>
-                                        <Col md={6}>
-                                            <label htmlFor="">Padding Top</label>
-                                            <FormControl type='number' onChange={(e) => {
-                                                setPaddingTop3(e.target.value + "px")
-                                            }}></FormControl>
-                                        </Col>
-                                        <Col md={6}>
-                                            <label htmlFor="">Padding Bottom</label>
-                                            <FormControl type='number' onChange={(e) => {
-                                                setPaddingBottom3(e.target.value + "px")
-                                            }}></FormControl>
-                                        </Col>
-                                        <Col md={6}>
-                                            <label htmlFor="">Padding Left</label>
-                                            <FormControl type='number' onChange={(e) => {
-                                                setPaddingLeft3(e.target.value + "px")
-                                            }}></FormControl>
-                                        </Col>
-                                        <Col md={6}>
-                                            <label htmlFor="">Padding Right</label>
-                                            <FormControl type='number' onChange={(e) => {
-                                                setPaddingRight3(e.target.value + "px")
-                                            }}></FormControl>
-                                        </Col>
-                                    </Row>
-                                    <Row>
-                                        <label htmlFor="">Border Style</label>
+                                    </Col>
+                                    <Col md={6}>
+                                        <label htmlFor="">Border Bottom Style</label>
                                         <FormSelect onChange={(e) => {
-                                            setBorderStyle3(e.target.value)
+                                            setBorderStyleBottom1(e.target.value)
                                         }}>
                                             <option value="solid">Solid</option>
                                             <option value="dashed">Dashed</option>
                                             <option value="dotted">Dotted</option>
                                         </FormSelect>
                                         <FormControl type='number' onChange={(e) => {
-                                            setBorderWidth3(e.target.value + "px")
+                                            setBorderBottomWidth1(e.target.value + "px")
                                         }}></FormControl>
                                         <FormControl type="color" onChange={(e) => {
-                                            setBorderColor3(e.target.value)
+                                            setBorderBottomColor1(e.target.value)
                                         }}></FormControl>
-                                    </Row>
-                                    <Row>
-                                        <Col md={6}>
-                                            <label htmlFor="">Border Top Style</label>
-                                            <FormSelect onChange={(e) => {
-                                                setBorderStyleTop3(e.target.value)
-                                            }}>
-                                                <option value="solid">Solid</option>
-                                                <option value="dashed">Dashed</option>
-                                                <option value="dotted">Dotted</option>
-                                            </FormSelect>
-                                            <FormControl type='number' onChange={(e) => {
-                                                setBorderTopWidth3(e.target.value + "px")
-                                            }}></FormControl>
-                                            <FormControl type="color" onChange={(e) => {
-                                                setBorderTopColor3(e.target.value)
-                                            }}></FormControl>
-                                        </Col>
-                                        <Col md={6}>
-                                            <label htmlFor="">Border Bottom Style</label>
-                                            <FormSelect onChange={(e) => {
-                                                setBorderStyleBottom3(e.target.value)
-                                            }}>
-                                                <option value="solid">Solid</option>
-                                                <option value="dashed">Dashed</option>
-                                                <option value="dotted">Dotted</option>
-                                            </FormSelect>
-                                            <FormControl type='number' onChange={(e) => {
-                                                setBorderBottomWidth3(e.target.value + "px")
-                                            }}></FormControl>
-                                            <FormControl type="color" onChange={(e) => {
-                                                setBorderBottomColor3(e.target.value)
-                                            }}></FormControl>
-                                        </Col>
-                                        <Col md={6}>
-                                            <label htmlFor="">Border Left Style</label>
-                                            <FormSelect onChange={(e) => {
-                                                setBorderStyleLeft3(e.target.value)
-                                            }}>
-                                                <option value="solid">Solid</option>
-                                                <option value="dashed">Dashed</option>
-                                                <option value="dotted">Dotted</option>
-                                            </FormSelect>
-                                            <FormControl type='number' onChange={(e) => {
-                                                setBorderLeftWidth3(e.target.value + "px")
-                                            }}></FormControl>
-                                            <FormControl type="color" onChange={(e) => {
-                                                setBorderLeftColor3(e.target.value)
-                                            }}></FormControl>
-                                        </Col>
-                                        <Col md={6}>
-                                            <label htmlFor="">Border Right Style</label>
-                                            <FormSelect onChange={(e) => {
-                                                setBorderStyleRight3(e.target.value)
-                                            }}>
-                                                <option value="solid">Solid</option>
-                                                <option value="dashed">Dashed</option>
-                                                <option value="dotted">Dotted</option>
-                                            </FormSelect>
-                                            <FormControl type='number' onChange={(e) => {
-                                                setBorderRightWidth3(e.target.value + "px")
-                                            }}></FormControl>
-                                            <FormControl type="color" onChange={(e) => {
-                                                setBorderRightColor3(e.target.value)
-                                            }}></FormControl>
-                                        </Col>
-                                    </Row>
-                                </Tab>
-                            </Tabs> : <></>}
-                            {columnStyle === "column3" ? <Tabs defaultActiveKey="column1" id="uncontrolled-tab-example" className="mb-3">
-                                <Tab eventKey="column1" title="Column1">
-                                    <Row>
-                                        <Col md={12}>
-                                            <label htmlFor="">Background</label>
-                                            <FormControl type='color' onChange={(e) => {
-                                                setBackground1(e.target.value)
-                                            }}></FormControl>
-                                        </Col>
-                                    </Row>
-                                    <Row>
-                                        <Col md={12}>
-                                            <label htmlFor="">Padding</label>
-                                            <FormControl type='number' onChange={(e) => {
-                                                setPadding1(e.target.value + "px")
-                                            }}></FormControl>
-                                        </Col>
-                                        <Col md={6}>
-                                            <label htmlFor="">Padding Top</label>
-                                            <FormControl type='number' onChange={(e) => {
-                                                setPaddingTop1(e.target.value + "px")
-                                            }}></FormControl>
-                                        </Col>
-                                        <Col md={6}>
-                                            <label htmlFor="">Padding Bottom</label>
-                                            <FormControl type='number' onChange={(e) => {
-                                                setPaddingBottom1(e.target.value + "px")
-                                            }}></FormControl>
-                                        </Col>
-                                        <Col md={6}>
-                                            <label htmlFor="">Padding Left</label>
-                                            <FormControl type='number' onChange={(e) => {
-                                                setPaddingLeft1(e.target.value + "px")
-                                            }}></FormControl>
-                                        </Col>
-                                        <Col md={6}>
-                                            <label htmlFor="">Padding Right</label>
-                                            <FormControl type='number' onChange={(e) => {
-                                                setPaddingRight1(e.target.value + "px")
-                                            }}></FormControl>
-                                        </Col>
-                                    </Row>
-                                    <Row>
-                                        <label htmlFor="">Border Style</label>
+                                    </Col>
+                                    <Col md={6}>
+                                        <label htmlFor="">Border Left Style</label>
                                         <FormSelect onChange={(e) => {
-                                            setBorderStyle1(e.target.value)
+                                            setBorderStyleLeft1(e.target.value)
                                         }}>
                                             <option value="solid">Solid</option>
                                             <option value="dashed">Dashed</option>
                                             <option value="dotted">Dotted</option>
                                         </FormSelect>
                                         <FormControl type='number' onChange={(e) => {
-                                            setBorderWidth1(e.target.value + "px")
+                                            setBorderLeftWidth1(e.target.value + "px")
                                         }}></FormControl>
                                         <FormControl type="color" onChange={(e) => {
-                                            setBorderColor1(e.target.value)
+                                            setBorderLeftColor1(e.target.value)
                                         }}></FormControl>
-                                    </Row>
-                                    <Row>
-                                        <Col md={6}>
-                                            <label htmlFor="">Border Top Style</label>
-                                            <FormSelect onChange={(e) => {
-                                                setBorderStyleTop1(e.target.value)
-                                            }}>
-                                                <option value="solid">Solid</option>
-                                                <option value="dashed">Dashed</option>
-                                                <option value="dotted">Dotted</option>
-                                            </FormSelect>
-                                            <FormControl type='number' onChange={(e) => {
-                                                setBorderTopWidth1(e.target.value + "px")
-                                            }}></FormControl>
-                                            <FormControl type="color" onChange={(e) => {
-                                                setBorderTopColor1(e.target.value)
-                                            }}></FormControl>
-                                        </Col>
-                                        <Col md={6}>
-                                            <label htmlFor="">Border Bottom Style</label>
-                                            <FormSelect onChange={(e) => {
-                                                setBorderStyleBottom1(e.target.value)
-                                            }}>
-                                                <option value="solid">Solid</option>
-                                                <option value="dashed">Dashed</option>
-                                                <option value="dotted">Dotted</option>
-                                            </FormSelect>
-                                            <FormControl type='number' onChange={(e) => {
-                                                setBorderBottomWidth1(e.target.value + "px")
-                                            }}></FormControl>
-                                            <FormControl type="color" onChange={(e) => {
-                                                setBorderBottomColor1(e.target.value)
-                                            }}></FormControl>
-                                        </Col>
-                                        <Col md={6}>
-                                            <label htmlFor="">Border Left Style</label>
-                                            <FormSelect onChange={(e) => {
-                                                setBorderStyleLeft1(e.target.value)
-                                            }}>
-                                                <option value="solid">Solid</option>
-                                                <option value="dashed">Dashed</option>
-                                                <option value="dotted">Dotted</option>
-                                            </FormSelect>
-                                            <FormControl type='number' onChange={(e) => {
-                                                setBorderLeftWidth1(e.target.value + "px")
-                                            }}></FormControl>
-                                            <FormControl type="color" onChange={(e) => {
-                                                setBorderLeftColor1(e.target.value)
-                                            }}></FormControl>
-                                        </Col>
-                                        <Col md={6}>
-                                            <label htmlFor="">Border Right Style</label>
-                                            <FormSelect onChange={(e) => {
-                                                setBorderStyleRight1(e.target.value)
-                                            }}>
-                                                <option value="solid">Solid</option>
-                                                <option value="dashed">Dashed</option>
-                                                <option value="dotted">Dotted</option>
-                                            </FormSelect>
-                                            <FormControl type='number' onChange={(e) => {
-                                                setBorderRightWidth1(e.target.value + "px")
-                                            }}></FormControl>
-                                            <FormControl type="color" onChange={(e) => {
-                                                setBorderRightColor1(e.target.value)
-                                            }}></FormControl>
-                                        </Col>
-                                    </Row>
-                                </Tab>
-                                <Tab eventKey="column2" title="Column2">
-                                    <Row>
-                                        <Col md={12}>
-                                            <label htmlFor="">Background</label>
-                                            <FormControl type='color' onChange={(e) => {
-                                                setBackground2(e.target.value)
-                                            }}></FormControl>
-                                        </Col>
-                                    </Row>
-                                    <Row>
-                                        <Col md={12}>
-                                            <label htmlFor="">Padding</label>
-                                            <FormControl type='number' onChange={(e) => {
-                                                setPadding2(e.target.value + "px")
-                                            }}></FormControl>
-                                        </Col>
-                                        <Col md={6}>
-                                            <label htmlFor="">Padding Top</label>
-                                            <FormControl type='number' onChange={(e) => {
-                                                setPaddingTop2(e.target.value + "px")
-                                            }}></FormControl>
-                                        </Col>
-                                        <Col md={6}>
-                                            <label htmlFor="">Padding Bottom</label>
-                                            <FormControl type='number' onChange={(e) => {
-                                                setPaddingBottom2(e.target.value + "px")
-                                            }}></FormControl>
-                                        </Col>
-                                        <Col md={6}>
-                                            <label htmlFor="">Padding Left</label>
-                                            <FormControl type='number' onChange={(e) => {
-                                                setPaddingLeft2(e.target.value + "px")
-                                            }}></FormControl>
-                                        </Col>
-                                        <Col md={6}>
-                                            <label htmlFor="">Padding Right</label>
-                                            <FormControl type='number' onChange={(e) => {
-                                                setPaddingRight2(e.target.value + "px")
-                                            }}></FormControl>
-                                        </Col>
-                                    </Row>
-                                    <Row>
-                                        <label htmlFor="">Border Style</label>
+                                    </Col>
+                                    <Col md={6}>
+                                        <label htmlFor="">Border Right Style</label>
                                         <FormSelect onChange={(e) => {
-                                            setBorderStyle2(e.target.value)
+                                            setBorderStyleRight1(e.target.value)
                                         }}>
                                             <option value="solid">Solid</option>
                                             <option value="dashed">Dashed</option>
                                             <option value="dotted">Dotted</option>
                                         </FormSelect>
                                         <FormControl type='number' onChange={(e) => {
-                                            setBorderWidth2(e.target.value + "px")
+                                            setBorderRightWidth1(e.target.value + "px")
                                         }}></FormControl>
                                         <FormControl type="color" onChange={(e) => {
-                                            setBorderColor2(e.target.value)
+                                            setBorderRightColor1(e.target.value)
                                         }}></FormControl>
-                                    </Row>
-                                    <Row>
-                                        <Col md={6}>
-                                            <label htmlFor="">Border Top Style</label>
-                                            <FormSelect onChange={(e) => {
-                                                setBorderStyleTop2(e.target.value)
-                                            }}>
-                                                <option value="solid">Solid</option>
-                                                <option value="dashed">Dashed</option>
-                                                <option value="dotted">Dotted</option>
-                                            </FormSelect>
-                                            <FormControl type='number' onChange={(e) => {
-                                                setBorderTopWidth2(e.target.value + "px")
-                                            }}></FormControl>
-                                            <FormControl type="color" onChange={(e) => {
-                                                setBorderTopColor2(e.target.value)
-                                            }}></FormControl>
-                                        </Col>
-                                        <Col md={6}>
-                                            <label htmlFor="">Border Bottom Style</label>
-                                            <FormSelect onChange={(e) => {
-                                                setBorderStyleBottom2(e.target.value)
-                                            }}>
-                                                <option value="solid">Solid</option>
-                                                <option value="dashed">Dashed</option>
-                                                <option value="dotted">Dotted</option>
-                                            </FormSelect>
-                                            <FormControl type='number' onChange={(e) => {
-                                                setBorderBottomWidth2(e.target.value + "px")
-                                            }}></FormControl>
-                                            <FormControl type="color" onChange={(e) => {
-                                                setBorderBottomColor2(e.target.value)
-                                            }}></FormControl>
-                                        </Col>
-                                        <Col md={6}>
-                                            <label htmlFor="">Border Left Style</label>
-                                            <FormSelect onChange={(e) => {
-                                                setBorderStyleLeft2(e.target.value)
-                                            }}>
-                                                <option value="solid">Solid</option>
-                                                <option value="dashed">Dashed</option>
-                                                <option value="dotted">Dotted</option>
-                                            </FormSelect>
-                                            <FormControl type='number' onChange={(e) => {
-                                                setBorderLeftWidth2(e.target.value + "px")
-                                            }}></FormControl>
-                                            <FormControl type="color" onChange={(e) => {
-                                                setBorderLeftColor2(e.target.value)
-                                            }}></FormControl>
-                                        </Col>
-                                        <Col md={6}>
-                                            <label htmlFor="">Border Right Style</label>
-                                            <FormSelect onChange={(e) => {
-                                                setBorderStyleRight2(e.target.value)
-                                            }}>
-                                                <option value="solid">Solid</option>
-                                                <option value="dashed">Dashed</option>
-                                                <option value="dotted">Dotted</option>
-                                            </FormSelect>
-                                            <FormControl type='number' onChange={(e) => {
-                                                setBorderRightWidth2(e.target.value + "px")
-                                            }}></FormControl>
-                                            <FormControl type="color" onChange={(e) => {
-                                                setBorderRightColor2(e.target.value)
-                                            }}></FormControl>
-                                        </Col>
-                                    </Row>
-                                </Tab>
-                                <Tab eventKey="column3" title="Column3">
-                                    <Row>
-                                        <Col md={12}>
-                                            <label htmlFor="">Background</label>
-                                            <FormControl type='color' onChange={(e) => {
-                                                setBackground3(e.target.value)
-                                            }}></FormControl>
-                                        </Col>
-                                    </Row>
-                                    <Row>
-                                        <Col md={12}>
-                                            <label htmlFor="">Padding</label>
-                                            <FormControl type='number' onChange={(e) => {
-                                                setPadding3(e.target.value + "px")
-                                            }}></FormControl>
-                                        </Col>
-                                        <Col md={6}>
-                                            <label htmlFor="">Padding Top</label>
-                                            <FormControl type='number' onChange={(e) => {
-                                                setPaddingTop3(e.target.value + "px")
-                                            }}></FormControl>
-                                        </Col>
-                                        <Col md={6}>
-                                            <label htmlFor="">Padding Bottom</label>
-                                            <FormControl type='number' onChange={(e) => {
-                                                setPaddingBottom3(e.target.value + "px")
-                                            }}></FormControl>
-                                        </Col>
-                                        <Col md={6}>
-                                            <label htmlFor="">Padding Left</label>
-                                            <FormControl type='number' onChange={(e) => {
-                                                setPaddingLeft3(e.target.value + "px")
-                                            }}></FormControl>
-                                        </Col>
-                                        <Col md={6}>
-                                            <label htmlFor="">Padding Right</label>
-                                            <FormControl type='number' onChange={(e) => {
-                                                setPaddingRight3(e.target.value + "px")
-                                            }}></FormControl>
-                                        </Col>
-                                    </Row>
-                                    <Row>
-                                        <label htmlFor="">Border Style</label>
+                                    </Col>
+                                </Row>
+                            </Tab>
+                            <Tab eventKey="column2" title="Column2">
+                                <Row>
+                                    <Col md={12}>
+                                        <label htmlFor="">Background</label>
+                                        <FormControl type='color' onChange={(e) => {
+                                            setBackground2(e.target.value)
+                                        }}></FormControl>
+                                    </Col>
+                                </Row>
+                                <Row>
+                                    <Col md={12}>
+                                        <label htmlFor="">Padding</label>
+                                        <FormControl type='number' onChange={(e) => {
+                                            setPadding2(e.target.value + "px")
+                                        }}></FormControl>
+                                    </Col>
+                                    <Col md={6}>
+                                        <label htmlFor="">Padding Top</label>
+                                        <FormControl type='number' onChange={(e) => {
+                                            setPaddingTop2(e.target.value + "px")
+                                        }}></FormControl>
+                                    </Col>
+                                    <Col md={6}>
+                                        <label htmlFor="">Padding Bottom</label>
+                                        <FormControl type='number' onChange={(e) => {
+                                            setPaddingBottom2(e.target.value + "px")
+                                        }}></FormControl>
+                                    </Col>
+                                    <Col md={6}>
+                                        <label htmlFor="">Padding Left</label>
+                                        <FormControl type='number' onChange={(e) => {
+                                            setPaddingLeft2(e.target.value + "px")
+                                        }}></FormControl>
+                                    </Col>
+                                    <Col md={6}>
+                                        <label htmlFor="">Padding Right</label>
+                                        <FormControl type='number' onChange={(e) => {
+                                            setPaddingRight2(e.target.value + "px")
+                                        }}></FormControl>
+                                    </Col>
+                                </Row>
+                                <Row>
+                                    <label htmlFor="">Border Style</label>
+                                    <FormSelect onChange={(e) => {
+                                        setBorderStyle2(e.target.value)
+                                    }}>
+                                        <option value="solid">Solid</option>
+                                        <option value="dashed">Dashed</option>
+                                        <option value="dotted">Dotted</option>
+                                    </FormSelect>
+                                    <FormControl type='number' onChange={(e) => {
+                                        setBorderWidth2(e.target.value + "px")
+                                    }}></FormControl>
+                                    <FormControl type="color" onChange={(e) => {
+                                        setBorderColor2(e.target.value)
+                                    }}></FormControl>
+                                </Row>
+                                <Row>
+                                    <Col md={6}>
+                                        <label htmlFor="">Border Top Style</label>
                                         <FormSelect onChange={(e) => {
-                                            setBorderStyle3(e.target.value)
+                                            setBorderStyleTop2(e.target.value)
                                         }}>
                                             <option value="solid">Solid</option>
                                             <option value="dashed">Dashed</option>
                                             <option value="dotted">Dotted</option>
                                         </FormSelect>
                                         <FormControl type='number' onChange={(e) => {
-                                            setBorderWidth3(e.target.value + "px")
+                                            setBorderTopWidth2(e.target.value + "px")
                                         }}></FormControl>
                                         <FormControl type="color" onChange={(e) => {
-                                            setBorderColor3(e.target.value)
+                                            setBorderTopColor2(e.target.value)
                                         }}></FormControl>
-                                    </Row>
-                                    <Row>
-                                        <Col md={6}>
-                                            <label htmlFor="">Border Top Style</label>
-                                            <FormSelect onChange={(e) => {
-                                                setBorderStyleTop3(e.target.value)
-                                            }}>
-                                                <option value="solid">Solid</option>
-                                                <option value="dashed">Dashed</option>
-                                                <option value="dotted">Dotted</option>
-                                            </FormSelect>
-                                            <FormControl type='number' onChange={(e) => {
-                                                setBorderTopWidth3(e.target.value + "px")
-                                            }}></FormControl>
-                                            <FormControl type="color" onChange={(e) => {
-                                                setBorderTopColor3(e.target.value)
-                                            }}></FormControl>
-                                        </Col>
-                                        <Col md={6}>
-                                            <label htmlFor="">Border Bottom Style</label>
-                                            <FormSelect onChange={(e) => {
-                                                setBorderStyleBottom3(e.target.value)
-                                            }}>
-                                                <option value="solid">Solid</option>
-                                                <option value="dashed">Dashed</option>
-                                                <option value="dotted">Dotted</option>
-                                            </FormSelect>
-                                            <FormControl type='number' onChange={(e) => {
-                                                setBorderBottomWidth3(e.target.value + "px")
-                                            }}></FormControl>
-                                            <FormControl type="color" onChange={(e) => {
-                                                setBorderBottomColor3(e.target.value)
-                                            }}></FormControl>
-                                        </Col>
-                                        <Col md={6}>
-                                            <label htmlFor="">Border Left Style</label>
-                                            <FormSelect onChange={(e) => {
-                                                setBorderStyleLeft3(e.target.value)
-                                            }}>
-                                                <option value="solid">Solid</option>
-                                                <option value="dashed">Dashed</option>
-                                                <option value="dotted">Dotted</option>
-                                            </FormSelect>
-                                            <FormControl type='number' onChange={(e) => {
-                                                setBorderLeftWidth3(e.target.value + "px")
-                                            }}></FormControl>
-                                            <FormControl type="color" onChange={(e) => {
-                                                setBorderLeftColor3(e.target.value)
-                                            }}></FormControl>
-                                        </Col>
-                                        <Col md={6}>
-                                            <label htmlFor="">Border Right Style</label>
-                                            <FormSelect onChange={(e) => {
-                                                setBorderStyleRight3(e.target.value)
-                                            }}>
-                                                <option value="solid">Solid</option>
-                                                <option value="dashed">Dashed</option>
-                                                <option value="dotted">Dotted</option>
-                                            </FormSelect>
-                                            <FormControl type='number' onChange={(e) => {
-                                                setBorderRightWidth3(e.target.value + "px")
-                                            }}></FormControl>
-                                            <FormControl type="color" onChange={(e) => {
-                                                setBorderRightColor3(e.target.value)
-                                            }}></FormControl>
-                                        </Col>
-                                    </Row>
-                                </Tab>
-                                <Tab eventKey="column4" title="Column4">
-                                    <Row>
-                                        <Col md={12}>
-                                            <label htmlFor="">Background</label>
-                                            <FormControl type='color' onChange={(e) => {
-                                                setBackground4(e.target.value)
-                                            }}></FormControl>
-                                        </Col>
-                                    </Row>
-                                    <Row>
-                                        <Col md={12}>
-                                            <label htmlFor="">Padding</label>
-                                            <FormControl type='number' onChange={(e) => {
-                                                setPadding4(e.target.value + "px")
-                                            }}></FormControl>
-                                        </Col>
-                                        <Col md={6}>
-                                            <label htmlFor="">Padding Top</label>
-                                            <FormControl type='number' onChange={(e) => {
-                                                setPaddingTop4(e.target.value + "px")
-                                            }}></FormControl>
-                                        </Col>
-                                        <Col md={6}>
-                                            <label htmlFor="">Padding Bottom</label>
-                                            <FormControl type='number' onChange={(e) => {
-                                                setPaddingBottom4(e.target.value + "px")
-                                            }}></FormControl>
-                                        </Col>
-                                        <Col md={6}>
-                                            <label htmlFor="">Padding Left</label>
-                                            <FormControl type='number' onChange={(e) => {
-                                                setPaddingLeft4(e.target.value + "px")
-                                            }}></FormControl>
-                                        </Col>
-                                        <Col md={6}>
-                                            <label htmlFor="">Padding Right</label>
-                                            <FormControl type='number' onChange={(e) => {
-                                                setPaddingRight4(e.target.value + "px")
-                                            }}></FormControl>
-                                        </Col>
-                                    </Row>
-                                    <Row>
-                                        <label htmlFor="">Border Style</label>
+                                    </Col>
+                                    <Col md={6}>
+                                        <label htmlFor="">Border Bottom Style</label>
                                         <FormSelect onChange={(e) => {
-                                            setBorderStyle4(e.target.value)
+                                            setBorderStyleBottom2(e.target.value)
                                         }}>
                                             <option value="solid">Solid</option>
                                             <option value="dashed">Dashed</option>
                                             <option value="dotted">Dotted</option>
                                         </FormSelect>
                                         <FormControl type='number' onChange={(e) => {
-                                            setBorderWidth4(e.target.value + "px")
+                                            setBorderBottomWidth2(e.target.value + "px")
                                         }}></FormControl>
                                         <FormControl type="color" onChange={(e) => {
-                                            setBorderColor4(e.target.value)
+                                            setBorderBottomColor2(e.target.value)
                                         }}></FormControl>
-                                    </Row>
-                                    <Row>
-                                        <Col md={6}>
-                                            <label htmlFor="">Border Top Style</label>
-                                            <FormSelect onChange={(e) => {
-                                                setBorderStyleTop4(e.target.value)
-                                            }}>
-                                                <option value="solid">Solid</option>
-                                                <option value="dashed">Dashed</option>
-                                                <option value="dotted">Dotted</option>
-                                            </FormSelect>
-                                            <FormControl type='number' onChange={(e) => {
-                                                setBorderTopWidth4(e.target.value + "px")
-                                            }}></FormControl>
-                                            <FormControl type="color" onChange={(e) => {
-                                                setBorderTopColor4(e.target.value)
-                                            }}></FormControl>
-                                        </Col>
-                                        <Col md={6}>
-                                            <label htmlFor="">Border Bottom Style</label>
-                                            <FormSelect onChange={(e) => {
-                                                setBorderStyleBottom4(e.target.value)
-                                            }}>
-                                                <option value="solid">Solid</option>
-                                                <option value="dashed">Dashed</option>
-                                                <option value="dotted">Dotted</option>
-                                            </FormSelect>
-                                            <FormControl type='number' onChange={(e) => {
-                                                setBorderBottomWidth4(e.target.value + "px")
-                                            }}></FormControl>
-                                            <FormControl type="color" onChange={(e) => {
-                                                setBorderBottomColor4(e.target.value)
-                                            }}></FormControl>
-                                        </Col>
-                                        <Col md={6}>
-                                            <label htmlFor="">Border Left Style</label>
-                                            <FormSelect onChange={(e) => {
-                                                setBorderStyleLeft4(e.target.value)
-                                            }}>
-                                                <option value="solid">Solid</option>
-                                                <option value="dashed">Dashed</option>
-                                                <option value="dotted">Dotted</option>
-                                            </FormSelect>
-                                            <FormControl type='number' onChange={(e) => {
-                                                setBorderLeftWidth4(e.target.value + "px")
-                                            }}></FormControl>
-                                            <FormControl type="color" onChange={(e) => {
-                                                setBorderLeftColor4(e.target.value)
-                                            }}></FormControl>
-                                        </Col>
-                                        <Col md={6}>
-                                            <label htmlFor="">Border Right Style</label>
-                                            <FormSelect onChange={(e) => {
-                                                setBorderStyleRight4(e.target.value)
-                                            }}>
-                                                <option value="solid">Solid</option>
-                                                <option value="dashed">Dashed</option>
-                                                <option value="dotted">Dotted</option>
-                                            </FormSelect>
-                                            <FormControl type='number' onChange={(e) => {
-                                                setBorderRightWidth4(e.target.value + "px")
-                                            }}></FormControl>
-                                            <FormControl type="color" onChange={(e) => {
-                                                setBorderRightColor4(e.target.value)
-                                            }}></FormControl>
-                                        </Col>
-                                    </Row>
-                                </Tab>
-                            </Tabs> : <></>}
-                        </Row>
-                        <Row>
-                            <Col md={12}>
-                                <label htmlFor="">Row Background Image</label>
-                                <FormControl type='file' accept='image/*' onChange={(e) => {
-                                    const objectURL = URL.createObjectURL(e.target.files[0])
-                                    setBackgroundImage(objectURL)
-                                }}></FormControl>
-                            </Col>
-                        </Row>
-                    </div>
+                                    </Col>
+                                    <Col md={6}>
+                                        <label htmlFor="">Border Left Style</label>
+                                        <FormSelect onChange={(e) => {
+                                            setBorderStyleLeft2(e.target.value)
+                                        }}>
+                                            <option value="solid">Solid</option>
+                                            <option value="dashed">Dashed</option>
+                                            <option value="dotted">Dotted</option>
+                                        </FormSelect>
+                                        <FormControl type='number' onChange={(e) => {
+                                            setBorderLeftWidth2(e.target.value + "px")
+                                        }}></FormControl>
+                                        <FormControl type="color" onChange={(e) => {
+                                            setBorderLeftColor2(e.target.value)
+                                        }}></FormControl>
+                                    </Col>
+                                    <Col md={6}>
+                                        <label htmlFor="">Border Right Style</label>
+                                        <FormSelect onChange={(e) => {
+                                            setBorderStyleRight2(e.target.value)
+                                        }}>
+                                            <option value="solid">Solid</option>
+                                            <option value="dashed">Dashed</option>
+                                            <option value="dotted">Dotted</option>
+                                        </FormSelect>
+                                        <FormControl type='number' onChange={(e) => {
+                                            setBorderRightWidth2(e.target.value + "px")
+                                        }}></FormControl>
+                                        <FormControl type="color" onChange={(e) => {
+                                            setBorderRightColor2(e.target.value)
+                                        }}></FormControl>
+                                    </Col>
+                                </Row>
+                            </Tab>
+                        </Tabs> : <></>}
+                        {columnStyle === "column4" ? <Tabs defaultActiveKey="column1" id="uncontrolled-tab-example" className="mb-3">
+                            <Tab eventKey="column1" title="Column1">
+                                <Row>
+                                    <Col md={12}>
+                                        <label htmlFor="">Background</label>
+                                        <FormControl type='color' onChange={(e) => {
+                                            setBackground1(e.target.value)
+                                        }}></FormControl>
+                                    </Col>
+                                </Row>
+                                <Row>
+                                    <Col md={12}>
+                                        <label htmlFor="">Padding</label>
+                                        <FormControl type='number' onChange={(e) => {
+                                            setPadding1(e.target.value + "px")
+                                        }}></FormControl>
+                                    </Col>
+                                    <Col md={6}>
+                                        <label htmlFor="">Padding Top</label>
+                                        <FormControl type='number' onChange={(e) => {
+                                            setPaddingTop1(e.target.value + "px")
+                                        }}></FormControl>
+                                    </Col>
+                                    <Col md={6}>
+                                        <label htmlFor="">Padding Bottom</label>
+                                        <FormControl type='number' onChange={(e) => {
+                                            setPaddingBottom1(e.target.value + "px")
+                                        }}></FormControl>
+                                    </Col>
+                                    <Col md={6}>
+                                        <label htmlFor="">Padding Left</label>
+                                        <FormControl type='number' onChange={(e) => {
+                                            setPaddingLeft1(e.target.value + "px")
+                                        }}></FormControl>
+                                    </Col>
+                                    <Col md={6}>
+                                        <label htmlFor="">Padding Right</label>
+                                        <FormControl type='number' onChange={(e) => {
+                                            setPaddingRight1(e.target.value + "px")
+                                        }}></FormControl>
+                                    </Col>
+                                </Row>
+                                <Row>
+                                    <label htmlFor="">Border Style</label>
+                                    <FormSelect onChange={(e) => {
+                                        setBorderStyle1(e.target.value)
+                                    }}>
+                                        <option value="solid">Solid</option>
+                                        <option value="dashed">Dashed</option>
+                                        <option value="dotted">Dotted</option>
+                                    </FormSelect>
+                                    <FormControl type='number' onChange={(e) => {
+                                        setBorderWidth1(e.target.value + "px")
+                                    }}></FormControl>
+                                    <FormControl type="color" onChange={(e) => {
+                                        setBorderColor1(e.target.value)
+                                    }}></FormControl>
+                                </Row>
+                                <Row>
+                                    <Col md={6}>
+                                        <label htmlFor="">Border Top Style</label>
+                                        <FormSelect onChange={(e) => {
+                                            setBorderStyleTop1(e.target.value)
+                                        }}>
+                                            <option value="solid">Solid</option>
+                                            <option value="dashed">Dashed</option>
+                                            <option value="dotted">Dotted</option>
+                                        </FormSelect>
+                                        <FormControl type='number' onChange={(e) => {
+                                            setBorderTopWidth1(e.target.value + "px")
+                                        }}></FormControl>
+                                        <FormControl type="color" onChange={(e) => {
+                                            setBorderTopColor1(e.target.value)
+                                        }}></FormControl>
+                                    </Col>
+                                    <Col md={6}>
+                                        <label htmlFor="">Border Bottom Style</label>
+                                        <FormSelect onChange={(e) => {
+                                            setBorderStyleBottom1(e.target.value)
+                                        }}>
+                                            <option value="solid">Solid</option>
+                                            <option value="dashed">Dashed</option>
+                                            <option value="dotted">Dotted</option>
+                                        </FormSelect>
+                                        <FormControl type='number' onChange={(e) => {
+                                            setBorderBottomWidth1(e.target.value + "px")
+                                        }}></FormControl>
+                                        <FormControl type="color" onChange={(e) => {
+                                            setBorderBottomColor1(e.target.value)
+                                        }}></FormControl>
+                                    </Col>
+                                    <Col md={6}>
+                                        <label htmlFor="">Border Left Style</label>
+                                        <FormSelect onChange={(e) => {
+                                            setBorderStyleLeft1(e.target.value)
+                                        }}>
+                                            <option value="solid">Solid</option>
+                                            <option value="dashed">Dashed</option>
+                                            <option value="dotted">Dotted</option>
+                                        </FormSelect>
+                                        <FormControl type='number' onChange={(e) => {
+                                            setBorderLeftWidth1(e.target.value + "px")
+                                        }}></FormControl>
+                                        <FormControl type="color" onChange={(e) => {
+                                            setBorderLeftColor1(e.target.value)
+                                        }}></FormControl>
+                                    </Col>
+                                    <Col md={6}>
+                                        <label htmlFor="">Border Right Style</label>
+                                        <FormSelect onChange={(e) => {
+                                            setBorderStyleRight1(e.target.value)
+                                        }}>
+                                            <option value="solid">Solid</option>
+                                            <option value="dashed">Dashed</option>
+                                            <option value="dotted">Dotted</option>
+                                        </FormSelect>
+                                        <FormControl type='number' onChange={(e) => {
+                                            setBorderRightWidth1(e.target.value + "px")
+                                        }}></FormControl>
+                                        <FormControl type="color" onChange={(e) => {
+                                            setBorderRightColor1(e.target.value)
+                                        }}></FormControl>
+                                    </Col>
+                                </Row>
+                            </Tab>
+                            <Tab eventKey="column2" title="Column2">
+                                <Row>
+                                    <Col md={12}>
+                                        <label htmlFor="">Background</label>
+                                        <FormControl type='color' onChange={(e) => {
+                                            setBackground2(e.target.value)
+                                        }}></FormControl>
+                                    </Col>
+                                </Row>
+                                <Row>
+                                    <Col md={12}>
+                                        <label htmlFor="">Padding</label>
+                                        <FormControl type='number' onChange={(e) => {
+                                            setPadding2(e.target.value + "px")
+                                        }}></FormControl>
+                                    </Col>
+                                    <Col md={6}>
+                                        <label htmlFor="">Padding Top</label>
+                                        <FormControl type='number' onChange={(e) => {
+                                            setPaddingTop2(e.target.value + "px")
+                                        }}></FormControl>
+                                    </Col>
+                                    <Col md={6}>
+                                        <label htmlFor="">Padding Bottom</label>
+                                        <FormControl type='number' onChange={(e) => {
+                                            setPaddingBottom2(e.target.value + "px")
+                                        }}></FormControl>
+                                    </Col>
+                                    <Col md={6}>
+                                        <label htmlFor="">Padding Left</label>
+                                        <FormControl type='number' onChange={(e) => {
+                                            setPaddingLeft2(e.target.value + "px")
+                                        }}></FormControl>
+                                    </Col>
+                                    <Col md={6}>
+                                        <label htmlFor="">Padding Right</label>
+                                        <FormControl type='number' onChange={(e) => {
+                                            setPaddingRight2(e.target.value + "px")
+                                        }}></FormControl>
+                                    </Col>
+                                </Row>
+                                <Row>
+                                    <label htmlFor="">Border Style</label>
+                                    <FormSelect onChange={(e) => {
+                                        setBorderStyle2(e.target.value)
+                                    }}>
+                                        <option value="solid">Solid</option>
+                                        <option value="dashed">Dashed</option>
+                                        <option value="dotted">Dotted</option>
+                                    </FormSelect>
+                                    <FormControl type='number' onChange={(e) => {
+                                        setBorderWidth2(e.target.value + "px")
+                                    }}></FormControl>
+                                    <FormControl type="color" onChange={(e) => {
+                                        setBorderColor2(e.target.value)
+                                    }}></FormControl>
+                                </Row>
+                                <Row>
+                                    <Col md={6}>
+                                        <label htmlFor="">Border Top Style</label>
+                                        <FormSelect onChange={(e) => {
+                                            setBorderStyleTop2(e.target.value)
+                                        }}>
+                                            <option value="solid">Solid</option>
+                                            <option value="dashed">Dashed</option>
+                                            <option value="dotted">Dotted</option>
+                                        </FormSelect>
+                                        <FormControl type='number' onChange={(e) => {
+                                            setBorderTopWidth2(e.target.value + "px")
+                                        }}></FormControl>
+                                        <FormControl type="color" onChange={(e) => {
+                                            setBorderTopColor2(e.target.value)
+                                        }}></FormControl>
+                                    </Col>
+                                    <Col md={6}>
+                                        <label htmlFor="">Border Bottom Style</label>
+                                        <FormSelect onChange={(e) => {
+                                            setBorderStyleBottom2(e.target.value)
+                                        }}>
+                                            <option value="solid">Solid</option>
+                                            <option value="dashed">Dashed</option>
+                                            <option value="dotted">Dotted</option>
+                                        </FormSelect>
+                                        <FormControl type='number' onChange={(e) => {
+                                            setBorderBottomWidth2(e.target.value + "px")
+                                        }}></FormControl>
+                                        <FormControl type="color" onChange={(e) => {
+                                            setBorderBottomColor2(e.target.value)
+                                        }}></FormControl>
+                                    </Col>
+                                    <Col md={6}>
+                                        <label htmlFor="">Border Left Style</label>
+                                        <FormSelect onChange={(e) => {
+                                            setBorderStyleLeft2(e.target.value)
+                                        }}>
+                                            <option value="solid">Solid</option>
+                                            <option value="dashed">Dashed</option>
+                                            <option value="dotted">Dotted</option>
+                                        </FormSelect>
+                                        <FormControl type='number' onChange={(e) => {
+                                            setBorderLeftWidth2(e.target.value + "px")
+                                        }}></FormControl>
+                                        <FormControl type="color" onChange={(e) => {
+                                            setBorderLeftColor2(e.target.value)
+                                        }}></FormControl>
+                                    </Col>
+                                    <Col md={6}>
+                                        <label htmlFor="">Border Right Style</label>
+                                        <FormSelect onChange={(e) => {
+                                            setBorderStyleRight2(e.target.value)
+                                        }}>
+                                            <option value="solid">Solid</option>
+                                            <option value="dashed">Dashed</option>
+                                            <option value="dotted">Dotted</option>
+                                        </FormSelect>
+                                        <FormControl type='number' onChange={(e) => {
+                                            setBorderRightWidth2(e.target.value + "px")
+                                        }}></FormControl>
+                                        <FormControl type="color" onChange={(e) => {
+                                            setBorderRightColor2(e.target.value)
+                                        }}></FormControl>
+                                    </Col>
+                                </Row>
+                            </Tab>
+                            <Tab eventKey="column3" title="Column3">
+                                <Row>
+                                    <Col md={12}>
+                                        <label htmlFor="">Background</label>
+                                        <FormControl type='color' onChange={(e) => {
+                                            setBackground3(e.target.value)
+                                        }}></FormControl>
+                                    </Col>
+                                </Row>
+                                <Row>
+                                    <Col md={12}>
+                                        <label htmlFor="">Padding</label>
+                                        <FormControl type='number' onChange={(e) => {
+                                            setPadding3(e.target.value + "px")
+                                        }}></FormControl>
+                                    </Col>
+                                    <Col md={6}>
+                                        <label htmlFor="">Padding Top</label>
+                                        <FormControl type='number' onChange={(e) => {
+                                            setPaddingTop3(e.target.value + "px")
+                                        }}></FormControl>
+                                    </Col>
+                                    <Col md={6}>
+                                        <label htmlFor="">Padding Bottom</label>
+                                        <FormControl type='number' onChange={(e) => {
+                                            setPaddingBottom3(e.target.value + "px")
+                                        }}></FormControl>
+                                    </Col>
+                                    <Col md={6}>
+                                        <label htmlFor="">Padding Left</label>
+                                        <FormControl type='number' onChange={(e) => {
+                                            setPaddingLeft3(e.target.value + "px")
+                                        }}></FormControl>
+                                    </Col>
+                                    <Col md={6}>
+                                        <label htmlFor="">Padding Right</label>
+                                        <FormControl type='number' onChange={(e) => {
+                                            setPaddingRight3(e.target.value + "px")
+                                        }}></FormControl>
+                                    </Col>
+                                </Row>
+                                <Row>
+                                    <label htmlFor="">Border Style</label>
+                                    <FormSelect onChange={(e) => {
+                                        setBorderStyle3(e.target.value)
+                                    }}>
+                                        <option value="solid">Solid</option>
+                                        <option value="dashed">Dashed</option>
+                                        <option value="dotted">Dotted</option>
+                                    </FormSelect>
+                                    <FormControl type='number' onChange={(e) => {
+                                        setBorderWidth3(e.target.value + "px")
+                                    }}></FormControl>
+                                    <FormControl type="color" onChange={(e) => {
+                                        setBorderColor3(e.target.value)
+                                    }}></FormControl>
+                                </Row>
+                                <Row>
+                                    <Col md={6}>
+                                        <label htmlFor="">Border Top Style</label>
+                                        <FormSelect onChange={(e) => {
+                                            setBorderStyleTop3(e.target.value)
+                                        }}>
+                                            <option value="solid">Solid</option>
+                                            <option value="dashed">Dashed</option>
+                                            <option value="dotted">Dotted</option>
+                                        </FormSelect>
+                                        <FormControl type='number' onChange={(e) => {
+                                            setBorderTopWidth3(e.target.value + "px")
+                                        }}></FormControl>
+                                        <FormControl type="color" onChange={(e) => {
+                                            setBorderTopColor3(e.target.value)
+                                        }}></FormControl>
+                                    </Col>
+                                    <Col md={6}>
+                                        <label htmlFor="">Border Bottom Style</label>
+                                        <FormSelect onChange={(e) => {
+                                            setBorderStyleBottom3(e.target.value)
+                                        }}>
+                                            <option value="solid">Solid</option>
+                                            <option value="dashed">Dashed</option>
+                                            <option value="dotted">Dotted</option>
+                                        </FormSelect>
+                                        <FormControl type='number' onChange={(e) => {
+                                            setBorderBottomWidth3(e.target.value + "px")
+                                        }}></FormControl>
+                                        <FormControl type="color" onChange={(e) => {
+                                            setBorderBottomColor3(e.target.value)
+                                        }}></FormControl>
+                                    </Col>
+                                    <Col md={6}>
+                                        <label htmlFor="">Border Left Style</label>
+                                        <FormSelect onChange={(e) => {
+                                            setBorderStyleLeft3(e.target.value)
+                                        }}>
+                                            <option value="solid">Solid</option>
+                                            <option value="dashed">Dashed</option>
+                                            <option value="dotted">Dotted</option>
+                                        </FormSelect>
+                                        <FormControl type='number' onChange={(e) => {
+                                            setBorderLeftWidth3(e.target.value + "px")
+                                        }}></FormControl>
+                                        <FormControl type="color" onChange={(e) => {
+                                            setBorderLeftColor3(e.target.value)
+                                        }}></FormControl>
+                                    </Col>
+                                    <Col md={6}>
+                                        <label htmlFor="">Border Right Style</label>
+                                        <FormSelect onChange={(e) => {
+                                            setBorderStyleRight3(e.target.value)
+                                        }}>
+                                            <option value="solid">Solid</option>
+                                            <option value="dashed">Dashed</option>
+                                            <option value="dotted">Dotted</option>
+                                        </FormSelect>
+                                        <FormControl type='number' onChange={(e) => {
+                                            setBorderRightWidth3(e.target.value + "px")
+                                        }}></FormControl>
+                                        <FormControl type="color" onChange={(e) => {
+                                            setBorderRightColor3(e.target.value)
+                                        }}></FormControl>
+                                    </Col>
+                                </Row>
+                            </Tab>
+                        </Tabs> : <></>}
+                        {columnStyle === "column3" ? <Tabs defaultActiveKey="column1" id="uncontrolled-tab-example" className="mb-3">
+                            <Tab eventKey="column1" title="Column1">
+                                <Row>
+                                    <Col md={12}>
+                                        <label htmlFor="">Background</label>
+                                        <FormControl type='color' onChange={(e) => {
+                                            setBackground1(e.target.value)
+                                        }}></FormControl>
+                                    </Col>
+                                </Row>
+                                <Row>
+                                    <Col md={12}>
+                                        <label htmlFor="">Padding</label>
+                                        <FormControl type='number' onChange={(e) => {
+                                            setPadding1(e.target.value + "px")
+                                        }}></FormControl>
+                                    </Col>
+                                    <Col md={6}>
+                                        <label htmlFor="">Padding Top</label>
+                                        <FormControl type='number' onChange={(e) => {
+                                            setPaddingTop1(e.target.value + "px")
+                                        }}></FormControl>
+                                    </Col>
+                                    <Col md={6}>
+                                        <label htmlFor="">Padding Bottom</label>
+                                        <FormControl type='number' onChange={(e) => {
+                                            setPaddingBottom1(e.target.value + "px")
+                                        }}></FormControl>
+                                    </Col>
+                                    <Col md={6}>
+                                        <label htmlFor="">Padding Left</label>
+                                        <FormControl type='number' onChange={(e) => {
+                                            setPaddingLeft1(e.target.value + "px")
+                                        }}></FormControl>
+                                    </Col>
+                                    <Col md={6}>
+                                        <label htmlFor="">Padding Right</label>
+                                        <FormControl type='number' onChange={(e) => {
+                                            setPaddingRight1(e.target.value + "px")
+                                        }}></FormControl>
+                                    </Col>
+                                </Row>
+                                <Row>
+                                    <label htmlFor="">Border Style</label>
+                                    <FormSelect onChange={(e) => {
+                                        setBorderStyle1(e.target.value)
+                                    }}>
+                                        <option value="solid">Solid</option>
+                                        <option value="dashed">Dashed</option>
+                                        <option value="dotted">Dotted</option>
+                                    </FormSelect>
+                                    <FormControl type='number' onChange={(e) => {
+                                        setBorderWidth1(e.target.value + "px")
+                                    }}></FormControl>
+                                    <FormControl type="color" onChange={(e) => {
+                                        setBorderColor1(e.target.value)
+                                    }}></FormControl>
+                                </Row>
+                                <Row>
+                                    <Col md={6}>
+                                        <label htmlFor="">Border Top Style</label>
+                                        <FormSelect onChange={(e) => {
+                                            setBorderStyleTop1(e.target.value)
+                                        }}>
+                                            <option value="solid">Solid</option>
+                                            <option value="dashed">Dashed</option>
+                                            <option value="dotted">Dotted</option>
+                                        </FormSelect>
+                                        <FormControl type='number' onChange={(e) => {
+                                            setBorderTopWidth1(e.target.value + "px")
+                                        }}></FormControl>
+                                        <FormControl type="color" onChange={(e) => {
+                                            setBorderTopColor1(e.target.value)
+                                        }}></FormControl>
+                                    </Col>
+                                    <Col md={6}>
+                                        <label htmlFor="">Border Bottom Style</label>
+                                        <FormSelect onChange={(e) => {
+                                            setBorderStyleBottom1(e.target.value)
+                                        }}>
+                                            <option value="solid">Solid</option>
+                                            <option value="dashed">Dashed</option>
+                                            <option value="dotted">Dotted</option>
+                                        </FormSelect>
+                                        <FormControl type='number' onChange={(e) => {
+                                            setBorderBottomWidth1(e.target.value + "px")
+                                        }}></FormControl>
+                                        <FormControl type="color" onChange={(e) => {
+                                            setBorderBottomColor1(e.target.value)
+                                        }}></FormControl>
+                                    </Col>
+                                    <Col md={6}>
+                                        <label htmlFor="">Border Left Style</label>
+                                        <FormSelect onChange={(e) => {
+                                            setBorderStyleLeft1(e.target.value)
+                                        }}>
+                                            <option value="solid">Solid</option>
+                                            <option value="dashed">Dashed</option>
+                                            <option value="dotted">Dotted</option>
+                                        </FormSelect>
+                                        <FormControl type='number' onChange={(e) => {
+                                            setBorderLeftWidth1(e.target.value + "px")
+                                        }}></FormControl>
+                                        <FormControl type="color" onChange={(e) => {
+                                            setBorderLeftColor1(e.target.value)
+                                        }}></FormControl>
+                                    </Col>
+                                    <Col md={6}>
+                                        <label htmlFor="">Border Right Style</label>
+                                        <FormSelect onChange={(e) => {
+                                            setBorderStyleRight1(e.target.value)
+                                        }}>
+                                            <option value="solid">Solid</option>
+                                            <option value="dashed">Dashed</option>
+                                            <option value="dotted">Dotted</option>
+                                        </FormSelect>
+                                        <FormControl type='number' onChange={(e) => {
+                                            setBorderRightWidth1(e.target.value + "px")
+                                        }}></FormControl>
+                                        <FormControl type="color" onChange={(e) => {
+                                            setBorderRightColor1(e.target.value)
+                                        }}></FormControl>
+                                    </Col>
+                                </Row>
+                            </Tab>
+                            <Tab eventKey="column2" title="Column2">
+                                <Row>
+                                    <Col md={12}>
+                                        <label htmlFor="">Background</label>
+                                        <FormControl type='color' onChange={(e) => {
+                                            setBackground2(e.target.value)
+                                        }}></FormControl>
+                                    </Col>
+                                </Row>
+                                <Row>
+                                    <Col md={12}>
+                                        <label htmlFor="">Padding</label>
+                                        <FormControl type='number' onChange={(e) => {
+                                            setPadding2(e.target.value + "px")
+                                        }}></FormControl>
+                                    </Col>
+                                    <Col md={6}>
+                                        <label htmlFor="">Padding Top</label>
+                                        <FormControl type='number' onChange={(e) => {
+                                            setPaddingTop2(e.target.value + "px")
+                                        }}></FormControl>
+                                    </Col>
+                                    <Col md={6}>
+                                        <label htmlFor="">Padding Bottom</label>
+                                        <FormControl type='number' onChange={(e) => {
+                                            setPaddingBottom2(e.target.value + "px")
+                                        }}></FormControl>
+                                    </Col>
+                                    <Col md={6}>
+                                        <label htmlFor="">Padding Left</label>
+                                        <FormControl type='number' onChange={(e) => {
+                                            setPaddingLeft2(e.target.value + "px")
+                                        }}></FormControl>
+                                    </Col>
+                                    <Col md={6}>
+                                        <label htmlFor="">Padding Right</label>
+                                        <FormControl type='number' onChange={(e) => {
+                                            setPaddingRight2(e.target.value + "px")
+                                        }}></FormControl>
+                                    </Col>
+                                </Row>
+                                <Row>
+                                    <label htmlFor="">Border Style</label>
+                                    <FormSelect onChange={(e) => {
+                                        setBorderStyle2(e.target.value)
+                                    }}>
+                                        <option value="solid">Solid</option>
+                                        <option value="dashed">Dashed</option>
+                                        <option value="dotted">Dotted</option>
+                                    </FormSelect>
+                                    <FormControl type='number' onChange={(e) => {
+                                        setBorderWidth2(e.target.value + "px")
+                                    }}></FormControl>
+                                    <FormControl type="color" onChange={(e) => {
+                                        setBorderColor2(e.target.value)
+                                    }}></FormControl>
+                                </Row>
+                                <Row>
+                                    <Col md={6}>
+                                        <label htmlFor="">Border Top Style</label>
+                                        <FormSelect onChange={(e) => {
+                                            setBorderStyleTop2(e.target.value)
+                                        }}>
+                                            <option value="solid">Solid</option>
+                                            <option value="dashed">Dashed</option>
+                                            <option value="dotted">Dotted</option>
+                                        </FormSelect>
+                                        <FormControl type='number' onChange={(e) => {
+                                            setBorderTopWidth2(e.target.value + "px")
+                                        }}></FormControl>
+                                        <FormControl type="color" onChange={(e) => {
+                                            setBorderTopColor2(e.target.value)
+                                        }}></FormControl>
+                                    </Col>
+                                    <Col md={6}>
+                                        <label htmlFor="">Border Bottom Style</label>
+                                        <FormSelect onChange={(e) => {
+                                            setBorderStyleBottom2(e.target.value)
+                                        }}>
+                                            <option value="solid">Solid</option>
+                                            <option value="dashed">Dashed</option>
+                                            <option value="dotted">Dotted</option>
+                                        </FormSelect>
+                                        <FormControl type='number' onChange={(e) => {
+                                            setBorderBottomWidth2(e.target.value + "px")
+                                        }}></FormControl>
+                                        <FormControl type="color" onChange={(e) => {
+                                            setBorderBottomColor2(e.target.value)
+                                        }}></FormControl>
+                                    </Col>
+                                    <Col md={6}>
+                                        <label htmlFor="">Border Left Style</label>
+                                        <FormSelect onChange={(e) => {
+                                            setBorderStyleLeft2(e.target.value)
+                                        }}>
+                                            <option value="solid">Solid</option>
+                                            <option value="dashed">Dashed</option>
+                                            <option value="dotted">Dotted</option>
+                                        </FormSelect>
+                                        <FormControl type='number' onChange={(e) => {
+                                            setBorderLeftWidth2(e.target.value + "px")
+                                        }}></FormControl>
+                                        <FormControl type="color" onChange={(e) => {
+                                            setBorderLeftColor2(e.target.value)
+                                        }}></FormControl>
+                                    </Col>
+                                    <Col md={6}>
+                                        <label htmlFor="">Border Right Style</label>
+                                        <FormSelect onChange={(e) => {
+                                            setBorderStyleRight2(e.target.value)
+                                        }}>
+                                            <option value="solid">Solid</option>
+                                            <option value="dashed">Dashed</option>
+                                            <option value="dotted">Dotted</option>
+                                        </FormSelect>
+                                        <FormControl type='number' onChange={(e) => {
+                                            setBorderRightWidth2(e.target.value + "px")
+                                        }}></FormControl>
+                                        <FormControl type="color" onChange={(e) => {
+                                            setBorderRightColor2(e.target.value)
+                                        }}></FormControl>
+                                    </Col>
+                                </Row>
+                            </Tab>
+                            <Tab eventKey="column3" title="Column3">
+                                <Row>
+                                    <Col md={12}>
+                                        <label htmlFor="">Background</label>
+                                        <FormControl type='color' onChange={(e) => {
+                                            setBackground3(e.target.value)
+                                        }}></FormControl>
+                                    </Col>
+                                </Row>
+                                <Row>
+                                    <Col md={12}>
+                                        <label htmlFor="">Padding</label>
+                                        <FormControl type='number' onChange={(e) => {
+                                            setPadding3(e.target.value + "px")
+                                        }}></FormControl>
+                                    </Col>
+                                    <Col md={6}>
+                                        <label htmlFor="">Padding Top</label>
+                                        <FormControl type='number' onChange={(e) => {
+                                            setPaddingTop3(e.target.value + "px")
+                                        }}></FormControl>
+                                    </Col>
+                                    <Col md={6}>
+                                        <label htmlFor="">Padding Bottom</label>
+                                        <FormControl type='number' onChange={(e) => {
+                                            setPaddingBottom3(e.target.value + "px")
+                                        }}></FormControl>
+                                    </Col>
+                                    <Col md={6}>
+                                        <label htmlFor="">Padding Left</label>
+                                        <FormControl type='number' onChange={(e) => {
+                                            setPaddingLeft3(e.target.value + "px")
+                                        }}></FormControl>
+                                    </Col>
+                                    <Col md={6}>
+                                        <label htmlFor="">Padding Right</label>
+                                        <FormControl type='number' onChange={(e) => {
+                                            setPaddingRight3(e.target.value + "px")
+                                        }}></FormControl>
+                                    </Col>
+                                </Row>
+                                <Row>
+                                    <label htmlFor="">Border Style</label>
+                                    <FormSelect onChange={(e) => {
+                                        setBorderStyle3(e.target.value)
+                                    }}>
+                                        <option value="solid">Solid</option>
+                                        <option value="dashed">Dashed</option>
+                                        <option value="dotted">Dotted</option>
+                                    </FormSelect>
+                                    <FormControl type='number' onChange={(e) => {
+                                        setBorderWidth3(e.target.value + "px")
+                                    }}></FormControl>
+                                    <FormControl type="color" onChange={(e) => {
+                                        setBorderColor3(e.target.value)
+                                    }}></FormControl>
+                                </Row>
+                                <Row>
+                                    <Col md={6}>
+                                        <label htmlFor="">Border Top Style</label>
+                                        <FormSelect onChange={(e) => {
+                                            setBorderStyleTop3(e.target.value)
+                                        }}>
+                                            <option value="solid">Solid</option>
+                                            <option value="dashed">Dashed</option>
+                                            <option value="dotted">Dotted</option>
+                                        </FormSelect>
+                                        <FormControl type='number' onChange={(e) => {
+                                            setBorderTopWidth3(e.target.value + "px")
+                                        }}></FormControl>
+                                        <FormControl type="color" onChange={(e) => {
+                                            setBorderTopColor3(e.target.value)
+                                        }}></FormControl>
+                                    </Col>
+                                    <Col md={6}>
+                                        <label htmlFor="">Border Bottom Style</label>
+                                        <FormSelect onChange={(e) => {
+                                            setBorderStyleBottom3(e.target.value)
+                                        }}>
+                                            <option value="solid">Solid</option>
+                                            <option value="dashed">Dashed</option>
+                                            <option value="dotted">Dotted</option>
+                                        </FormSelect>
+                                        <FormControl type='number' onChange={(e) => {
+                                            setBorderBottomWidth3(e.target.value + "px")
+                                        }}></FormControl>
+                                        <FormControl type="color" onChange={(e) => {
+                                            setBorderBottomColor3(e.target.value)
+                                        }}></FormControl>
+                                    </Col>
+                                    <Col md={6}>
+                                        <label htmlFor="">Border Left Style</label>
+                                        <FormSelect onChange={(e) => {
+                                            setBorderStyleLeft3(e.target.value)
+                                        }}>
+                                            <option value="solid">Solid</option>
+                                            <option value="dashed">Dashed</option>
+                                            <option value="dotted">Dotted</option>
+                                        </FormSelect>
+                                        <FormControl type='number' onChange={(e) => {
+                                            setBorderLeftWidth3(e.target.value + "px")
+                                        }}></FormControl>
+                                        <FormControl type="color" onChange={(e) => {
+                                            setBorderLeftColor3(e.target.value)
+                                        }}></FormControl>
+                                    </Col>
+                                    <Col md={6}>
+                                        <label htmlFor="">Border Right Style</label>
+                                        <FormSelect onChange={(e) => {
+                                            setBorderStyleRight3(e.target.value)
+                                        }}>
+                                            <option value="solid">Solid</option>
+                                            <option value="dashed">Dashed</option>
+                                            <option value="dotted">Dotted</option>
+                                        </FormSelect>
+                                        <FormControl type='number' onChange={(e) => {
+                                            setBorderRightWidth3(e.target.value + "px")
+                                        }}></FormControl>
+                                        <FormControl type="color" onChange={(e) => {
+                                            setBorderRightColor3(e.target.value)
+                                        }}></FormControl>
+                                    </Col>
+                                </Row>
+                            </Tab>
+                            <Tab eventKey="column4" title="Column4">
+                                <Row>
+                                    <Col md={12}>
+                                        <label htmlFor="">Background</label>
+                                        <FormControl type='color' onChange={(e) => {
+                                            setBackground4(e.target.value)
+                                        }}></FormControl>
+                                    </Col>
+                                </Row>
+                                <Row>
+                                    <Col md={12}>
+                                        <label htmlFor="">Padding</label>
+                                        <FormControl type='number' onChange={(e) => {
+                                            setPadding4(e.target.value + "px")
+                                        }}></FormControl>
+                                    </Col>
+                                    <Col md={6}>
+                                        <label htmlFor="">Padding Top</label>
+                                        <FormControl type='number' onChange={(e) => {
+                                            setPaddingTop4(e.target.value + "px")
+                                        }}></FormControl>
+                                    </Col>
+                                    <Col md={6}>
+                                        <label htmlFor="">Padding Bottom</label>
+                                        <FormControl type='number' onChange={(e) => {
+                                            setPaddingBottom4(e.target.value + "px")
+                                        }}></FormControl>
+                                    </Col>
+                                    <Col md={6}>
+                                        <label htmlFor="">Padding Left</label>
+                                        <FormControl type='number' onChange={(e) => {
+                                            setPaddingLeft4(e.target.value + "px")
+                                        }}></FormControl>
+                                    </Col>
+                                    <Col md={6}>
+                                        <label htmlFor="">Padding Right</label>
+                                        <FormControl type='number' onChange={(e) => {
+                                            setPaddingRight4(e.target.value + "px")
+                                        }}></FormControl>
+                                    </Col>
+                                </Row>
+                                <Row>
+                                    <label htmlFor="">Border Style</label>
+                                    <FormSelect onChange={(e) => {
+                                        setBorderStyle4(e.target.value)
+                                    }}>
+                                        <option value="solid">Solid</option>
+                                        <option value="dashed">Dashed</option>
+                                        <option value="dotted">Dotted</option>
+                                    </FormSelect>
+                                    <FormControl type='number' onChange={(e) => {
+                                        setBorderWidth4(e.target.value + "px")
+                                    }}></FormControl>
+                                    <FormControl type="color" onChange={(e) => {
+                                        setBorderColor4(e.target.value)
+                                    }}></FormControl>
+                                </Row>
+                                <Row>
+                                    <Col md={6}>
+                                        <label htmlFor="">Border Top Style</label>
+                                        <FormSelect onChange={(e) => {
+                                            setBorderStyleTop4(e.target.value)
+                                        }}>
+                                            <option value="solid">Solid</option>
+                                            <option value="dashed">Dashed</option>
+                                            <option value="dotted">Dotted</option>
+                                        </FormSelect>
+                                        <FormControl type='number' onChange={(e) => {
+                                            setBorderTopWidth4(e.target.value + "px")
+                                        }}></FormControl>
+                                        <FormControl type="color" onChange={(e) => {
+                                            setBorderTopColor4(e.target.value)
+                                        }}></FormControl>
+                                    </Col>
+                                    <Col md={6}>
+                                        <label htmlFor="">Border Bottom Style</label>
+                                        <FormSelect onChange={(e) => {
+                                            setBorderStyleBottom4(e.target.value)
+                                        }}>
+                                            <option value="solid">Solid</option>
+                                            <option value="dashed">Dashed</option>
+                                            <option value="dotted">Dotted</option>
+                                        </FormSelect>
+                                        <FormControl type='number' onChange={(e) => {
+                                            setBorderBottomWidth4(e.target.value + "px")
+                                        }}></FormControl>
+                                        <FormControl type="color" onChange={(e) => {
+                                            setBorderBottomColor4(e.target.value)
+                                        }}></FormControl>
+                                    </Col>
+                                    <Col md={6}>
+                                        <label htmlFor="">Border Left Style</label>
+                                        <FormSelect onChange={(e) => {
+                                            setBorderStyleLeft4(e.target.value)
+                                        }}>
+                                            <option value="solid">Solid</option>
+                                            <option value="dashed">Dashed</option>
+                                            <option value="dotted">Dotted</option>
+                                        </FormSelect>
+                                        <FormControl type='number' onChange={(e) => {
+                                            setBorderLeftWidth4(e.target.value + "px")
+                                        }}></FormControl>
+                                        <FormControl type="color" onChange={(e) => {
+                                            setBorderLeftColor4(e.target.value)
+                                        }}></FormControl>
+                                    </Col>
+                                    <Col md={6}>
+                                        <label htmlFor="">Border Right Style</label>
+                                        <FormSelect onChange={(e) => {
+                                            setBorderStyleRight4(e.target.value)
+                                        }}>
+                                            <option value="solid">Solid</option>
+                                            <option value="dashed">Dashed</option>
+                                            <option value="dotted">Dotted</option>
+                                        </FormSelect>
+                                        <FormControl type='number' onChange={(e) => {
+                                            setBorderRightWidth4(e.target.value + "px")
+                                        }}></FormControl>
+                                        <FormControl type="color" onChange={(e) => {
+                                            setBorderRightColor4(e.target.value)
+                                        }}></FormControl>
+                                    </Col>
+                                </Row>
+                            </Tab>
+                        </Tabs> : <></>}
+                    </Row>
+                    <Row>
+                        <Col md={12}>
+                            <label htmlFor="">Row Background Image</label>
+                            <FormControl type='file' accept='image/*' onChange={(e) => {
+                                const objectURL = URL.createObjectURL(e.target.files[0])
+                                setBackgroundImage(objectURL)
+                            }}></FormControl>
+                        </Col>
+                    </Row>
                 </div> : <></>}
             <div onClick={handleShow}>
                 {column === "column-12" ?
-                    <Row style={{ 'backgroundImage': `url(` + backgroundImage + `)`,'backgroundSize':'cover','backgroundRepeat':'no-repeat' }} onClick={handleShow}>
+                    <Row ref={rowRef} style={{ 'backgroundImage': `url(` + backgroundImage + `)`, 'backgroundSize': 'cover', 'backgroundRepeat': 'no-repeat' }} onClick={handleShow}>
                         <Col md={12} style={{
                             'backgroundColor': background1,
                             'padding': padding1,
@@ -1545,7 +1545,7 @@ function ColumnElement() {
                         }}><Drop></Drop></Col>
                     </Row> : <></>}
                 {column === "column-6" ?
-                    <Row style={{ 'backgroundImage': `url(` + backgroundImage + `)` }} onClick={handleShow}>
+                    <Row ref={rowRef} style={{ 'backgroundImage': `url(` + backgroundImage + `)` }} onClick={handleShow}>
                         <Col md={6} style={{
                             'backgroundColor': background1,
                             'padding': padding1,
@@ -1594,7 +1594,7 @@ function ColumnElement() {
                         }}><Drop></Drop></Col>
                     </Row> : <></>}
                 {column === "column-6left" ?
-                    <Row style={{ 'backgroundImage': `url(` + backgroundImage + `)` }} onClick={handleShow}>
+                    <Row ref={rowRef} style={{ 'backgroundImage': `url(` + backgroundImage + `)` }} onClick={handleShow}>
                         <Col md={4} style={{
                             'backgroundColor': background1,
                             'padding': padding1,
@@ -1643,7 +1643,7 @@ function ColumnElement() {
                         }}><Drop></Drop></Col>
                     </Row> : <></>}
                 {column === "column-6right" ?
-                    <Row style={{ 'backgroundImage': `url(` + backgroundImage + `)` }} onClick={handleShow}>
+                    <Row ref={rowRef} style={{ 'backgroundImage': `url(` + backgroundImage + `)` }} onClick={handleShow}>
                         <Col md={8} style={{
                             'backgroundColor': background1,
                             'padding': padding1,
@@ -1692,7 +1692,7 @@ function ColumnElement() {
                         }}><Drop></Drop></Col>
                     </Row> : <></>}
                 {column === "column-4" ?
-                    <Row style={{ 'backgroundImage': `url(` + backgroundImage + `)` }} onClick={handleShow}>
+                    <Row ref={rowRef} style={{ 'backgroundImage': `url(` + backgroundImage + `)` }} onClick={handleShow}>
                         <Col md={4} style={{
                             'backgroundColor': background1,
                             'padding': padding1,
@@ -1764,7 +1764,7 @@ function ColumnElement() {
                         }}><Drop></Drop></Col>
                     </Row> : <></>}
                 {column === "column-3" ?
-                    <Row style={{ 'backgroundImage': `url(` + backgroundImage + `)` }} onClick={handleShow}>
+                    <Row ref={rowRef} style={{ 'backgroundImage': `url(` + backgroundImage + `)` }} onClick={handleShow}>
                         <Col md={3} style={{
                             'backgroundColor': background1,
                             'padding': padding1,
@@ -1859,7 +1859,7 @@ function ColumnElement() {
                         }}><Drop></Drop></Col>
                     </Row> : <></>}
                 {column === "column-3left" ?
-                    <Row style={{ 'backgroundImage': `url(` + backgroundImage + `)` }} onClick={handleShow}>
+                    <Row ref={rowRef} style={{ 'backgroundImage': `url(` + backgroundImage + `)` }} onClick={handleShow}>
                         <Col md={3} style={{
                             'backgroundColor': background1,
                             'padding': padding1,
@@ -1954,7 +1954,7 @@ function ColumnElement() {
                         }}><Drop></Drop></Col>
                     </Row> : <></>}
                 {column === "column-3right" ?
-                    <Row style={{ 'backgroundImage': `url(` + backgroundImage + `)` }} onClick={handleShow}>
+                    <Row ref={rowRef} style={{ 'backgroundImage': `url(` + backgroundImage + `)` }} onClick={handleShow}>
                         <Col md={3} style={{
                             'backgroundColor': background1,
                             'padding': padding1,

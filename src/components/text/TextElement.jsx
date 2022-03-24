@@ -1,7 +1,5 @@
 import React, { useState, useRef } from 'react';
 
-import ContentEditable from "react-contenteditable";
-
 import { Form, Button } from 'react-bootstrap';
 import Drop from '../Drop';
 import { useDetectClickOutside } from 'react-detect-click-outside';
@@ -18,8 +16,6 @@ function TextElement() {
 
     const handleOpen = () => setShow(true);
     const handleClose = () => setShow(false);
-
-    const [value, setValue] = useState('add content')
 
     const ref = useDetectClickOutside({ onTriggered: handleClose });
 
@@ -58,12 +54,9 @@ function TextElement() {
             {remove ?
                 (
                     <div ref={boxRef} class="text-div" onClick={handleOpen}>
-                        <ContentEditable
-                            html={value}
-                            onChange={(e) => setValue(e.target.value)}
-                            style={{ 'width': '100%' }}
-                        />
-                        {outsideClick ? <></> : <>
+                        <div className='d-flex' onClick={handleOpen}>
+                            <p className='text-break' contentEditable="true" suppressContentEditableWarning style={{ 'width': '100%' }}>Text</p>
+                        </div>                        {outsideClick ? <></> : <>
                             <div class='rich-editor'>
                                 <EditButton cmd="undo" />
                                 <input type="color" className='sanitize-btn' onChange={(e) => {
@@ -84,6 +77,7 @@ function TextElement() {
                                 <EditButton cmd="insertLineBreak" />
                                 <EditButton cmd="italic" />
                                 <EditButton cmd="bold" />
+                                <EditButton cmd="insertText" arg="/ *first_name */" />
                                 <EditButton cmd="justifyRight" name="right" />
                                 <EditButton cmd="justifyCenter" name="center" />
                                 <EditButton cmd="justifyLeft" name="left" />

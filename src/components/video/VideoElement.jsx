@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import { Button, Form } from 'react-bootstrap';
 import DropElement from '../Drop';
 import { useDetectClickOutside } from 'react-detect-click-outside';
-import { useDrag } from 'react-dnd';
-import { ItemTypes } from '../../ItemTypes'
 
 function VideoElement({ Drop, setDrop }) {
     const [remove, setRemove] = useState(true)

@@ -34,6 +34,8 @@ function TextElement() {
                             setShow(false)
                             setRemove(false)
                         }}>Remove</Button>
+                        <EditButton cmd="undo" />
+                        <EditButton cmd="redo" />
                         <Form.Check
                             type="switch"
                             label="Hide on MobileView"
@@ -58,7 +60,6 @@ function TextElement() {
                             <p className='text-break' contentEditable="true" suppressContentEditableWarning style={{ 'width': '100%' }}>Text</p>
                         </div>                        {outsideClick ? <></> : <>
                             <div class='rich-editor'>
-                                <EditButton cmd="undo" />
                                 <input type="color" className='sanitize-btn' onChange={(e) => {
                                     document.execCommand("backColor", false, e.target.value)
                                 }} />
@@ -73,7 +74,6 @@ function TextElement() {
                                 <EditButton cmd="insertUnorderedList" />
                                 <EditButton cmd="strikeThrough" />
                                 <EditButton cmd="underline" />
-                                <EditButton cmd="redo" />
                                 <EditButton cmd="insertLineBreak" />
                                 <EditButton cmd="italic" />
                                 <EditButton cmd="bold" />

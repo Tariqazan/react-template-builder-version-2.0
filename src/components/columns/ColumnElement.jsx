@@ -166,8 +166,8 @@ function ColumnElement() {
                 <div className='sidenav'>
                     <Button onClick={handleClose}>X</Button>
                     <Button variant='danger' onClick={() => {
-                       rowRef.current.removeChild(rowRef.current.remove())
                        setShow(false)
+                       rowRef.current.removeChild(rowRef.current.remove())
                     }}>Remove</Button>
                     <Row>
                         <Col md={6}>

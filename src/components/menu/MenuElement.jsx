@@ -32,10 +32,25 @@ function MenuElement() {
     // responsive
     const [responsive, setResponsive] = useState(false)
     const [responsiveclassName, setResponsiveClassName] = useState("")
+
+
+    const [style, setStyle] = useState([{
+        background: background,
+        textcolor: textcolor,
+    }])
+
+    const [undo, setUndo] = useState([])
+    const [redo, setRedo] = useState([])
+
+    const undoStyle = {
+        background: background,
+        textcolor: textcolor,
+    }
+
     return (
         <div ref={ref} className={responsiveclassName}>
-            {remove ? <ul className='d-flex' style={{ 'backgroundColor': background }} onClick={handleOpen}>{itemlist.map((i) => (
-                <li key={i.id} className='px-3'><a href="/#" id={i.id} style={{ 'color': textcolor }}>{i.menu}</a></li>
+            {remove ? <ul className='d-flex' style={{ 'backgroundColor': style[0].background }} onClick={handleOpen}>{itemlist.map((i) => (
+                <li key={i.id} className='px-3'><a href="/#" id={i.id} style={{ 'color': style[0].textcolor }}>{i.menu}</a></li>
             ))}</ul> : <Drop></Drop>}
             {show ?
                 <div className="sidenav">
@@ -44,13 +59,31 @@ function MenuElement() {
                         setShow(false)
                         setRemove(false)
                     }}>Remove</Button>
+                    <Button onClick={() => {
+                        let undoArr = [...undo]
+                        setStyle(undoArr)
+                    }}>Undo</Button>
+                    <Button onClick={() => {
+                        let redoArr = [...redo]
+                        setStyle(redoArr)
+                    }}>Redo</Button>
                     <label htmlFor="">Background</label>
                     <FormControl type='color' onChange={(e) => {
                         setBackground(e.target.value)
+                        setUndo([undoStyle])
+                        let arr = [...style]
+                        arr[0].background = e.target.value
+                        setStyle(arr)
+                        setRedo(arr)
                     }}></FormControl>
                     <label htmlFor="">Text</label>
                     <FormControl type='color' onChange={(e) => {
                         setTextColor(e.target.value)
+                        setUndo([undoStyle])
+                        let arr = [...style]
+                        arr[0].textcolor = e.target.value
+                        setStyle(arr)
+                        setRedo(arr)
                     }}></FormControl>
                     <Button onClick={() => {
                         setID(id + 1)

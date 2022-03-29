@@ -27,6 +27,20 @@ function TimerElement() {
     const [responsive, setResponsive] = useState(false)
     const [responsiveclassName, setResponsiveClassName] = useState("")
 
+    const [style, setStyle] = useState([{
+        background: background,
+        color: color,
+    }])
+
+    const [undo, setUndo] = useState([])
+    const [redo, setRedo] = useState([])
+
+    const undoStyle = {
+        background: background,
+        color: color,
+    }
+
+
     return (
         <div ref={ref} className={responsiveclassName}>
             {remove ? <div style={{ 'backgroundColor': background, 'color': color }} onClick={handleOpen}><CountdownTimer targetDate={diffDate}></CountdownTimer></div> : <Drop></Drop>}
@@ -40,6 +54,14 @@ function TimerElement() {
                             setShow(false)
                             setRemove(false)
                         }}>Remove</Button>
+                        <Button onClick={() => {
+                            let undoArr = [...undo]
+                            setStyle(undoArr)
+                        }}>Undo</Button>
+                        <Button onClick={() => {
+                            let redoArr = [...redo]
+                            setStyle(redoArr)
+                        }}>Redo</Button>
                         <label htmlFor="">End Time</label>
                         <FormControl value={endtime} readOnly></FormControl>
                         <FormControl type="date" onChange={(e) => {
@@ -52,11 +74,25 @@ function TimerElement() {
                         <Row>
                             <Col md={6}>
                                 <label htmlFor="">Background</label>
-                                <FormControl type='color' value={background} onChange={(e) => setBackground(e.target.value)}></FormControl>
+                                <FormControl type='color' value={background} onChange={(e) => {
+                                    setBackground(e.target.value)
+                                    setUndo([undoStyle])
+                                    let arr = [...style]
+                                    arr[0].background = e.target.value
+                                    setStyle(arr)
+                                    setRedo(arr)
+                                }}></FormControl>
                             </Col>
                             <Col md={6}>
                                 <label htmlFor="">Color</label>
-                                <FormControl type="color" value={color} onChange={(e) => setColor(e.target.value)}></FormControl>
+                                <FormControl type="color" value={color} onChange={(e) => {
+                                    setColor(e.target.value)
+                                    setUndo([undoStyle])
+                                    let arr = [...style]
+                                    arr[0].color = e.target.value
+                                    setStyle(arr)
+                                    setRedo(arr)
+                                }}></FormControl>
                             </Col>
                         </Row>
                         <Form.Check

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Col, FormControl, Row, InputGroup, Button, Form } from 'react-bootstrap';
 import Drop from '../Drop';
 import { useDetectClickOutside } from 'react-detect-click-outside';
@@ -22,7 +22,7 @@ function DividerElement() {
 
     const ref = useDetectClickOutside({ onTriggered: handleClose });
 
-    const [presentStyle, setPresentStyle] = useState([{
+    const [style, setStyle] = useState([{
         justifyContent: justifyContent,
         width: width,
         borderTopStyle: borderStyle,
@@ -30,95 +30,23 @@ function DividerElement() {
         borderWidth: height
     }])
 
-    const [undo, setUndo] = useState([{
+    const [undo, setUndo] = useState([])
+    const [redo, setRedo] = useState([])
+
+    const undoStyle = {
         justifyContent: justifyContent,
         width: width,
         borderTopStyle: borderStyle,
         borderTopColor: color,
         borderWidth: height
-    }])
-    const [redo, setRedo] = useState([{
-        justifyContent: justifyContent,
-        width: width,
-        borderTopStyle: borderStyle,
-        borderTopColor: color,
-        borderWidth: height
-    }])
-
-
-    const updateWidth = index => e => {
-        let undoArr = [...undo]
-        undoArr[0].width = width
-        setWidth(e.target.value + "%")
-        setUndo(undoArr)
-        let arr = [...presentStyle]
-        arr[index].width = e.target.value + "%"
-        setRedo(arr)
-        setPresentStyle(arr)
-    }
-
-
-    const updateColor = index => e => {
-        let undoArr = [...undo]
-        undoArr[0].borderTopColor = color
-        setColor(e.target.value)
-        setUndo(undoArr)
-        let arr = [...presentStyle]
-        arr[index].borderTopColor = e.target.value
-        setRedo(arr)
-        setPresentStyle(arr)
-    }
-
-
-    const updateHeight = index => e => {
-        let undoArr = [...undo]
-        undoArr[0].borderWidth = height
-        setHeight(e.target.value + "px")
-        setUndo(undoArr)
-        let arr = [...presentStyle]
-        arr[index].borderWidth = e.target.value + "px"
-        setRedo(arr)
-        setPresentStyle(arr)
-    }
-
-    const updateJustifyContent = index => e => {
-        let undoArr = [...undo]
-        undoArr[0].justifyContent = justifyContent
-        setjustifyContent(index)
-        setUndo(undoArr)
-        let arr = [...presentStyle]
-        arr[0].justifyContent = index
-        setRedo(arr)
-        setPresentStyle(arr)
-    }
-
-    const updateBorderStyle = index => e => {
-        let undoArr = [...undo]
-        undoArr[0].borderTopStyle = borderStyle
-        setBorderStyle(e.target.value)
-        setUndo(undoArr)
-        let arr = [...presentStyle]
-        arr[index].borderTopStyle = e.target.value
-        setRedo(arr)
-        setPresentStyle(arr)
-    }
-
-    const handleUndo = () => {
-        let arr = [...undo]
-        setPresentStyle(arr)
-    }
-
-    const handleRedo = () => {
-        let arr = [...redo]
-        setPresentStyle(arr)
     }
 
     return (
         <div ref={ref} className={responsiveclassName}>
             {
                 remove ?
-                    <div className='py-3' style={{ 'display': 'flex', 'justifyContent': presentStyle[0].justifyContent }} onClick={handleOpen}>
-                        <div style={{ 'width': presentStyle[0].width, 'borderTopStyle': presentStyle[0].borderTopStyle, 'borderTopColor': presentStyle[0].borderTopColor, 'borderWidth': presentStyle[0].borderWidth }}></div>
+                    <div className='py-3' style={{ 'display': 'flex', 'justifyContent': style[0].justifyContent }} onClick={handleOpen}>
+                        <div style={{ 'width': style[0].width, 'borderTopStyle': style[0].borderTopStyle, 'borderTopColor': style[0].borderTopColor, 'borderWidth': style[0].borderWidth }}></div>
                     </div> : <Drop></Drop>
             }
             {show ?
@@ -129,15 +57,35 @@ function DividerElement() {
                             setShow(false)
                             setRemove(false)
                         }}>Remove</Button>
-                        <Button onClick={handleUndo}>Undo</Button>
-                        <Button onClick={handleRedo}>Redo</Button>
+                        <Button onClick={() => {
+                            let undoArr = [...undo]
+                            setStyle(undoArr)
+                        }}>Undo</Button>
+                        <Button onClick={() => {
+                            let redoArr = [...redo]
+                            setStyle(redoArr)
+                        }}>Redo</Button>
                         <InputGroup className='my-2'>
                             <InputGroup.Text id="basic-addon1">Width</InputGroup.Text>
-                            <FormControl type='range' onChange={updateWidth(0)}></FormControl>
+                            <FormControl type='range' onChange={(e) => {
+                                setWidth(e.target.value + "%")
+                                setUndo([undoStyle])
+                                let arr = [...style]
+                                arr[0].width = e.target.value + "%"
+                                setStyle(arr)
+                                setRedo(arr)
+                            }}></FormControl>
                         </InputGroup>
                         <InputGroup className='my-2'>
                             <InputGroup.Text id="basic-addon1">Style</InputGroup.Text>
-                            <select className='form-control' onChange={updateBorderStyle(0)}>
+                            <select className='form-control' onChange={(e) => {
+                                setBorderStyle(e.target.value)
+                                setUndo([undoStyle])
+                                let arr = [...style]
+                                arr[0].borderTopStyle = e.target.value
+                                setStyle(arr)
+                                setRedo(arr)
+                            }}>
                                 <option value="solid" selected>Solid</option>
                                 <option value="dashed">Dashed</option>
                                 <option value="dotted">Dotted</option>
@@ -145,16 +93,51 @@ function DividerElement() {
                         </InputGroup>
                         <InputGroup className="my-2">
                             <InputGroup.Text id="basic-addon1">Color</InputGroup.Text>
-                            <FormControl type='color' onChange={updateColor(0)}></FormControl>
+                            <FormControl type='color' onChange={(e) => {
+                                setColor(e.target.value)
+                                setUndo([undoStyle])
+                                let arr = [...style]
+                                arr[0].borderTopColor = e.target.value
+                                setStyle(arr)
+                                setRedo(arr)
+                            }}></FormControl>
                         </InputGroup>
                         <InputGroup className="my-2">
                             <InputGroup.Text id="basic-addon1">Height</InputGroup.Text>
-                            <FormControl type='number' onChange={updateHeight(0)}></FormControl>
+                            <FormControl type='number' onChange={(e) => {
+                                setHeight(e.target.value + "px")
+                                setUndo([undoStyle])
+                                let arr = [...style]
+                                arr[0].borderWidth = e.target.value + "px"
+                                setStyle(arr)
+                                setRedo(arr)
+                            }}></FormControl>
                         </InputGroup>
                         <Row className="my-2">
-                            <Col md={4}><Button onClick={updateJustifyContent("flex-start")}>Left</Button></Col>
-                            <Col md={4}><Button onClick={updateJustifyContent("center")}>Center</Button></Col>
-                            <Col md={4}><Button onClick={updateJustifyContent("flex-end")}>Right</Button></Col>
+                            <Col md={4}><Button onClick={() => {
+                                setjustifyContent("flex-start")
+                                setUndo([undoStyle])
+                                let arr = [...style]
+                                arr[0].justifyContent = "flex-start"
+                                setStyle(arr)
+                                setRedo(arr)
+                            }}>Left</Button></Col>
+                            <Col md={4}><Button onClick={() => {
+                                setjustifyContent("center")
+                                setUndo([undoStyle])
+                                let arr = [...style]
+                                arr[0].justifyContent = "center"
+                                setStyle(arr)
+                                setRedo(arr)
+                            }}>Center</Button></Col>
+                            <Col md={4}><Button onClick={() => {
+                                setjustifyContent("flex-end")
+                                setUndo([undoStyle])
+                                let arr = [...style]
+                                arr[0].justifyContent = "flex-end"
+                                setStyle(arr)
+                                setRedo(arr)
+                            }}>Right</Button></Col>
                         </Row>
                     </div>
                     <Form.Check

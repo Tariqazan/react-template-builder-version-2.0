@@ -1,5 +1,5 @@
-import React, { useState, useRef } from 'react';
-import { Offcanvas, Carousel, FormControl, Button, Form, Row, Col } from 'react-bootstrap';
+import React, { useState } from 'react';
+import { Carousel, FormControl, Button, Form, Row, Col } from 'react-bootstrap';
 import Drop from '../Drop';
 
 import { useDetectClickOutside } from 'react-detect-click-outside';
@@ -30,8 +30,28 @@ function CarouselElement() {
   const handleClose = () => setShow(false)
 
   const ref = useDetectClickOutside({ onTriggered: handleClose });
+
+  const [style, setStyle] = useState([{
+    padding: padding,
+    paddingTop: paddingTop,
+    paddingBottom: paddingBottom,
+    paddingLeft: paddingLeft,
+    paddingRight: paddingRight
+  }])
+
+  const [undo, setUndo] = useState([])
+  const [redo, setRedo] = useState([])
+
+  const undoStyle = {
+    padding: padding,
+    paddingTop: paddingTop,
+    paddingBottom: paddingBottom,
+    paddingLeft: paddingLeft,
+    paddingRight: paddingRight
+  }
+
   return (
-    <div ref={ref} className={responsiveclassName} style={{ 'padding': padding, 'paddingTop': paddingTop, 'paddingBottom': paddingBottom, 'paddingLeft': paddingLeft, 'paddingRight': paddingRight }}>
+    <div ref={ref} className={responsiveclassName} style={{ 'padding': style[0].padding, 'paddingTop': style[0].paddingTop, 'paddingBottom': style[0].paddingBottom, 'paddingLeft': style[0].paddingLeft, 'paddingRight': style[0].paddingRight }}>
       {remove ? <Carousel variant="dark" onClick={handleOpen}>
         <Carousel.Item>
           <a href={img_url1}>
@@ -71,6 +91,14 @@ function CarouselElement() {
               setShow(false)
               setRemove(false)
             }}>Remove</Button>
+            <Button onClick={() => {
+              let undoArr = [...undo]
+              setStyle(undoArr)
+            }}>Undo</Button>
+            <Button onClick={() => {
+              let redoArr = [...redo]
+              setStyle(redoArr)
+            }}>Redo</Button>
             <label htmlFor="image">Image 1</label>
             <input type="file" className='form-control' accept='image/*' onChange={(e) => {
               const objectURL = URL.createObjectURL(e.target.files[0])
@@ -98,30 +126,55 @@ function CarouselElement() {
             <Form.Label>Container Padding</Form.Label>
             <FormControl type='number' onChange={(e) => {
               setPadding(e.target.value + "px")
+              setUndo([undoStyle])
+              let arr = [...style]
+              arr[0].padding = e.target.value + "px"
+              setStyle(arr)
+              setRedo(arr)
             }}></FormControl>
             <Row>
               <Col md={6}>
                 <Form.Label>Padding Top</Form.Label>
                 <FormControl type='number' onChange={(e) => {
                   setPaddingTop(e.target.value + "px")
+                  setUndo([undoStyle])
+                  let arr = [...style]
+                  arr[0].paddingTop = e.target.value + "px"
+                  setStyle(arr)
+                  setRedo(arr)
                 }}></FormControl>
               </Col>
               <Col md={6}>
                 <Form.Label>Padding Bottom</Form.Label>
                 <FormControl type='number' onChange={(e) => {
                   setPaddingBottom(e.target.value + "px")
+                  setUndo([undoStyle])
+                  let arr = [...style]
+                  arr[0].paddingBottom = e.target.value + "px"
+                  setStyle(arr)
+                  setRedo(arr)
                 }}></FormControl>
               </Col>
               <Col md={6}>
                 <Form.Label>Padding Left</Form.Label>
                 <FormControl type='number' onChange={(e) => {
                   setPaddingLeft(e.target.value + "px")
+                  setUndo([undoStyle])
+                  let arr = [...style]
+                  arr[0].paddingLeft = e.target.value + "px"
+                  setStyle(arr)
+                  setRedo(arr)
                 }}></FormControl>
               </Col>
               <Col md={6}>
                 <Form.Label>Padding Right</Form.Label>
                 <FormControl type='number' onChange={(e) => {
                   setPaddingRight(e.target.value + "px")
+                  setUndo([undoStyle])
+                  let arr = [...style]
+                  arr[0].paddingRight = e.target.value + "px"
+                  setStyle(arr)
+                  setRedo(arr)
                 }}></FormControl>
               </Col>
             </Row>

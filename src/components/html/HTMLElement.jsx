@@ -18,6 +18,8 @@ function HTMLElement() {
     // responsive
     const [responsive, setResponsive] = useState(false)
     const [responsiveclassName, setResponsiveClassName] = useState("")
+
+    
     return (
         <div ref={ref} className={responsiveclassName}>
             {remove ? <div ref={sortRef} dangerouslySetInnerHTML={{ __html: html_value }} onClick={handleOpen} onBlur={handleClose}></div> : <Drop></Drop>}
@@ -31,6 +33,8 @@ function HTMLElement() {
                             setShow(false)
                             setRemove(false)
                         }}>Remove</Button>
+                        <EditButton cmd="undo" />
+                        <EditButton cmd="redo" />
                         <textarea className='form-control' cols="30" rows="10" onChange={(e) => {
                             setHtmlValue(e.target.value)
                         }}>{html_value}</textarea>
@@ -56,3 +60,18 @@ function HTMLElement() {
 }
 
 export default HTMLElement
+
+    
+function EditButton(props) {
+    return (
+        <button className='sanitize-btn'
+            key={props.cmd}
+            onMouseDown={evt => {
+                evt.preventDefault(); // Avoids loosing focus from the editable area
+                document.execCommand(props.cmd, false, props.arg); // Send the command to the browser
+            }}
+        >
+            {props.name || props.cmd}
+        </button>
+    );
+}
